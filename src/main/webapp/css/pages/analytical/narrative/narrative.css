@@ -1,0 +1,9 @@
+/* Styling for all text areas in the narrative page.*/
+
+textarea.narrativeanswers {
+	width: 700px;
+	height:170px;
+	font-family: Calibri,Arial,Helvetica,sans-serif;
+    font-size: 16px;
+    margin-left: 20px;
+}

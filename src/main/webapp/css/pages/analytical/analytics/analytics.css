@@ -1,0 +1,286 @@
+/* Styling for the show detailed data button. */
+.showdatadetails {
+	background-color: #005689;
+	border: none;
+	color: white;
+	padding: 5px 8px;
+	text-align: right;
+	text-decoration: none;
+	font-size: 15px !important;
+	margin: 0px 0px 0px 30%;
+	cursor: pointer;
+}
+
+.showdatadetailsdiv {
+	/* width:80%;  */
+	
+}
+
+/* Note on the importance of entering data.*/
+#dataaccuracyreminder {
+	margin: 15px 300px 30px 150px
+}
+
+#dataaccuracyreminder p {
+	color: #005689;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+/* Styling for macro table headers. */
+button.accordion {
+	cursor: pointer;
+	padding: 18px;
+	width: 80%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	transition: 0.4s;
+	background: #dddddd none repeat scroll 0 0;
+	font-weight: bold;
+	margin-left: 50px;
+}
+
+button.accordion .tooltiptext {
+	visibility: hidden;
+	font-size: 12px !important;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	float: right;
+}
+
+button.accordion:hover .tooltiptext {
+	visibility: visible;
+}
+
+button.accordion:hover {
+	background-color: #c9c9c9;
+	cursor: pointer;
+}
+
+/* Styling for the consistency with international standards tables and charts. */
+#detail-consistency-chart-table {
+	margin-left: 50px;
+	margin-bottom: 50px;
+	width: 80%;
+	min-width: 310px;
+}
+
+#detail-consistency-chart {
+	margin-top: 30px;
+	margin-bottom: 0px;
+	margin-left: 40px;
+	width: 80%;
+	min-width: 310px;
+	height: 600px;
+}
+
+#detail-consistency-table {
+	margin-top: 20px;
+	width: 80%;
+	min-width: 310px;
+}
+
+#consistencyinternationaltabletitle, #consistencyinternationaltable {
+	border: 1px #DDDDDD solid;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 75%;
+	margin-left: 150px;
+}
+
+table#consistencyinternationaltable th {
+	border-style: none;
+	height: 30px;
+	background-color: #dddddd;
+	text-align: center;
+	font-weight: bold;
+}
+
+table#consistencyinternationaltable th:hover {
+	background-color: #c9c9c9;
+	cursor: pointer;
+}
+
+table#consistencyinternationaltable tr {
+	border-bottom: 2px solid #eeeeee;
+	text-align: center;
+	font-size: 14px;
+}
+
+table#consistencyinternationaltable tbody td:nth-child(1) {
+	text-align: left;
+}
+
+p#consistencyfootnote {
+	margin-left: 45px;
+	width: 60%;
+	font-size: 14px;
+}
+
+/* Styling for the obstacles tables and charts. */
+#findingstablediv {
+	margin-bottom: 50px
+}
+
+table#obstacleskeyfindings {
+	border: 1px #DDDDDD solid;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 60%;
+	margin-left: 150px;
+	margin-top: 20px;
+}
+
+#findingstable-missingdata {
+	margin: 0px 25% 30px 150px
+}
+
+#findingstable-missingdata p {
+	/*color: #cc0000;*/
+	color: #005689;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+#summary-poc-natinstsruments-chart {
+	margin-left: 50px;
+	margin-top: 100px;
+	width: 70%;
+	min-width: 310px;
+	height: 500px;
+}
+
+#detail-poc-natinstsruments-table {
+	margin-top: 20px;
+	width: 100%;
+	min-width: 310px;
+}
+
+
+#summary-poc-obstacles-chart {
+	margin-left: 50px;
+	margin-top: 100px;
+	width: 70%;
+	min-width: 310px;
+	height: 500px;
+}
+
+#detail-poc-obstacles-chart {
+	margin-left: 50px;
+	margin-top: 100px;
+	width: 80%;
+	min-width: 310px;
+	height: 600px;
+}
+
+#detail-poc-obstacles-table {
+	margin-top: 20px;
+	width: 100%;
+	min-width: 310px;
+}
+
+#detail-poc-obstacles-rightgroups-chart {
+	margin-top: 100px;
+	margin-left: 50px;
+	width: 80%;
+	min-width: 310px;
+	height: 600px;
+}
+
+#detail-poc-obstacles-rightgroups-table {
+	margin-top: 20px;
+	width: 100%;
+	min-width: 310px;
+}
+
+table#tabletitle {
+	border: 1px #DDDDDD solid;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 75%;
+	margin-left: 80px;
+}
+
+table#obstaclesdetail {
+	border: 1px #DDDDDD solid;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 75%;
+	margin-left: 80px;
+}
+
+table#obstaclesdetail th {
+	border-style: none;
+	height: 30px;
+	background-color: #dddddd;
+	text-align: center;
+	font-weight: bold;
+}
+
+table#obstaclesdetail th:hover {
+	background-color: #c9c9c9;
+	cursor: pointer;
+}
+
+table#obstaclesdetail td {
+	padding: 8px;
+	/* width: 80px; */
+	border: 1px #C0C0C0 solid;
+}
+
+table#obstaclesdetail tr {
+	border-bottom: 2px solid #eeeeee;
+	text-align: center;
+	font-size: 14px;
+}
+
+table#obstaclesdetail tbody td:nth-child(1) {
+	text-align: left;
+}
+
+table#obstaclesdetail tbody tr:nth-child(odd) {
+	background-color: #efefef;
+}
+
+table#obstaclesdetail tbody tr:nth-child(even) {
+	background-color: #ffffff;
+}
+
+table#obstaclesdetail tfoot {
+	border-style: none;
+	height: 30px;
+	background-color: #dddddd !important;
+	font-weight: bold;
+}
+
+/* Missing data note. */
+
+#belowchart-missingdata {
+	margin: 15px 300px 30px 150px
+}
+
+#belowchart-missingdata p {
+	/*color: #cc0000;*/
+	color: #005689;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+
+/* Span for colouring text blue. */
+.bluetext {
+	color: #005689;
+}
+
+.boldbluetext {
+	color: #005689;
+	font-weight: bold;
+}
+
+/* Span for missing data asterisks. */
+.missingDataAsterisk {
+	/*color: #cc0000;*/
+	color: #005689;
+	font-weight: bold;
+}

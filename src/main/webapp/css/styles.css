@@ -1,0 +1,671 @@
+/* Reset*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+	b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+	details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
+	output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	/* 	vertical-align: baseline; */
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup,
+	menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* End Reset*/
+
+/**************************************************************************/
+
+/*Global*/
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	min-width: 1200px;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+/*End Global*/
+p .left {
+	margin: 1.5em 1.5em 1.5em 0;
+	padding: 0;
+}
+
+p .right {
+	margin: 1.5em 0 1.5em 1.5em;
+	padding: 0;
+}
+
+a {
+	color: #000000;
+}
+
+a:link {
+	color: #000000;
+}
+
+a:visited {
+	color: #000000;
+}
+
+a:active {
+	color: #000000;
+}
+
+a:focus {
+	color: #000000;
+}
+
+a:hover {
+	color: #000000;
+}
+
+blockquote {
+	color: #000;
+	font-size: 12px;
+}
+
+strong {
+	font-weight: bold;
+}
+
+em {
+	font-style: italic;
+}
+
+/*Lists*/
+ul {
+	
+}
+
+ol {
+	list-style-type: decimal;
+}
+
+ul li {
+	color: #000;
+	font-size: 12px;
+}
+
+ol li {
+	color: #000;
+	font-size: 12px;
+}
+
+dl {
+	
+}
+
+dt {
+	
+}
+
+dd {
+	
+}
+
+/*End Lists*/
+
+/*Tables*/
+table {
+	border: 1px #DDDDDD solid;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 90%;
+}
+
+thead {
+	background: #DDDDDD;
+	border-bottom: 1px #DDDDDD solid;
+	font-weight: bold;
+}
+
+th {
+	padding: 8px;
+	text-align: center;
+	width: 80px;
+	border: 1px #C0C0C0 solid;
+}
+
+td {
+	padding: 8px;
+	width: 80px;
+	border: 1px #C0C0C0 solid;
+}
+
+tbody {
+	
+}
+
+tr {
+	border-bottom: 2px solid #eeeeee;
+	text-align: left;
+	font-size: 14px;
+}
+
+tr:nth-child(even) {
+	background-color: #efefef;
+}
+
+/*End Tables*/
+
+/*Containers*/
+#wrapper {
+	width: 100%;
+	height: 100%;
+	margin: 0px auto;
+	background-color: #ffffff;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+/* Top div */
+#top {
+	background-color: #005689;
+	width: 100%;
+	height: 5%;
+	min-height: 35px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	overflow: hidden;
+	border-radius: 0px 0px 0px 0px;
+}
+
+#top p {
+	margin: 0px 0px 0px 0px;
+	padding: 8px 0px 0px 15px;
+	font-size: 16px;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+/* Topnav div */
+#topnav {
+	background-color: #F3F3F3;
+	clear: both;
+	height: 5%;
+	min-height: 35px;
+}
+
+#topnav ul {
+	width: 100%;
+	float: left;
+	margin: 0px;
+	background-color: #F3F3F3;
+	border-bottom: 1px #F3F3F3 solid;
+}
+
+#topnav ul li {
+	display: inline;
+	font-size: 15px;
+}
+
+#topnav ul li a {
+	float: left;
+	padding: 10px 20px;
+	text-decoration: none;
+}
+
+#topnav a:link {
+	/* color: #000000; */
+	color: #0065A7;
+}
+
+#topnav a:visited {
+	color: #0065A7;
+}
+
+#topnav a:hover {
+	color: #0065A7;
+	background: #ffffff;
+}
+
+#topnav a:active {
+	color: #0065A7;
+	background-color: #ffffff;
+}
+
+#topnav a:focus {
+	color: #0065A7;
+	background: #ffffff;
+}
+
+#content-menu-container {
+	width: 100%;
+	/*   	height: 85%;   */
+	min-height: 85%;
+	display: -webkit-flex; /* Safari */
+	display: flex;
+	display: -ms-flex;
+}
+
+/* Left menu. */
+#left-col {
+	width: 20%;
+	min-height: 100%;
+	min-width: 260px;
+	float: left;
+	padding-right: 20px;
+}
+
+#left-index-logo {
+	width: 100%;
+	max-width: 200px;
+}
+
+#left-index-logo img {
+	width: 60%;
+	height: 50%;
+	padding: 15px 10px 10px 70px;
+	max-width: 200px;
+}
+
+#left-index {
+	width: 100%;
+	/* 	height: 200px; */
+	background-color: #FFFFFF;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	max-width: 260px;
+
+	position: fixed;  
+}
+
+#left-index p {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 5px;
+	font-size: 15px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#left-index ul {
+	/* 	width: 85%; */
+	margin: 0px 0px 0px 10px;
+	border: 1px solid #dddddd;
+}
+
+#left-index li {
+	font-size: 14px;
+	padding: 7px 0px 7px 5px;
+	text-decoration: none;
+}
+
+#left-index a {
+	font-size: 14px;
+	/* 	padding-bottom: 20px; */
+	text-decoration: none;
+	border-style: none;
+}
+
+/* Content title div formatting  */
+#content-title {
+	/* 	float: left; */
+	/* 	width: 100%; */
+	/* 	height: 15%; */
+	min-height: 70px;
+	/* 	margin-left:1%; */
+}
+
+/* Content container div formatting  */
+#content-container {
+	/* 	float: left; */
+	width: 79%;
+	background-color: #ffffff;
+	margin-left: 1%;
+}
+
+#content-container h1 {
+	font-size: 35px;
+	padding: 10px 0px 0px 0px;
+	color: #005689;
+	font-weight: bold;
+}
+
+#content-container h2 {
+	font-size: 22px;
+	font-weight: bold;
+	/* 	text-decoration: underline;  */
+	padding: 0px 0px 5px 0px;
+}
+
+#content-container h3 {
+	font-size: 20px;
+	font-weight: bold;
+	/* 	text-decoration: underline; */
+	padding: 15px 0px 15px 0px;
+}
+
+#content-container h4 {
+	font-size: 18px;
+	font-weight: bold;
+	padding: 10px 0px 15px 0px;
+}
+
+#content-container p {
+	font-size: 16px;
+	line-height: 120%;
+}
+
+#content-container input, button {
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+/* Content div with One Column*/
+#content-onecolumn {
+	font-size: 16px;
+	/* 	float: left; */
+	/* 	width: 99%; */
+	/* 	height: 85%; */
+	/* 	margin-left:1%; */
+}
+
+/* Content div with Two Columns*/
+#content-twocolumns-first {
+	font-size: 16px;
+	padding: 0px 0px 0px 0px;
+	float: left;
+	width: 80%;
+	/* 	height: 85%; */
+	max-width: 700px;
+}
+
+#content-twocolumns-second {
+	float: left;
+	/* 	height: 85%; */
+	width: 19%;
+	margin-left: 1%;
+}
+
+#content-twocolumns-second table {
+	padding: 0px 0px 0px 0px;
+	text-decoration: none;
+	margin: 0px 0px 0px 0px;
+	width: 250px;
+}
+
+/* Begin Footer */
+#pagefooter {
+	height: 5%;
+	clear: both;
+	background-color: #DBDBDB;
+	min-height: 35px;
+}
+
+#pagefooter p {
+	font-size: 12px;
+	text-align: center;
+	color: #005689;
+	font-weight: bold;
+	padding: 10px 0 0px 0px;
+}
+
+/* End Footer */
+
+/*Classes */
+.visited-menu {
+	background-color: #b6b6b6;
+	font-weight: bold;
+}
+
+.submenu {
+	padding: 7px 0 7px 30px !important;
+}
+
+.visited-submenu {
+	background-color: #d6d6d6;
+}
+
+.submenu2 {
+	padding: 7px 0 7px 50px !important;
+}
+
+.visited-submenu2 {
+	background-color: #ebebeb;
+}
+
+.boldunderline {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.narrowparagraph {
+	width: 60%;
+}
+
+.mediumparagraph {
+	width: 75%;
+	max-width: 800px;
+}
+
+.centered-cell {
+	text-align: center;
+	width: 10px;
+}
+
+.right-cell {
+	text-align: right;
+	width: 10px;
+	font-weight: bold;
+	padding-right: 24px;
+}
+
+/* Styling for "Save Changes" buttons. This includes the tooltip. */
+.savebutton {
+	background-color: #005689;
+	border: none;
+	color: white;
+	padding: 10px 30px;
+	text-align: right;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 18px !important;
+	margin: 0px 0px 0px 0px;
+	cursor: pointer;
+}
+
+.savebuttonandtooltip {
+	width: 30%;
+	min-width: 400px;
+}
+
+.savebuttonandtooltip .tooltiptext {
+	visibility: hidden;
+	width: 150px;
+	background-color: #acacac;
+	color: #000000;
+	border-radius: 6px;
+	padding: 5px 5px;
+	margin-left: 10px;
+	font-size: 12px !important;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+.savebuttonandtooltip:hover .tooltiptext {
+	visibility: visible;
+}
+/* End Classes */
+
+/*Feedback Form */
+#sidebartab {
+	/* position: fixed; */
+	/* bottom: 50%;
+	right: -45px; */
+	width:8%;
+	float:right; 
+	background-color: #f8eec2;
+	color: #005689;
+	font-weight: bold;
+	padding: 15px 0px;
+	margin-right:10px;
+	margin-bottom:10px;
+	text-align: center;
+	/* display: inline-block; */
+	font-size: 20px;
+	cursor: pointer;
+	/* -webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	transform: rotate(-90deg); */
+	border-radius: 8px;	
+	 border: 2px solid #005689;
+}
+
+/* The Modal (background) */
+.feedbackmodal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.feedback-modal-content {
+	position: relative;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 0;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	border: 1px solid #888;
+	width: 600px;
+	height: 450px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	-webkit-animation-name: animatetop;
+	-webkit-animation-duration: 0.4s;
+	animation-name: animatetop;
+	animation-duration: 0.4s;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+/* Add Animation */
+/* @-webkit-keyframes animatetop {
+       from {top: -300px; opacity: 0}
+       to {top: 0;opacity: 1}
+}
+
+@keyframes animatetop {
+	from {top: -300px;opacity: 0}
+	to {top: 0;opacity: 1}
+} */
+
+/* The Close Button */
+.modalclose {
+	color: white;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.modalclose:hover, .modalclose:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.feedback-modal-header {
+	padding: 2px 16px;
+	background-color: #005689;
+	color: white;
+	height: 10%;
+}
+
+.feedback-modal-header p {
+	padding: 10px 16px 0px 5px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+
+.feedback-modal-body {
+	height: 85%;
+	font-size: 15px;
+}
+
+.feedback-modal-body p {
+	padding: 15px 35px;
+}
+
+.feedback-modal-body p#commentstitle {
+	float: left;
+	padding: 0px 40px 0px 35px;
+}
+
+.feedback-modal-body input#feedbackname{
+	width: 50%;
+
+}
+
+.feedback-modal-body textarea {
+	width: 65%;
+	height: 50%;
+	float: left;
+	resize: none;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+.feedback-modal-body button {
+	margin: 15px 35px;
+}
+
+.feedback-modal-body-response {
+	height: 85%;
+	font-size: 15px;
+}
+
+.feedback-modal-body-response p{
+	font-size: 17px;
+	 text-align: center;
+	 padding:50px 50px 50px 50px;	
+}
+
+
+.feedback-modal-footer {
+	padding: 2px 16px;
+	background-color: #005689;
+	color: white;
+	height: 5%;
+	font-size: 16px;
+}
+
+/*End Feedback Form */

@@ -1,0 +1,501 @@
+/* Styling for the Rights Group selector at the top of the page.  */
+#personofconcernselect {
+	border: 1px solid #c0c0c0;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	margin: 10px 0 35px 5px;
+}
+
+#personofconcernselect select {
+	font-size: 16px;
+	margin: 20px 0px 20px 50px;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	border: 1px solid #c0c0c0;
+}
+
+#personofconcernselect select option, optgroup {
+	font-size: 16px;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	font-style: normal;
+}
+
+.rightsGroups {
+	text-align: center;
+	width: 85%;
+	font-size: 16px;
+}
+
+/* Note on the importance of entering data.*/
+#dataaccuracyreminder {
+	margin: 20px 270px 15px 150px
+}
+
+#dataaccuracyreminder p {
+	color: #005689;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+/* Styling for the question div containers */
+#question1 {
+	margin-bottom: 50px;
+}
+
+#question2 {
+	margin-bottom: 50px;
+}
+
+/* Styling for the expand and collapse buttons. */
+.showhidediv {
+	text-align: right;
+	width: 83%;
+	margin: 0px 0px 10px 0px;
+}
+
+.expandbutton, .collapsebutton {
+	background-color: #005689;
+	border: none;
+	color: white;
+	padding: 2px 4px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 11px !important;
+	margin: 0px 0px 0px 0px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+/* Styling for the "add instruments" button. */
+.addinstrument {
+	width: 83%;
+	text-align: center;
+}
+
+.addinstrument input {
+	background-color: #005689;
+	border: none;
+	color: white;
+	padding: 2px 4px;
+	text-decoration: none;
+	font-size: 16px !important;
+	margin: 0px 0px 0px 0px;
+	cursor: pointer;
+}
+
+/* Styling for instrument table header. */
+.tablehead .tooltiptext {
+	visibility: hidden;
+	font-size: 12px !important;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	float: right;
+}
+
+.tablehead:hover .tooltiptext {
+	visibility: visible;
+}
+
+input.inputinstrumenthead {
+	color: #000000;
+	font-weight: bold;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	font-size: 14px !important;
+	width: 100%;
+}
+
+/* Styling for international instrument tables. */
+table.interinstruments {
+	border: 1px #DDDDDD solid;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 80%;
+	margin-left: 38px;
+}
+
+table.interinstruments th {
+	border-style: none;
+	text-align: left;
+	height: 30px;
+}
+
+table.interinstruments th:hover {
+	background-color: #c9c9c9;
+	cursor: pointer;
+}
+
+table.interinstruments tbody {
+	display: none;
+}
+
+}
+table.interinstruments td.col1 {
+	width: 20%;
+}
+
+table.interinstruments td.col2 {
+	width: 80%;
+}
+
+table.interinstruments td {
+	padding: 8px;
+	width: 80px;
+	border: 1px #C0C0C0 solid;
+}
+
+table.interinstruments tr {
+	border-bottom: 2px solid #eeeeee;
+	text-align: left;
+	font-size: 14px;
+}
+
+table.interinstruments tr:nth-child(even) {
+	background-color: #efefef;
+}
+
+table.interinstruments td:nth-child(1) {
+	text-align: left;
+}
+
+table.interinstruments tr:nth-child(3) {
+	text-align: left;
+}
+
+table.interinstruments tr:nth-child(4) {
+	text-align: center;
+}
+
+table.interinstruments tr:nth-child(5) {
+	text-align: left;
+}
+
+table.interinstruments tr:nth-child(6) {
+	text-align: center;
+}
+
+table.interinstruments select {
+	font-size: 14px;
+	margin: 10px 0px 10px 5px;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	/* border: 1px solid #c0c0c0; */
+}
+
+table.interinstruments textarea {
+	width: 90%;
+	height: 150px;
+	resize: vertical;
+	font-size: 14px;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+/* Styling for national instrument tables. */
+table.natinstruments {
+	border: 1px #DDDDDD solid;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 80%;
+	margin-left: 38px;
+}
+
+table.natinstruments th {
+	border-style: none;
+	text-align: left;
+	height: 30px;
+	font-weight: bold;
+}
+
+table.natinstruments th:hover {
+	background-color: #c9c9c9;
+	cursor: pointer;
+}
+
+table.natinstruments tbody {
+	display: none;
+}
+
+}
+table.natinstruments td.col1 {
+	width: 20%;
+}
+
+table.natinstruments td.col2 {
+	width: 80%;
+}
+
+table.natinstruments td {
+	padding: 8px;
+	width: 80px;
+	border: 1px #C0C0C0 solid;
+}
+
+table.natinstruments tr {
+	border-bottom: 2px solid #eeeeee;
+	/* text-align: left; */
+	font-size: 14px;
+}
+
+table.natinstruments tr:nth-child(even) {
+	background-color: #efefef;
+}
+
+table.natinstruments td:nth-child(1) {
+	text-align: left;
+}
+
+table.natinstruments tr:nth-child(3) {
+	text-align: left;
+}
+
+table.natinstruments tr:nth-child(4) {
+	text-align: left;
+}
+
+table.natinstruments tr:nth-child(5) {
+	text-align: left;
+}
+
+table.natinstruments tr:nth-child(6) {
+	text-align: left;
+}
+
+table.natinstruments input[type=file] {
+	font-size: 12px !important;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+#supportrestrictdiv {
+	float: left;
+}
+
+#instruconsistentcommdiv {
+	float: left;
+	padding-top: 35px;
+	margin-right: 15px;
+}
+
+#instruconsistent1951div {
+	float: left;
+	padding-top: 35px;
+	margin-right: 15px;
+}
+
+/* Styling for the last row in the table. */
+#endoftable {
+	height: 1px;
+	background: #dddddd;
+}
+
+table.natinstruments label.instruconsistent1951label {
+	margin-left: 10px;
+}
+
+table.natinstruments textarea.instruconsistentcomm1951 {
+	width: 80%;
+	height: 85px;
+	resize: vertical;
+	font-size: 14px;
+	margin-top: 5px;
+	margin-left: 10px;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+table.natinstruments label.instruconsistentlabel {
+	margin-left: 10px;
+}
+
+table.natinstruments textarea.instruconsistentcomm {
+	width: 80%;
+	height: 85px;
+	resize: vertical;
+	font-size: 14px;
+	margin-top: 5px;
+	margin-left: 10px;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+table.natinstruments label.supportrestrict {
+	/* text-align: left; */
+	/* display:block; */
+	margin-left: 5px;
+}
+
+table.natinstruments select.supportrestrict {
+	font-size: 14px;
+	margin: 5px 15px 10px 0px;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	display: block;
+}
+
+table.natinstruments textarea.supportrestrict {
+	width: 80%;
+	height: 85px;
+	resize: vertical;
+	font-size: 14px;
+	margin-top: 5px;
+	margin-left: 10px;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+table.natinstruments textarea.otherlegistextarea {
+	width: 80%;
+	height: 85px;
+	resize: vertical;
+	font-size: 14px;
+	margin-top: 5px;
+	margin-left: 10px;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+table.natinstruments textarea.natcomments {
+	width: 80%;
+	height: 120px;
+	resize: vertical;
+	font-size: 14px;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+#articlesrows td:nth-child(1) {
+	text-align: left;
+}
+
+#articlesrows td:nth-child(2) {
+	text-align: center;
+}
+
+#othercommentsrows td {
+	text-align: center;
+}
+
+/* Styling for links to national instruments in Refworld.*/
+a.refworldlink:link {
+	background-color: #005689;
+	border: none;
+	color: white;
+	padding: 3px 10px;
+	font-size: 18px !important;
+	cursor: pointer;
+	font-size: 12px !important;
+	text-decoration: none;
+}
+
+a.refworldlink:visited {
+	color: white;
+}
+
+a.refworldlink:hover {
+	text-decoration: none;
+	background-color: #00436a;
+}
+
+/* Styling for the upload file section for national instruments. */
+#upLoadFileButton {
+	font-size: 12px !important;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	background-color: #005689;
+	border: none;
+	color: white;
+	padding: 3px 10px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+input[type="file"]#uploadbutton {
+	display: none;
+}
+
+.browsefile {
+	font-size: 12px !important;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	background-color: #005689;
+	border: none;
+	color: white;
+	padding: 3px 10px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.inputfilename {
+	display: inline-block;
+	width: 30%;
+	margin-left: 5px;
+	border: none;
+}
+
+p.uploadfilesuccess {
+	font-size: 14px !important;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	color: #005689;
+	font-weight: bold;
+	margin-top: 8px;
+}
+
+.spacer {
+	display: block;
+	margin-bottom: 8px;
+}
+
+/* Styling for the discrimination checkboxes. */
+.discriminationcheckboxes {
+	float: left;
+	margin-right: 5%;
+	display: inline;
+}
+
+.discriminationcheckboxes input {
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: solid;
+	border-width: 2px;
+	border-left-style: none;
+}
+
+/* Styling for the other legislation checkboxes. */
+.otherlegisradio {
+	float: left;
+	margin-right: 5%;
+	margin-top: 5px;
+}
+
+.otherlegischeckboxes1 {
+	float: left;
+	margin-left: 12%;
+	margin-right: 8%;
+	display: inline;
+}
+
+.otherlegischeckboxes2 {
+	float: left;
+	display: inline;
+}
+
+.otherlegisheadertop {
+	font-weight: bold;
+	font-size: 14px !important;
+	padding: 0px 0 3px 0;
+}
+
+.otherlegisheaders {
+	font-weight: bold;
+	font-size: 14px !important;
+	padding: 8px 0 3px 0;
+}
+
+/* Styling for the separators. */
+.separatorstyling {
+	color: black;
+	text-align: center !important;
+	background-color: #f8eec2;
+	font-weight: bold;
+	padding: 5px !important;
+}
+
+/* Span for colouring text blue. */
+.bluetext {
+	color: #005689;
+}
+
+.blueboldtext {
+	font-weight: bold;
+	color: #005689;
+}
