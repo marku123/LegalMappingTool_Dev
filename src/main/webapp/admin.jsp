@@ -15,7 +15,7 @@ String nameOfCurrentFile = this.getClass().getSimpleName();
       </div>
       <div id="content-onecolumn">
 
-         <p>The administration page is under construction.</p>
+         <p>Administration page under construction.</p>
 
 
       </div>
