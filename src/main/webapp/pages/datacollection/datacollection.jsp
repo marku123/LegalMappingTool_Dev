@@ -75,7 +75,7 @@
                   2. Date the constitution came into effect:&emsp;
                   <input type="text" id="constdateeffect" name="constdateeffect" size="9" value="<%=constEffectDate%>" readonly>
                   <br> <br>
-                  
+               </p>   
                <p>
                   3. The constitution has been amended:<input type="radio" name="constamendyesno" value="yes" <%=constAmendYesNoChecked[0]%>> Yes 
                   <input type="radio" name="constamendyesno" value="no" <%=constAmendYesNoChecked[1]%>>No

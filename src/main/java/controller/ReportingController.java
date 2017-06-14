@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dbhelper.datacollection.QueryA1DB;
 import model.Country;
 
 /**
@@ -42,6 +43,10 @@ public class ReportingController extends HttpServlet {
 		countryObj.setCountryName(country);
 
 		if (action.equals("reporting")) {
+
+			
+			countryObj = QueryA1DB.getLegalFrameworkConstIntro(countryObj);
+			countryObj = QueryA1DB.getLegalFrameworkConstAppPOC(countryObj);
 
 			request.setAttribute("countryObj", countryObj);
 			page = "/pages/reporting/reporting.jsp";
