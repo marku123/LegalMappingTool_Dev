@@ -8,9 +8,6 @@
 <link href="./css/pages/datacollection/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" type="text/css">
 <link href="./css/pages/datacollection/datacollection.css" rel="stylesheet" type="text/css">
 <script src="./js/pages/datacollection/datacollection.js"></script>
-<script src="./js/pages/datacollection/jspdf.min.js"></script>
-
-
 
 
 <div id="content-menu-container" >
@@ -18,7 +15,6 @@
    <%@include file="/menu.jsp"%>
 
    <%
-      String nameOfCurrentFile = this.getClass().getSimpleName();
       String[] constYesNoChecked = FormatingUtilities.setCheckedRadioButtons(countryObj.getConstitutionYesNo(), "yes,no");
       String constEffectDate = countryObj.getConstitutionDate();
       String[] constAmendYesNoChecked = FormatingUtilities.setCheckedRadioButtons(countryObj.getConstitutionAmendYesNo(), "yes,no");
@@ -42,7 +38,21 @@
       String POC4Comment = constAppToPoC[3][1];
       String POC5Comment = constAppToPoC[4][1];
 
+      //Guaranteeing of rights in the constitution table.
+   //   String guaranteeConstRightsTable = FormatDataColA.formatRightConstTable(countryObj);
+      
+      //A2 Intro
+      String[] commonCivilPlural = FormatingUtilities.setCheckedRadioButtons(countryObj.getCommonCivilPlural(), "common,civil,plural");
+      String pluralText = countryObj.getPluralText();
+      String[] federalState = FormatingUtilities.setCheckedRadioButtons(countryObj.getFederalState(), "federal,state");
 
+      //A2 Judicial, Admin, Traditional
+      String judicialEntitiesTable = FormatDataColA.formatJudicalEntities(countryObj);
+      String adminEntitiesTable = FormatDataColA.formatAdminEntities(countryObj);
+      String tradMechTable = FormatDataColA.formatTradMechanisms(countryObj);
+     
+      //A2 Comments
+      String comments = countryObj.getComments();
 
    	%>
 
@@ -56,13 +66,16 @@
       <div id="content-onecolumn" >
 
          <form action="DataCollectionController?action=datacollection&country=<%=countryNameForMenu%>" method="POST">
-            <h2>A. THE LEGAL PROTECTION FRAMEWORK</h2>
+            <h2>DATA COLLECTION TOOL</h2>
+            <!-- Note About that the Data Collection section has to be complete.-->
+
+            <h3  >A. Overview of the Legal Framework of the Country</h3>
             
             <div id='dataaccuracyreminder'> 
                <p>Note: In order to allow for the effective analysis of a country's operational context, users that are responsible for 
-               inputting data into the Legal Mapping Tool, should ensure that all data fields are completed as accurately as possible.</p>
+               inputting data into the Data Collection Tool, should ensure that all data fields are completed as accurately as possible.</p>
             </div>
-            <h3 id="A1">A.1 The Country's Constitution</h3>
+            <h4 id="A1">A.1 The Country's Constitution</h4>
 
                <p>
                   1. Country has a constitution:<input type="radio" name="constitutionyesno" value="yes" <%=constYesNoChecked[0]%>> Yes 
@@ -174,12 +187,137 @@
                         </tr>
                      </tbody>
                   </table>
-                  </div>
-                  
                   <br><br>
-
-
-
+                  <p>
+                     7. Guaranteeing of rights in the constitution:<br><br>
+                  </p>
+                  <table class="constrightsguar">
+                     <thead>
+                        <tr>
+                           <th class='col1'>Name of Right</th>
+                           <th class='col2'>Degree to Which the Right is Guaranteed</th>
+                           <th class='col3'>Reservations in the Constitution (If Applicable)</th>
+                           <th class='col4'>Groups Explicitly Excluded from Being Able to Enjoy the Right</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+<%--                        <%=guaranteeConstRightsTable%>                                     --%>
+                     </tbody>
+                  </table>
+                  </div>
+                  <br><br>
+                  
+                  <div class="savebuttonandtooltip">
+                     <input class="savebutton" type="submit" name="savedata" value="Save Changes" /><span class="tooltiptext">All changes on page will be saved.</span>
+                  </div>                                   
+                  <br> <br>
+                  <h4 id="A2">A.2 The Country's Legal System</h4>
+                  
+                  <p>
+                     8. Type of legal system:&nbsp;<input type="radio" name="commoncivilplural" value="common" <%=commonCivilPlural[0]%>>Common 
+                     <input type="radio" name="commoncivilplural" value="civil" <%=commonCivilPlural[1]%>>Civil
+                     <input type="radio" name="commoncivilplural" value="plural" <%=commonCivilPlural[2]%>>Plural
+                     <br><br>
+                  </p>
+                     
+                     <div id="commoncivilpluraltext">
+                  <p>
+                     &emsp;&emsp;Description of the Pluralistic System: <br>
+                     &emsp;&emsp;<textarea class="commoncivilpluraltext" name="commoncivilpluraltext"><%=pluralText%></textarea>                      
+                     <br><br>
+                  </p>
+                     </div> 
+                  <p>
+                     9. Political and Administrative Structure:&nbsp;
+                     <input type="radio" name="federalstate" value="federal" <%=federalState[0]%>>Federal (Decentralised) 
+                     <input type="radio" name="federalstate" value="state" <%=federalState[1]%>>Unitary State (Centralised)
+                     <br><br>
+                  
+                     <%-- 10. Monist/Dualist system:&nbsp;
+                     <input type="radio" name="monistdualist" value="monist" <%=monistDualist[0]%>>Monist 
+                     <input type="radio" name="monistdualist" value="dualist" <%=monistDualist[1]%>>Dualist
+                     <input type="radio" name="monistdualist" value="mixed" <%=monistDualist[2]%>>Mixed (Monist-Dualist)
+                     <br><br>    --%>          
+                  
+                     11. Judicial entities/courts:
+                     <br>  <br>
+                  </p>
+                     <table id="judicialTable" class="A2Tables">
+                     <thead>
+                        <tr>
+                           <th class='col1'>Judicial Entity/Court</th>
+                           <th class='col2'>Refugees Can Formally Access the Entity/Court</th>
+                           <th class='col3'>IDPs Can Formally Access the Entity/Court</th>
+                           <th class='col4'>Returnees Can Formally Access the Entity/Court</th>
+                           <th class='col5'>Stateless Persons Can Formally Access the Entity/Court</th>
+                           <th class='col6'>Asylum Seekers Can Formally Access the Entity/Court</th>                           
+                        </tr>
+                     </thead>
+                     <tbody id="judicialTableAddRow">
+                        <%=judicialEntitiesTable%>  
+                     </tbody>
+                  </table>
+                  <br>
+                  <div class="addrowbutton">              
+                     <input onclick="judicialAddRow();" type="button" value="Add Another Judicial Entity/Court" />
+                  </div> 
+                 <br>  
+                 <p>                   
+                      12. Administrative entities:
+                     <br> <br> 
+                  </p>
+                     <table id="adminTable" class="A2Tables">
+                     <thead>
+                        <tr>
+                           <th class='col1'>Administrative Entities</th>
+                           <th class='col2'>Refugees Can Formally Access the Entity</th>
+                           <th class='col3'>IDPs Can Formally Access the Entity</th>
+                           <th class='col4'>Returnees Can Formally Access the Entity</th>
+                           <th class='col5'>Stateless Persons Can Formally Access the Entity</th>
+                           <th class='col6'>Asylum Seekers Can Formally Access the Entity</th>                           
+                        </tr>
+                     </thead>
+                     <tbody id="administrativeTableAddRow">
+                        <%=adminEntitiesTable%>  
+                     </tbody>
+                  </table>
+                  <br>
+                  <div class="addrowbutton">              
+                     <input onclick="adminAddRow();" type="button" value="Add Another Administrative Entity" />
+                  </div>                
+                  <br>
+                  
+                  <p>                     
+                     13. Traditional mechanisms:
+                     <br> <br> 
+                  </p>
+                     <table id="tradTable" class="A2Tables">
+                     <thead>
+                        <tr>
+                           <th class='col1'>Traditional Mechanisms</th>
+                           <th class='col2'>Refugees Can Formally Access the Entity</th>
+                           <th class='col3'>IDPs Can Formally Access the Entity</th>
+                           <th class='col4'>Returnees Can Formally Access the Entity</th>
+                           <th class='col5'>Stateless Persons Can Formally Access the Entity</th>
+                           <th class='col6'>Asylum Seekers Can Formally Access the Entity</th>                           
+                        </tr>
+                     </thead>
+                     <tbody id="traditionalTableAddRow">
+                        <%=tradMechTable%>  
+                     </tbody>
+                  </table>
+                  <br>
+                  <div class="addrowbutton">              
+                     <input onclick="tradAddRow();" type="button" value="Add Another Traditional Mechanism" />
+                  </div>                 
+                 
+                 
+                  <br>  
+               <p>                     
+                    14. Additional comments on the formal legal system:
+                     <br> <br> 
+                     <textarea class="legalsystemcomments" name="legalsystemcomments"><%=comments%></textarea>
+               </p>  
                <br><br>                                   
                <div class="savebuttonandtooltip">
                   <input class="savebutton" type="submit" name="savedata" value="Save Changes" /><span class="tooltiptext">All changes on page will be saved.</span>
@@ -189,13 +327,5 @@
       </div>
    </div>
 </div>
-
-
-<!-- Feedback form -->
-<%@include file="/feedback.jsp"%>
-<input id="feedbackcountry" type="hidden" value="<%=countryNameForMenu%>">
-<input id="feedbackfilename" type="hidden" value="<%=nameOfCurrentFile%>">
-<script src="./js/pages/feedback.js"></script>
  
- <!-- Footer -->
 <%@include file="/footer.jsp"%>

@@ -40,11 +40,6 @@
     <servlet-name>AnalyticalToolController</servlet-name>
     <servlet-class>controller.AnalyticalToolController</servlet-class>
   </servlet>
-    <servlet>
-    <display-name>ReportingController</display-name>
-    <servlet-name>ReportingController</servlet-name>
-    <servlet-class>controller.ReportingController</servlet-class>
-  </servlet>
   <servlet>
     <display-name>FeedbackController</display-name>
     <servlet-name>FeedbackController</servlet-name>
@@ -74,10 +69,6 @@
   <servlet-mapping>
     <servlet-name>AnalyticalToolController</servlet-name>
     <url-pattern>/AnalyticalToolController</url-pattern>
-  </servlet-mapping>
-    <servlet-mapping>
-    <servlet-name>ReportingController</servlet-name>
-    <url-pattern>/ReportingController</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>FeedbackController</servlet-name>

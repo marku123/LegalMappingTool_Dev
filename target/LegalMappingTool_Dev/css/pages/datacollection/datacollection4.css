@@ -1,0 +1,130 @@
+/* Note on the importance of entering data.*/
+#dataaccuracyreminder {
+	margin: 20px 270px 15px 150px
+}
+
+#dataaccuracyreminder p {
+	color: #005689;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+
+/* Styling for the priorities tables. */
+#pocprioritiestablediv {
+	margin-bottom: 50px;	
+}
+
+table.pocprioritiestable {
+	border: 1px #DDDDDD solid;
+	border-collapse: collapse;
+	border-spacing: 0;
+	/* width: 50%; */ 
+          margin-left: 20px;  
+}
+
+table.pocprioritiestable th {
+	border-style: none;
+	text-align: center;
+	height: 20px;
+	font-size: 14px;
+	background-color: #dddddd;
+}
+
+table.pocprioritiestable td:nth-child(1) {
+	text-align: left;
+	width: 150px;
+	padding: 10px 5px;
+	
+}
+
+table.pocprioritiestable td {
+	padding: 10px 5px;
+	/* width: 80px; */
+	border: 1px #C0C0C0 solid;
+	text-align: center;
+}
+
+table.pocprioritiestable tr {
+	border-bottom: 2px solid #eeeeee;
+	text-align: left;
+	font-size: 14px;
+}
+
+table.pocprioritiestable tr:nth-child(odd) {
+	background-color: #ffffff;
+}
+
+table.pocprioritiestable tr:nth-child(even) {
+	background-color: #efefef;
+}
+ 
+table.pocprioritiestable select {
+	font-size: 12px;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	border: 1px solid #c0c0c0;
+          width:90%;
+          min-width:50px;  
+}
+
+table.pocprioritiestable input[type=text] {
+	border-style: none none solid;
+	border-width: 2px;
+	background-color: #eeeeee;
+	width:100px;
+	margin-top:10px;
+}
+
+#pocdiffprioritiestablediv {
+	/* margin-left: 50px; */
+	margin-top: 50px;
+	margin-bottom: 50px;
+	/* float:left;  */
+	width: 100%;
+}
+
+table.pocdiffprioritiestable {
+	border: 1px #DDDDDD solid;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 60%;
+	margin-left: 80px;
+}
+
+table.pocdiffprioritiestable th {
+	border-style: none;
+	text-align: center;
+	height: 20px;
+	font-size: 15px;
+	background-color: #dddddd;
+}
+
+table.pocdiffprioritiestable td:nth-child(1) {
+	width: 20%;
+}
+
+table.pocdiffprioritiestable td:nth-child(2) {
+	text-align: center;
+	width: 80%;
+} 
+
+table.pocdiffprioritiestable textarea {
+	width: 90%;
+	height: 100px;
+	resize: vertical;
+	font-size: 14px;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+/*Styling for narrative answer text boxes.*/
+textarea.narrativeanswers {
+	width: 700px;
+	height: 170px;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	margin-left: 20px;
+}
+/* Span for colouring text blue. */
+.bluetext {
+	color: #005689;
+}

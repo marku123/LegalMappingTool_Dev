@@ -57,6 +57,8 @@
 
          <form action="DataCollectionController?action=datacollection&country=<%=countryNameForMenu%>" method="POST">
             <h2>A. THE LEGAL PROTECTION FRAMEWORK</h2>
+            <!-- Note About that the Data Collection section has to be complete.-->
+
             
             <div id='dataaccuracyreminder'> 
                <p>Note: In order to allow for the effective analysis of a country's operational context, users that are responsible for 

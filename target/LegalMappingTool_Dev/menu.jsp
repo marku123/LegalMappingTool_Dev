@@ -204,27 +204,7 @@ $(document).ready(function(){
       	      /* if(!(anchor === 'null')) {
                   $(document).scrollTop($(anchor).offset().top );  
               } */
-            } else if (page == 'reporting') {
-                 /* Section D Reporting. */
-
-                  $("#menu-home").hide();
-                  $("#menu-admin").hide();
-
-                 
-                  $("#menu-country-datacollection-2_1").hide();
-                  $("#menu-country-datacollection-2_2").hide();
-                  $("#menu-country-datacollection-2_1_a").hide();
-                  $("#menu-country-datacollection-2_2_a").hide(); 
-                  $("#menu-country-datacollection-3").hide(); 
-                  
-                  $("#menu-country-analytical-5").hide(); 
-                  $("#menu-country-analytical-6_a").hide(); 
-                  
-                  $("#menu-country-reporting").addClass("visited-menu");
-
-                  
-
-              } 
+            } 
                      
         });
     });
