@@ -8,7 +8,6 @@
 <link href="./css/pages/datacollection/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" type="text/css">
 <link href="./css/pages/datacollection/datacollection.css" rel="stylesheet" type="text/css">
 <script src="./js/pages/datacollection/datacollection.js"></script>
-<script src="./js/pages/datacollection/jspdf.min.js"></script>
 
 
 

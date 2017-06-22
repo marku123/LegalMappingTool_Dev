@@ -34,7 +34,7 @@
          <li class="submenu" id='menu-country-analytical-6_a'><a href='/LegalMappingTool_Dev/AnalyticalToolController?action=narrative&country=<%=countryNameForMenu%>&anchor=%23B'>C.2 Narrative Analysis</a></li>
 
          <!--Section D: Reporting-->
-         <li id='menu-country-reporting'><a href='/LegalMappingTool_Dev/ReportingController?action=reporting&country=<%=countryNameForMenu%>'> D. Reporting</a></li>
+         <li id='menu-country-reporting'><a href='/LegalMappingTool_Dev/ReportingController?action=reporting&country=<%=countryNameForMenu%>'> D. Create Reports</a></li>
 
 
       </ul>
