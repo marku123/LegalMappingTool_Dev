@@ -42,22 +42,7 @@ public class UploadUtilities {
 				fileName = fi.getName();
 				timeStampFileName = sdf.format(timestamp) + "_" + fileName;
 
-				if (InetAddress.getLocalHost().getHostName().matches(".*dallastc1.*")) {
-					// File path for Arvixe.
-
-					// Store file on the Arvixe web server in the Legal Mapping
-					// Tool directory.
-					/*filePath = System.getProperty("user.dir") + "/public_html/LegalMappingTool_Dev/files/" + timeStampFileName;
-					file = new File(filePath);
-					fi.write(file);
-				
-					filePathBackup = System.getProperty("user.dir") + "/public_html/legaltoolbackupfiles/";
-					fileBackup = new File(filePathBackup);
-				    FileUtils.copyFileToDirectory(file, fileBackup);
-					
-					responseValue = "files/" + timeStampFileName;*/
-
-				} else if(InetAddress.getLocalHost().getHostName().matches(".*jpcloudusa008.*")) {
+				if(InetAddress.getLocalHost().getHostName().matches(".*jpcloudusa008.*")) {
 
 					// File path for JavaPipe.
 
@@ -81,7 +66,7 @@ public class UploadUtilities {
 					file = new File(filePath);
 					fi.write(file);
 
-					filePathBackup = "/home/ukramcom/public_html/legaltoolbackupfiles/";
+					filePathBackup = "/home/ukramcom/public_html/legaltoolbackupfiles_dev/";
 					fileBackup = new File(filePathBackup);
 				    FileUtils.copyFileToDirectory(file, fileBackup);
 					
@@ -119,19 +104,7 @@ public class UploadUtilities {
 			String filePath = "";
 			File file;
 		
-			if (InetAddress.getLocalHost().getHostName().matches(".*dallastc1.*")) {
-				// File path for Arvixe.
-
-				/*filePath = System.getProperty("user.dir") + "/public_html/LegalMappingTool_Dev/files/";
-				file = new File(filePath);
-	
-				if(!(file.list().length>0)){
-					
-					File fileBackup = new File( System.getProperty("user.dir") + "/public_html/legaltoolbackupfiles/");
-				    FileUtils.copyDirectory(fileBackup, file);
-				}*/
-				
-			} else if(InetAddress.getLocalHost().getHostName().matches(".*jpcloudusa008.*")) {
+			if (InetAddress.getLocalHost().getHostName().matches(".*jpcloudusa008.*")) {
 
 				// File path for JavaPipe.
 
@@ -152,7 +125,7 @@ public class UploadUtilities {
 	
 				if(!(file.list().length>0)){
 							
-					File fileBackup = new File( "/home/ukramcom/public_html/legaltoolbackupfiles/");
+					File fileBackup = new File( "/home/ukramcom/public_html/legaltoolbackupfiles_dev/");
 				    FileUtils.copyDirectory(fileBackup, file);
 				}
 				

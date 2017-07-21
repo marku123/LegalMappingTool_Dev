@@ -1,28 +1,11 @@
-/* Only display the data when the user generates the report.*/
-#content-onecolumn {
-	/* display: none;*/
-	
+/* Report title for the print and HTML version of the report.*/
+.reportTitleDivNoPrint {
+	display: block;
+}
+.reportTitleDivPrint {
+	display: none;
 }
 
-/* Styling for the report header.*/
-table.reportheadertable {
-	border-style: none none solid none;
-	border-color: black;
-}
-
-table.reportheadertable td {
-	border-style: none none solid none;
-	border-color: black;
-}
-
-table.reportheadertable tr {
-	border-style: none none solid none;
-	border-color: black;
-}
-
-table.reportheadertable td:nth-child(2) {
-	text-align: right;
-}
 
 /* Styling for the title of the report.  */
 #content-onecolumn h1 {
@@ -41,26 +24,69 @@ table.reportheadertable td:nth-child(2) {
 	text-align: center;
 }
 
-/* Styling for the table of contents.  */
-.tableofcontents {
+/* Styling for the HTML report left column table of contents.  */
+#content-container {
+	margin-left: 3% !important;
+}
+
+#left-col {
+	/*border-right: 6px solid #DDDDDD;*/
+	width: 320px;
+	padding-right: 0px !important;
+}
+
+#left-index {
+	overflow-y: scroll;
+	height: 90%;
+	max-width: 320px !important;
+}
+
+.tableofcontents_htmlreport {
+	margin-left: 20px;
+	margin-bottom: 40px;
 	
 }
 
+.tableofcontents_htmlreport p {
+	font-size: 18px !important;
+	text-align: center;
+}
+
 a.tableofcontentshead {
-	font-size: 20px;
-	font-weight: bold;
+	font-size: 16px !important;
 	text-decoration: none;
 	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	display: block;
+	margin-left: 5px;
 }
 
 a.tableofcontentssub1 {
-	font-size: 20px;
-	font-weight: bold;
+	font-size: 16px !important;
 	text-decoration: none;
 	margin-left: 20px;
 	display: block;
+	margin-bottom: 10px;
+}
+
+a.tableofcontentssub2 {
+	font-size: 14px !important;
+	text-decoration: none;
+	margin-left: 35px;
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+.tableofcontentssubNum {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.tableofcontentssubText {
+	display: inline-block;
+	/* width: 200px; */
+	width: 80%;
+	vertical-align: top;
 }
 
 /* Styling for the first 5 questions of the Country's Constitution section.  */
@@ -303,7 +329,7 @@ a.refworldlinknat:hover {
 
 /* Analytics findings. */
 #findingstablediv {
-	margin-bottom: 50px
+	margin-bottom: 50px;
 }
 
 table#obstacleskeyfindings {
@@ -335,7 +361,7 @@ table#obstacleskeyfindings {
 }
 
 #detail-consistency-chart {
-	margin-top: 30px;
+	margin-top: 10px;
 	margin-bottom: 0px;
 	margin-left: 40px;
 	width: 80%;
@@ -345,8 +371,10 @@ table#obstacleskeyfindings {
 
 #detail-consistency-table {
 	margin-top: 20px;
+	margin-bottom: 50px;
 	width: 80%;
 	min-width: 310px;
+	width: 80%;
 }
 
 #consistencyinternationaltabletitle, #consistencyinternationaltable {
@@ -388,7 +416,7 @@ p#consistencyfootnote {
 
 #summary-poc-natinstsruments-chart {
 	margin-left: 50px;
-	margin-top: 100px;
+	margin-top: 20px;
 	width: 70%;
 	min-width: 310px;
 	height: 500px;
@@ -398,11 +426,12 @@ p#consistencyfootnote {
 	margin-top: 20px;
 	width: 100%;
 	min-width: 310px;
+	margin-bottom: 50px;
 }
 
 #summary-poc-obstacles-chart {
 	margin-left: 50px;
-	margin-top: 100px;
+	margin-top: 20px;
 	width: 70%;
 	min-width: 310px;
 	height: 500px;
@@ -410,7 +439,7 @@ p#consistencyfootnote {
 
 #detail-poc-obstacles-chart {
 	margin-left: 50px;
-	margin-top: 100px;
+	margin-top: 20px;
 	width: 80%;
 	min-width: 310px;
 	height: 600px;
@@ -420,10 +449,11 @@ p#consistencyfootnote {
 	margin-top: 20px;
 	width: 100%;
 	min-width: 310px;
+	margin-bottom: 50px;
 }
 
 #detail-poc-obstacles-rightgroups-chart {
-	margin-top: 100px;
+	margin-top: 20px;
 	margin-left: 50px;
 	width: 80%;
 	min-width: 310px;
@@ -434,6 +464,7 @@ p#consistencyfootnote {
 	margin-top: 20px;
 	width: 100%;
 	min-width: 310px;
+	margin-bottom: 50px;
 }
 
 table#tabletitle {
@@ -610,33 +641,9 @@ table.rightsgrpobs tr:nth-child(1) {
 	height: 30px;
 }
 
-/* Styling for the report footer.*/
-table.reportfootertable {
-	border-style: solid none none none;
-	border-color: black;
-}
 
-table.reportfootertable td {
-	border-style: solid none none none;
-	border-color: black;
-}
-
-table.reportfootertable tr {
-	border-style: solid none none none;
-	border-color: black;
-}
-
-table.reportfootertable td:nth-child(2) {
-	text-align: right;
-}
 
 /* Link to the HTML report. */
-
-.reportGenerationDiv{
-	
-	width: 300px; margin: 0 auto;
-}
-
 a.linkbutton {
 	background-color: #005689;
 	border: none;

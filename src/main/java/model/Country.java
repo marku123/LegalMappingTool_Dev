@@ -28,20 +28,23 @@ public class Country {
 	private String[][] TradMech;
 	private String TradMechComments;	
 	private String Comments;	
-
-
 	
-	//B1 Variables
+	//A3 Variables
 	private String RightsGroup;
 	private String[][] IntlInstruments;
 	private String[][] NatlInstruments;
+	
+	//A3 Reporting Variables
+	private RightsGroup[] RightsGroups;
 
-	//C Variables
+	//B Variables
 	private String POC;
 	private String[][] Obstacles;
 	private String[] narrativeObstacles;
 	private String[][] obstaclesDocumenation;
-
+	
+	//B Reporting Variables
+	private PersonsOfConcern[] PersonsOfConcern;
 	
 	//D Variables
     private String[][] POCPriorities;
@@ -71,9 +74,22 @@ public class Country {
 	//Narrative.
 	private String[] narrative;
 
+
+
 	
 	
-	
+	public PersonsOfConcern[] getPersonsOfConcern() {
+		return PersonsOfConcern;
+	}
+	public void setPersonsOfConcern(PersonsOfConcern[] personsOfConcern) {
+		PersonsOfConcern = personsOfConcern;
+	}
+	public RightsGroup[] getRightsGroups() {
+		return RightsGroups;
+	}
+	public void setRightsGroups(RightsGroup[] rightsGroups) {
+		RightsGroups = rightsGroups;
+	}
 	public Boolean getObstaclesMissingData() {
 		return ObstaclesMissingData;
 	}

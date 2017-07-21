@@ -6,7 +6,7 @@
       <url-pattern>/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
-      <role-name>legalmaptooluser</role-name>
+      <role-name>legalmaptooluserdev</role-name>
     </auth-constraint>
   </security-constraint>
   <login-config>

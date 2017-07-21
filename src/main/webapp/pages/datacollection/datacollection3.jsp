@@ -79,7 +79,7 @@
                      <input id='uploadbutton' name='browseButton' type='file' />Click to Browse for File
                   </label>
                   <input class='inputfilename' type='text' name='natlinstrurefupload' />
-                  <button id='upLoadFileButton' name='uploadButton' type='button' value='' onmouseup='uploadFile();'>Upload File</button>
+                  <button id='upLoadFileButton' name='uploadButton' type='button' value='' >Upload File</button>
                   <p class='uploadfilesuccess' id='uploadsuccess' ></p>
 
                </div><br><br>

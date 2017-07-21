@@ -1,0 +1,16 @@
+@media print {
+	/*Hide everything in the body except the report information. I.e. the information in the div #content-onecolumn.*/
+	body * {
+		font-family: calibri;
+		visibility: hidden;
+	}
+	#content-onecolumn, #content-onecolumn * {
+		visibility: visible;
+	}
+	#content-onecolumn {
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+}

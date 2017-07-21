@@ -7,7 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dbhelper.analytical.QueryAnalyticsCLegalFramework;
+import dbhelper.analytical.QueryAnalyticsCNatInstruments;
+import dbhelper.analytical.QueryAnalyticsCObstacles;
+import dbhelper.analytical.QueryNarrativeAnalysis;
 import dbhelper.datacollection.QueryA1DB;
+import dbhelper.datacollection.QueryA2DB;
+import dbhelper.datacollection.QueryCDB;
+import dbhelper.datacollection.QueryDDB;
+import dbhelper.reporting.QueryBDBReporting;
+import dbhelper.reporting.QueryCDCReporting;
 import model.Country;
 
 /**
@@ -44,12 +53,73 @@ public class ReportingController extends HttpServlet {
 
 		if (action.equals("reporting")) {
 
-			
+			//Section A.1
 			countryObj = QueryA1DB.getLegalFrameworkConstIntro(countryObj);
 			countryObj = QueryA1DB.getLegalFrameworkConstAppPOC(countryObj);
 
+			//Section A.2
+			countryObj = QueryA2DB.getLegalFrameworkSystemIntro(countryObj);
+			countryObj = QueryA2DB.getLegalFrameworkJudicialEntities(countryObj);
+			countryObj = QueryA2DB.getLegalFrameworkAdminEntities(countryObj);
+			countryObj = QueryA2DB.getLegalFrameworkTradMechanisms(countryObj);
+			
+			//Section A.3
+			countryObj = QueryBDBReporting.getRightsGroupsNatIntlIntruments(countryObj);
+
+			
+			//Section B
+			countryObj = QueryCDCReporting.getPOCObstacles(countryObj);
+			
+			//Analytics. 
+
+			countryObj = QueryAnalyticsCNatInstruments.getNatInstruData(countryObj);
+			countryObj = QueryAnalyticsCObstacles.getObstaclesData(countryObj);
+			countryObj = QueryAnalyticsCLegalFramework.getLegalFrameworkData(countryObj);
+			
+			//Get the Narrative data from the database. 
+			
+			countryObj = QueryNarrativeAnalysis.getAnalyticalNarrative(countryObj);
+			countryObj = QueryDDB.getNarrativePriorities(countryObj);
+			countryObj = QueryCDB.getNarrativeObstacles(countryObj);
+			
+			
 			request.setAttribute("countryObj", countryObj);
 			page = "/pages/reporting/reporting.jsp";
+
+		} 		if (action.equals("reporting_html")) {
+
+			//Section A.1
+			countryObj = QueryA1DB.getLegalFrameworkConstIntro(countryObj);
+			countryObj = QueryA1DB.getLegalFrameworkConstAppPOC(countryObj);
+
+			//Section A.2
+			countryObj = QueryA2DB.getLegalFrameworkSystemIntro(countryObj);
+			countryObj = QueryA2DB.getLegalFrameworkJudicialEntities(countryObj);
+			countryObj = QueryA2DB.getLegalFrameworkAdminEntities(countryObj);
+			countryObj = QueryA2DB.getLegalFrameworkTradMechanisms(countryObj);
+			
+			//Section A.3
+			countryObj = QueryBDBReporting.getRightsGroupsNatIntlIntruments(countryObj);
+
+			
+			//Section B
+			countryObj = QueryCDCReporting.getPOCObstacles(countryObj);
+			
+			//Analytics. 
+
+			countryObj = QueryAnalyticsCNatInstruments.getNatInstruData(countryObj);
+			countryObj = QueryAnalyticsCObstacles.getObstaclesData(countryObj);
+			countryObj = QueryAnalyticsCLegalFramework.getLegalFrameworkData(countryObj);
+			
+			//Get the Narrative data from the database. 
+			
+			countryObj = QueryNarrativeAnalysis.getAnalyticalNarrative(countryObj);
+			countryObj = QueryDDB.getNarrativePriorities(countryObj);
+			countryObj = QueryCDB.getNarrativeObstacles(countryObj);
+			
+			
+			request.setAttribute("countryObj", countryObj);
+			page = "/pages/reporting/reporting_html.jsp";
 
 		}
 		

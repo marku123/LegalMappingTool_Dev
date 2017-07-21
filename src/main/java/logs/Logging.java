@@ -25,12 +25,12 @@ public class Logging {
 			if (InetAddress.getLocalHost().getHostName().matches(".*xjdz3.*")) {
 				// File path for DailyRazor.
 
-				filePath = "/home/ukramcom/public_html/legaltoollogs/";
+				filePath = "/home/ukramcom/public_html/legaltoollogs_dev/";
 				
 			} else if(InetAddress.getLocalHost().getHostName().matches(".*jpcloudusa008.*")) {
 				// File path for JavaPipe.
 
-				filePath = "/chroot/home/ukram123/public_html/legaltoollogs/";
+				filePath = "/chroot/home/ukram123/public_html/legaltoollogs_dev/";
 
 
 			} else {

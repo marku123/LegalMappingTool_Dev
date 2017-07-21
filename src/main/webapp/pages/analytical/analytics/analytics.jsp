@@ -60,13 +60,7 @@
          
          <h3>C.1 Analytics</h3>
 
-         <!-- Note About that the Data Collection section has to be complete.-->
-
-        <!--  <div id='dataaccuracyreminder'> 
-            <p>Note: The accuracy of the analytics is contingent on "A. The Legal Protection Framework" 
-            and "B.Obstacles to Enjoying Rights" being completed in full. </p>
-         </div> -->
-         
+        
          <!-- Summary Findings -->
          <div id='findingstablediv'>
             <%=obstaclesFindingsTable%>
@@ -93,7 +87,8 @@
 
          <div id="summary-poc-obstacles-chart"> 
          </div>
-         <div id="belowchart-missingdata"><%=obstaclesMissingData%> </div>        
+         <div id="belowchart-missingdata"><%=obstaclesMissingData%> 
+         </div>        
          
          
          <div id="detail-poc-obstacles-chart">  
@@ -110,20 +105,19 @@
          
          <div id="detail-poc-obstacles-rightgroups-chart">  
          </div>
-         </div>
-         <div id="belowchart-missingdata"><%=obstaclesMissingData%> </div>        
-         <div >          
+         <div id="belowchart-missingdata"><%=obstaclesMissingData%> 
+         </div>        
          <div >        
                <button class="showdatadetails"  onclick='toggledatatable("detail-poc-obstacles-rightgroups-table")'>Show/Hide Additional Data on the Above Chart</button>          
          </div> 
          <div id='detail-poc-obstacles-rightgroups-table'>
             <%=POCRightsGroupsObstaclesTable%>
          </div>
+         </div>
          
          <br><br><br><br>
       </div>
    </div>
-</div>
 <script>
 
 
