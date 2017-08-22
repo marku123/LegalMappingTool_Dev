@@ -218,16 +218,28 @@ tr:nth-child(even) {
 }
 
 #topnav ul {
-	width: 100%;
-	float: left;
 	margin: 0px;
 	background-color: #F3F3F3;
 	border-bottom: 1px #F3F3F3 solid;
+	
+}
+
+.signout {
+	float: right;
+	margin:10px 0px 0px 0px;
+
+}
+
+.signout a{
+	padding: 7px 15px;
+	text-decoration: none;
+
 }
 
 #topnav ul li {
 	display: inline;
 	font-size: 15px;
+	
 }
 
 #topnav ul li a {
@@ -297,8 +309,7 @@ tr:nth-child(even) {
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	max-width: 260px;
-
-	position: fixed;  
+	position: fixed;
 }
 
 #left-index p {
@@ -522,14 +533,14 @@ tr:nth-child(even) {
 	/* position: fixed; */
 	/* bottom: 50%;
 	right: -45px; */
-	width:8%;
-	float:right; 
+	width: 8%;
+	float: right;
 	background-color: #f8eec2;
 	color: #005689;
 	font-weight: bold;
 	padding: 15px 0px;
-	margin-right:10px;
-	margin-bottom:10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
 	text-align: center;
 	/* display: inline-block; */
 	font-size: 20px;
@@ -539,8 +550,8 @@ tr:nth-child(even) {
 	-ms-transform: rotate(-90deg);
 	-o-transform: rotate(-90deg);
 	transform: rotate(-90deg); */
-	border-radius: 8px;	
-	 border: 2px solid #005689;
+	border-radius: 8px;
+	border: 2px solid #005689;
 }
 
 /* The Modal (background) */
@@ -616,7 +627,6 @@ tr:nth-child(even) {
 	font-size: 20px;
 }
 
-
 .feedback-modal-body {
 	height: 85%;
 	font-size: 15px;
@@ -631,9 +641,8 @@ tr:nth-child(even) {
 	padding: 0px 40px 0px 35px;
 }
 
-.feedback-modal-body input#feedbackname{
+.feedback-modal-body input#feedbackname {
 	width: 50%;
-
 }
 
 .feedback-modal-body textarea {
@@ -653,12 +662,11 @@ tr:nth-child(even) {
 	font-size: 15px;
 }
 
-.feedback-modal-body-response p{
+.feedback-modal-body-response p {
 	font-size: 17px;
-	 text-align: center;
-	 padding:50px 50px 50px 50px;	
+	text-align: center;
+	padding: 50px 50px 50px 50px;
 }
-
 
 .feedback-modal-footer {
 	padding: 2px 16px;

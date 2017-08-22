@@ -80,6 +80,9 @@ function uploadResp(responseText, element_id) {
     var fileURL = responseText;
     var fileDisplayName = responseText.split(/\d{2}\.\d{2}\.\d{2}_/);
 
+    fileStorageName = String(fileStorageName).replace(/[^\x00-\x7F]/g, "");
+    fileURL = String(fileURL).replace(/[^\x00-\x7F]/g, "");
+
     $('p[id="uploadsuccess[' + element_id + ']"]').text('The file has been successfully uploaded! To ensure these changes are saved click the "Save Changes" button.');
 
     $('a[name="natFileURLLink[' + element_id + ']"]').attr('href', fileURL);

@@ -2,6 +2,7 @@
 <%@page import="htmlformat.*"%>
 <%@page import="java.util.*"%>
 <%@page import="uploader.*"%>
+<%@page import="access.*"%>
 <%@include file="/header.jsp"%>
 <link href="./css/pages/datacollection/datacollection3.css" rel="stylesheet" type="text/css">
 <script src="./js/pages/datacollection/datacollection3.js"></script>
@@ -11,6 +12,9 @@
    <%@include file="/menu.jsp"%>
 
    <%
+   //Authenticate the user.
+   Boolean authenticatedToEd = Authentication.AuthenticateUser(request,response);
+   
    //Initialize files uploaded to the Legal Mapping Tool server.
    UploadUtilities.initializeFiles();
    
@@ -93,6 +97,13 @@
       </div>
    </div>
 </div>
+
+<!-- Authentication-->
+<input type="hidden" name="authEditView" value="<%=authenticatedToEd%>">
+<%@include file="/authentication.jsp"%>
+<script src="./js/pages/authentication.js"></script>
+<link href="./css/pages/login/authentication.css" rel="stylesheet" type="text/css">
+
 
 <!-- Feedback form -->
 <%@include file="/feedback.jsp"%>

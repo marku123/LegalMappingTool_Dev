@@ -1,5 +1,6 @@
 <%@page import="model.*"%>
 <%@page import="uploader.*"%>
+<%@page import="access.*"%>
 <%@include file="/header.jsp"%>
 <script src="./js/pages/countryhome/countryhome.js"></script>
 
@@ -7,8 +8,11 @@
 
    <%@include file="/menu.jsp"%>
    <%
-   //Initialize files uploaded to the Legal Mapping Tool server.
 
+   //Authenticate the user.
+   Boolean authenticatedToEd = Authentication.AuthenticateUser(request,response);
+   
+   //Initialize files uploaded to the Legal Mapping Tool server.
    UploadUtilities.initializeFiles();
 
    String nameOfCurrentFile = this.getClass().getSimpleName();

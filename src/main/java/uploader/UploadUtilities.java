@@ -41,6 +41,7 @@ public class UploadUtilities {
 				fi = (FileItem) i.next();
 				fileName = fi.getName();
 				timeStampFileName = sdf.format(timestamp) + "_" + fileName;
+				String timeStampFileNameRemoveSpecial = timeStampFileName.replaceAll("[^\\x00-\\x7F]", "");
 
 				if(InetAddress.getLocalHost().getHostName().matches(".*jpcloudusa008.*")) {
 
@@ -48,7 +49,7 @@ public class UploadUtilities {
 
 					// Store file on the JavaPipe web server in the Legal Mapping
 					// Tool directory.
-					filePath = "/chroot/home/ukram123/public_html/webapps/LegalMappingTool_Dev/files/" + timeStampFileName;
+					filePath = "/chroot/home/ukram123/public_html/webapps/LegalMappingTool_Dev/files/" + timeStampFileNameRemoveSpecial;
 					file = new File(filePath);
 					fi.write(file);
 
@@ -62,7 +63,7 @@ public class UploadUtilities {
 
 					// File path for Daily Razor.
 
-					filePath = "/home/ukramcom/tomcat/webapps/ukram123.com/LegalMappingTool_Dev/files/" + timeStampFileName;
+					filePath = "/home/ukramcom/tomcat/webapps/ukram123.com/LegalMappingTool_Dev/files/" + timeStampFileNameRemoveSpecial;
 					file = new File(filePath);
 					fi.write(file);
 
@@ -73,11 +74,15 @@ public class UploadUtilities {
 					responseValue = "files/" + timeStampFileName;
 					
 				}else {
+					
+				
 					// File path for local machine.
-					filePath = System.getProperty("user.dir") + "\\files\\" + timeStampFileName;
+					filePath = System.getProperty("user.dir") + "\\files\\" + timeStampFileNameRemoveSpecial;
 					file = new File(filePath);
 					fi.write(file);
 
+
+					
 					filePathBackup = System.getProperty("user.dir") + "\\filesbackup\\";
 					fileBackup = new File(filePathBackup);
 				    FileUtils.copyFileToDirectory(file, fileBackup);

@@ -1,5 +1,6 @@
 <%@page import="model.*"%>
 <%@page import="htmlformat.*"%>
+<%@page import="access.*"%>
 <%@include file="/header.jsp"%>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/drilldown.js"></script>
@@ -15,7 +16,9 @@
    <%@include file="/menu.jsp"%>
 
    <%
-
+      //Authenticate the user.
+      Boolean authenticatedToEd = Authentication.AuthenticateUser(request,response);
+     
       String nameOfCurrentFile = this.getClass().getSimpleName();
 
       //Finding table.  

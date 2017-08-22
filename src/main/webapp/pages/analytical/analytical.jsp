@@ -1,3 +1,4 @@
+<%@page import="access.*"%>
 <%@include file="/header.jsp"%>
 
 <div id="content-menu-container">
@@ -5,8 +6,8 @@
    <%@include file="/menu.jsp"%>
 
    <%
-  	//Country countryObj = (Country) request.getAttribute("countryObj");
-  	//String country = countryObj.getCountryName();
+ //Authenticate the user.
+   Authentication.AuthenticateUser(request,response);
     %>
 
    <div id="content-container">

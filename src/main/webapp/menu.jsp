@@ -1,4 +1,5 @@
 <%@page import="model.*"%>
+
 <%
    Country countryObj = (Country) request.getAttribute("countryObj");
    String countryName = countryObj.getCountryName();

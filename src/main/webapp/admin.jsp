@@ -1,10 +1,13 @@
 <%@include file="./header.jsp"%>
+<%@page import="access.*"%>
 
 <div id="content-menu-container">
 
    <%@include file="./menuglobal.jsp"%>
 
 <%
+//Authenticate the user.
+Boolean authenticated = Authentication.AuthenticateUserNoCountry(request,response);
 String nameOfCurrentFile = this.getClass().getSimpleName();
 %>
 

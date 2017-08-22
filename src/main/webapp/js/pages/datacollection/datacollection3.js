@@ -91,6 +91,9 @@ function uploadResp(responseText) {
     var newDocLinkHtml = "";
     var noOfDocs = 0;
 
+    fileStorageName = String(fileStorageName).replace(/[^\x00-\x7F]/g, "");
+    fileURL = String(fileURL).replace(/[^\x00-\x7F]/g, "");
+
     // Indicate the file was successfully uploaded.
     $('p[id="uploadsuccess"]').text('The file has been successfully uploaded! To ensure your changes are saved click the "Save Changes" button. ');
 

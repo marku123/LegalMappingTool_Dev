@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Country;
 import dbhelper.country.CreateCountry;
@@ -42,7 +43,8 @@ public class BaseController extends HttpServlet {
 		String action = request.getParameter("action");
 		String country = request.getParameter("country");
 		Country countryObj = new Country();
-
+	
+		
 		if (action.equals("home")) {
 			page = "/index.jsp";
 		} else if (action.equals("admin")) {

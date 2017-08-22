@@ -1,7 +1,6 @@
 <!-- Sidebar feedback tab. -->
 <div id="sidebartab">Feedback</div>
 
-
 <!-- The Feedback Modal -->
 <div id="myFeedbackModal" class="feedbackmodal">
 

@@ -193,7 +193,7 @@ public class FormatDataColBReporting {
 					+ "<tr> \n "
 						+ "<td>Link to the PDF version of the instrument stored in the Legal Mapping Tool (if not in Refworld):</td> \n "
 						+ "<td> \n"
-								+ "<a class='refworldlinknat' href='"+ NatlInstruments[i][4] +"' target='_blank'>"+ NatlInstruments[i][4] +"</a>\n"
+								+ "<a class='refworldlinknat' href='"+ NatlInstruments[i][4] +"' target='_blank'>"+ NatlInstruments[i][3] +"</a>\n"
 						+ "</td> \n "
 					+ "</tr> \n "
 				

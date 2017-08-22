@@ -1,5 +1,6 @@
 <%@page import="model.*"%>
 <%@page import="htmlformat.*"%>
+<%@page import="access.*"%>
 <%@include file="/header.jsp"%>
 <link href="./css/pages/analytical/narrative/narrative.css" rel="stylesheet" type="text/css">
 <script src="./js/pages/analytical/narrative/narrative.js"></script>
@@ -17,6 +18,9 @@
 
    <%
    
+   //Authenticate the user.
+   Boolean authenticatedToEd = Authentication.AuthenticateUser(request,response);
+   
    String nameOfCurrentFile = this.getClass().getSimpleName();
       
    //Narrative Analysis
@@ -26,6 +30,7 @@
    String NarrativesObstacles[] = countryObj.getNarrativeObstacles();
    
    %>
+   
    <div id="content-container">
       <div id="content-title">
          <h1>
@@ -115,7 +120,11 @@
    </div>
 </div>
 
-
+<!-- Authentication-->
+<input type="hidden" name="authEditView" value="<%=authenticatedToEd%>">
+<%@include file="/authentication.jsp"%>
+<script src="./js/pages/authentication.js"></script>
+<link href="./css/pages/login/authentication.css" rel="stylesheet" type="text/css">
 
 <!-- Feedback form -->
 <%@include file="/feedback.jsp"%>

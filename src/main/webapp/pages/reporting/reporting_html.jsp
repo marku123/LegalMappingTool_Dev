@@ -1,19 +1,23 @@
 <%@page import="model.*"%>
 <%@page import="htmlformat.*"%>
 <%@page import="java.util.*"%>
+<%@page import="access.*"%>
 <%@include file="/header.jsp"%>
 <link href="./css/pages/reporting/reporting_html.css" rel="stylesheet" type="text/css">
 <link href="./css/pages/reporting/reporting_html_print.css" rel="stylesheet" type="text/css">
 <script src="./js/pages/reporting/reporting_html.js"></script>
-
+<script src="./js/pages/reporting/sorttable.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 
-<script type="text/javascript" src="http://www.cloudformatter.com/Resources/Pages/CSS2Pdf/Script/xepOnline.jqPlugin.js"></script>
+<!-- <script type="text/javascript" src="http://www.cloudformatter.com/Resources/Pages/CSS2Pdf/Script/xepOnline.jqPlugin.js"></script> -->
 
 
 <div id="content-menu-container">
 
    <%
+      //Authenticate the user.
+      Boolean authenticatedToEd = Authentication.AuthenticateUser(request,response);
+   
       Country countryObj = (Country) request.getAttribute("countryObj");
       String countryName = countryObj.getCountryName();
       String countryNameForMenu = countryName.replaceAll("'", "%27").replaceAll("\"", "%22").replaceAll("&", "%26"); 
@@ -725,13 +729,13 @@ $(function () {
             
             chart: {
                 type: 'bar',
-                style: {fontFamily: 'calibri'},
+                style: {fontFamily: 'calibri'}
             },
             title: {
                 text: firstChartTitle,
                 style:{fontWeight:'bold',fontSize:'17px'}
                 
-            },
+            } ,
             subtitle: {
                 text: firstChartSubTitle,
                 style: {

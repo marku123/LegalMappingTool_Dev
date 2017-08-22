@@ -1,36 +1,29 @@
 package controller;
 
 import java.io.IOException;
-
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
-
-import uploader.UploadUtilities;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class UploadController
+ * Servlet implementation class LogOut
  */
-public class UploadController extends HttpServlet {
+public class LogOut extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UploadController() {
+    public LogOut() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		doPost(request, response);
 	}
 
@@ -39,10 +32,9 @@ public class UploadController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String responseValue = UploadUtilities.uploadFile(request);
-		response.setContentType("text/html;charset=UTF-8");
-
-		response.getWriter().write(responseValue);
+        HttpSession session=request.getSession();
+    	session.setAttribute("authenticateduser", false);
+		getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 
 	}
 

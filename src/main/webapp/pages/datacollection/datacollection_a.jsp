@@ -1,6 +1,7 @@
 <%@page import="model.*"%>
 <%@page import="htmlformat.*"%>
 <%@page import="java.util.*"%>
+<%@page import="access.*"%>
 <%@include file="/header.jsp"%>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -14,6 +15,10 @@
    <%@include file="/menu.jsp"%>
 
    <%
+   
+   //Authenticate the user.
+   Boolean authenticatedToEd = Authentication.AuthenticateUser(request,response);
+   
       String nameOfCurrentFile = this.getClass().getSimpleName();
 
       //A2 Intro
@@ -170,7 +175,11 @@
 </div>
  
  
-
+<!-- Authentication-->
+<input type="hidden" name="authEditView" value="<%=authenticatedToEd%>">
+<%@include file="/authentication.jsp"%>
+<script src="./js/pages/authentication.js"></script>
+<link href="./css/pages/login/authentication.css" rel="stylesheet" type="text/css">
  
  <!-- Feedback form -->
 <%@include file="/feedback.jsp"%>

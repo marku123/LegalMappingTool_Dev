@@ -1,4 +1,5 @@
 <%@page import="dbhelper.home.*"%>
+<%@page import="access.*"%>
 <%@include file="./header.jsp"%>
 <link href="./css/pages/globalhome/globalhome.css" rel="stylesheet" type="text/css">
 
@@ -7,7 +8,8 @@
    <%@include file="./menuglobal.jsp"%>
 
 <%
-
+//Authenticate the user.
+Boolean authenticated = Authentication.AuthenticateUserNoCountry(request,response);
 
 String nameOfCurrentFile = this.getClass().getSimpleName();
 %>

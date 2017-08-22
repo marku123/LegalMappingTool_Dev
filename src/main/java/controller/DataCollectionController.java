@@ -6,11 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
 import model.Country;
-
 import dbhelper.datacollection.*;
 
 /**
@@ -51,7 +51,8 @@ public class DataCollectionController extends HttpServlet {
 		Country countryObj = new Country();
 		
 		countryObj.setCountryName(country);
-		
+
+
 		
 		if (action.equals("datacollection")) {
 	

@@ -1,6 +1,7 @@
 <%@page import="model.*"%>
 <%@page import="htmlformat.*"%>
 <%@page import="java.util.*"%>
+<%@page import="access.*"%>
 <%@include file="/header.jsp"%>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -10,36 +11,37 @@
 <script src="./js/pages/datacollection/datacollection.js"></script>
 
 
-
-
 <div id="content-menu-container" >
 
    <%@include file="/menu.jsp"%>
 
    <%
-      String nameOfCurrentFile = this.getClass().getSimpleName();
-      String[] constYesNoChecked = FormatingUtilities.setCheckedRadioButtons(countryObj.getConstitutionYesNo(), "yes,no");
-      String constEffectDate = countryObj.getConstitutionDate();
-      String[] constAmendYesNoChecked = FormatingUtilities.setCheckedRadioButtons(countryObj.getConstitutionAmendYesNo(), "yes,no");
-      String constAmendDate = countryObj.getConstitutionAmendDate();
-      String constLinkFrenEng = countryObj.getConstLinkFrenEng();
-      String constLinkOrig = countryObj.getConstLinkOrig();
-      String billLinkFrenEng = countryObj.getBillLinkFrenEng();
-      String billLinkOrig = countryObj.getBillLinkOrig();
-      
-      //Applicability of Constitution to POCs
-      String constAppToPoC[][] = countryObj.getConstAppToPoC();
-      String[] POC1Checked = FormatingUtilities.setCheckedRadioButtons(constAppToPoC[0][0], "yes,partially,no,unclear");
-      String[] POC2Checked = FormatingUtilities.setCheckedRadioButtons(constAppToPoC[1][0], "yes,partially,no,unclear");
-      String[] POC3Checked = FormatingUtilities.setCheckedRadioButtons(constAppToPoC[2][0], "yes,partially,no,unclear");
-      String[] POC4Checked = FormatingUtilities.setCheckedRadioButtons(constAppToPoC[3][0], "yes,partially,no,unclear");
-      String[] POC5Checked = FormatingUtilities.setCheckedRadioButtons(constAppToPoC[4][0], "yes,partially,no,unclear");     
+   //Authenticate the user.
+   Boolean authenticatedToEd = Authentication.AuthenticateUser(request,response);
    
-      String POC1Comment = constAppToPoC[0][1];
-      String POC2Comment = constAppToPoC[1][1];
-      String POC3Comment = constAppToPoC[2][1];
-      String POC4Comment = constAppToPoC[3][1];
-      String POC5Comment = constAppToPoC[4][1];
+   String nameOfCurrentFile = this.getClass().getSimpleName();
+   String[] constYesNoChecked = FormatingUtilities.setCheckedRadioButtons(countryObj.getConstitutionYesNo(), "yes,no");
+   String constEffectDate = countryObj.getConstitutionDate();
+   String[] constAmendYesNoChecked = FormatingUtilities.setCheckedRadioButtons(countryObj.getConstitutionAmendYesNo(), "yes,no");
+   String constAmendDate = countryObj.getConstitutionAmendDate();
+   String constLinkFrenEng = countryObj.getConstLinkFrenEng();
+   String constLinkOrig = countryObj.getConstLinkOrig();
+   String billLinkFrenEng = countryObj.getBillLinkFrenEng();
+   String billLinkOrig = countryObj.getBillLinkOrig();
+   
+   //Applicability of Constitution to POCs
+   String constAppToPoC[][] = countryObj.getConstAppToPoC();
+   String[] POC1Checked = FormatingUtilities.setCheckedRadioButtons(constAppToPoC[0][0], "yes,partially,no,unclear");
+   String[] POC2Checked = FormatingUtilities.setCheckedRadioButtons(constAppToPoC[1][0], "yes,partially,no,unclear");
+   String[] POC3Checked = FormatingUtilities.setCheckedRadioButtons(constAppToPoC[2][0], "yes,partially,no,unclear");
+   String[] POC4Checked = FormatingUtilities.setCheckedRadioButtons(constAppToPoC[3][0], "yes,partially,no,unclear");
+   String[] POC5Checked = FormatingUtilities.setCheckedRadioButtons(constAppToPoC[4][0], "yes,partially,no,unclear");     
+
+   String POC1Comment = constAppToPoC[0][1];
+   String POC2Comment = constAppToPoC[1][1];
+   String POC3Comment = constAppToPoC[2][1];
+   String POC4Comment = constAppToPoC[3][1];
+   String POC5Comment = constAppToPoC[4][1];
 
 
 
@@ -177,8 +179,6 @@
                   
                   <br><br>
 
-
-
                <br><br>                                   
                <div class="savebuttonandtooltip">
                   <input class="savebutton" type="submit" name="savedata" value="Save Changes" /><span class="tooltiptext">All changes on page will be saved.</span>
@@ -188,6 +188,13 @@
       </div>
    </div>
 </div>
+
+
+<!-- Authentication-->
+<input type="hidden" name="authEditView" value="<%=authenticatedToEd%>">
+<%@include file="/authentication.jsp"%>
+<script src="./js/pages/authentication.js"></script>
+<link href="./css/pages/login/authentication.css" rel="stylesheet" type="text/css">
 
 
 <!-- Feedback form -->
