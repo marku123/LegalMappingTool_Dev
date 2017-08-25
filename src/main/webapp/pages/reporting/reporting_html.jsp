@@ -98,12 +98,6 @@
 
        String obstaclesMissingData = FormatAnalytics.formatObstaclesMissingData(countryObj);
        
-       //Narrative Analysis
-       
-       String allNarratives[] = countryObj.getNarrative();
-       String NarrativesPriorities[] = countryObj.getNarrativePriorities();
-       String NarrativesObstacles[] = countryObj.getNarrativeObstacles();
-          
        //Table of Contents
        
        String tableOfContentsSectionA = FormatDataColBReporting.formatTableOfContents(countryObj);
@@ -135,15 +129,13 @@
             <p>Table of Contents</p>
             <%=tableOfContentsSectionA%>
             <%=tableOfContentsSectionB%>
-            <a class="tableofcontentshead" href="#SectionC">C. Identifying Priorities</a>
-            <a class="tableofcontentssub1" href="#C1">C.1 Analytics</a>
-            <a class="tableofcontentssub2" href="#C11">C.1.1 Summary Data Findings</a>
-            <a class="tableofcontentssub2" href="#C12"><span class="tableofcontentssubNum">C.1.2 </span><span class="tableofcontentssubText">Consistency of National Legal Instruments With International Standards</span> </a>            
-            <a class="tableofcontentssub2" href="#C13"><span class="tableofcontentssubNum">C.1.3 </span><span class="tableofcontentssubText"> National Legal Instrument Support for the Rights of Nationals and Persons of Concern</span></a>
-            <a class="tableofcontentssub2" href="#C14"><span class="tableofcontentssubNum">C.1.4 </span><span class="tableofcontentssubText"> Obstacles Populations of Concern Face in Being Able to Enjoy Their Rights</span></a>
-            <a class="tableofcontentssub2" href="#C15"><span class="tableofcontentssubNum">C.1.5 </span><span class="tableofcontentssubText"> Obstacles Preventing Populations of Concern Face From Being Able to Enjoy Their Rights</span></a>
-            <a class="tableofcontentssub2" href="#C16"><span class="tableofcontentssubNum">C.1.6 </span><span class="tableofcontentssubText"> The Accessibility of Rights to Populations of Concern</span></a>
-            <a class="tableofcontentssub1" href="#C2">C.2 Narrative Analysis</a>
+            <a class="tableofcontentshead" href="#SectionC">C. Analytics</a>
+            <a class="tableofcontentssub1" href="#C11">C.1 Summary Data Findings</a>
+            <a class="tableofcontentssub1" href="#C12"><span class="tableofcontentssubNum">C.2 </span><span class="tableofcontentssubText">Consistency of National Legal Instruments With International Standards</span> </a>            
+            <a class="tableofcontentssub1" href="#C13"><span class="tableofcontentssubNum">C.3 </span><span class="tableofcontentssubText"> National Legal Instrument Support for the Rights of Nationals and Persons of Concern</span></a>
+            <a class="tableofcontentssub1" href="#C14"><span class="tableofcontentssubNum">C.4 </span><span class="tableofcontentssubText"> Severity of Obstacles Populations of Concern Face in Being Able to Enjoy Their Rights</span></a>
+            <a class="tableofcontentssub1" href="#C15"><span class="tableofcontentssubNum">C.5 </span><span class="tableofcontentssubText"> The Type and Severity of Obstacles Preventing Populations of Concern Face From Being Able to Enjoy Their Rights</span></a>
+            <a class="tableofcontentssub1" href="#C16"><span class="tableofcontentssubNum">C.6 </span><span class="tableofcontentssubText"> The Accessibility of Rights to Populations of Concern</span></a>
          </div>
       </div>
       
@@ -352,26 +344,24 @@
          
          
 
-<!--***************Analytics and Narrative Section**************-->
+<!--***************Analytics **************-->
          
-         <h2 id="SectionC">C. IDENTIFYING PRIORITIES</h2>
+         <h2 id="SectionC">C. ANALYTICS</h2>
          
 <!--***************Analytics**************-->
          
-          <h3 id="C1">C.1 Analytics</h3>
-
-        <h4 id="C11">C.1.1 Summary Data Findings</h4>
+        <h4 id="C11">C.1 Summary Data Findings</h4>
          <!-- Summary Findings -->
          <div id='findingstablediv'>
             <%=obstaclesFindingsTable%>
          </div>      
 
-         <h4 id="C12">C.1.2 Consistency of National Legal Instruments With International Standards</h4>
+         <h4 id="C12">C.2 Consistency of National Legal Instruments With International Standards</h4>
          <div id="detail-consistency-chart"> </div>
          <div id="belowchart-missingdata"><%=legalFrameworkConsistencyMissingData%> </div>
          <div id='detail-consistency-table'><%=legalFrameworkConsistentWithInternational%></div>            
 
-         <h4 id="C13">C.1.3 National Legal Instrument Support for the Rights of Nationals and Persons of Concern</h4>
+         <h4 id="C13">C.3 National Legal Instrument Support for the Rights of Nationals and Persons of Concern</h4>
          <div id="summary-poc-natinstsruments-chart"> 
          </div>
         <div id="belowchart-missingdata"><%=NatInstrumentsMissingData%> </div>        
@@ -379,13 +369,13 @@
             <%=NatInstrumentsTable%>
          </div>
 
-         <h4 id="C14">C.1.4 Obstacles Populations of Concern Face in Being Able to Enjoy Their Rights</h4>
+         <h4 id="C14">C.4 Severity of Obstacles Populations of Concern Face in Being Able to Enjoy Their Rights</h4>
          <div id="summary-poc-obstacles-chart"> 
          </div>
          <div id="belowchart-missingdata"><%=obstaclesMissingData%> 
          </div>        
          
-         <h4 id="C15">C.1.5 Obstacles Preventing Populations of Concern Face From Being Able to Enjoy Their Rights</h4>
+         <h4 id="C15">C.5 The Type and Severity of Obstacles Preventing Populations of Concern Face From Being Able to Enjoy Their Rights</h4>
          <div id="detail-poc-obstacles-chart">  
          </div>
          <div id="belowchart-missingdata"><%=obstaclesMissingData%> </div>        
@@ -394,7 +384,7 @@
          </div>
          
          
-         <h4 id="C16">C.1.6 The Accessibility of Rights to Populations of Concern</h4>
+         <h4 id="C16">C.6 The Accessibility of Rights to Populations of Concern</h4>
          <div id="detail-poc-obstacles-rightgroups-chart">  
          </div>
          <div id="belowchart-missingdata"><%=obstaclesMissingData%> 
@@ -407,84 +397,7 @@
          
 <!--***************End Analytics**************-->
          
- <!--***************Narrative Analysis**************-->
-         
-         <h3 id="C2">C.2 Narrative Analysis</h3>
 
-             
-         <h4>The Importance of Specific Rights in Your Operational Context</h4>
-         <br>
-         <p>
-            
-               1. In the opinion of the operation, are any rights of particular importance in your 
-               operational context? If so, why? 
-         </p> <br> 
-         <p class="narrativeanswer">      
-                <%=NarrativesPriorities[0]%>
-         </p>   <br>
-         <p>
-              2. In the opinion  of populations of concern, are any rights of particular importance 
-              in your operational context? If so, why? 
-         </p>     
-              <br> 
-         <p class="narrativeanswer">      
-
-              <%=NarrativesPriorities[1]%>       
-         </p>                                  
-         <br> 
-         <h4>Obstacle Analysis</h4>
-         <br>
-   
-         <p class="mediumparagraphquestion">
-               1. Using the data from section "D1. Analytics" and your knowledge of your country's legal context, what are the main obstacles
-               preventing populations of concern from being able to enjoy their rights?
-         </p><br> 
-               
-         <p class="narrativeanswer">      
-               <%=NarrativesObstacles[0]%>
-         </p>
-         <br> 
-         <p>
-               2. For the obstacles you identified in question 1, please describe the underlying reasons as to why these obstacles
-               exist. 
-         </p> <br> 
-         <p class="narrativeanswer">      
-               <%=NarrativesObstacles[1]%>
-         </p>
-         <br> 
-         <h4>Areas for Law and Policy Reform</h4>
-         <br>
-         
-         <p class="mediumparagraphquestion">
-            
-               1. On the basis of the information gathered in the Legal Mapping Tool, what priority areas of law and policy reform should be considered 
-               to strengthen the protection of rights of populations of concern?              
-         </p>
-         <br> 
-         <p class="narrativeanswer">      
-               <%=allNarratives[0]%>
-         </p> 
-         <br>
-         <p>
-               2. What advocacy will be required to achieve the priority reforms identified above?  
-         </p>
-         <br>   
-         <p class="narrativeanswer">      
-              <%=allNarratives[1]%>           
-         </p>
-         <br>           
-         <h4>Priority Areas for Complementary Programming</h4>
-         <br>
-         <p>
-              1. Please identify the priority areas of intervention that you would propose for your operation in the coming 2 to 3 years? 
-         </p>
-         <br> 
-         <p class="narrativeanswer">      
-            <%=allNarratives[2]%>
-         </p>            
-         <br>        
-         
-  <!--***************End Narrative Analysis**************-->
       </div>
 
 </div>
@@ -642,7 +555,7 @@ $(function () {
     //Configuration of the POC obstacles summary chart. 
     
     
-        var firstChartTitle = 'Obstacles Populations of Concern Face in Being Able to Enjoy Their Rights';
+        var firstChartTitle = 'Severity of Obstacles Populations of Concern Face in Being Able to Enjoy Their Rights';
         var firstChartSubTitle = '(1=\"No or Minor Obstacles to Enjoying Their Rights\", 3=\"Determinative Obstacles to Enjoying Their Rights\")';
        /*  var footnote = '*Rating is based on a scale from 1 to 3 where 1 indicates persons of concern face no obstacles to enjoying their '+ 
                 'rights and 3 indicates they face significant obstacles.'; */
@@ -718,7 +631,7 @@ $(function () {
     //Configuration of the POC obstacles detail chart. 
     
     
-        var firstChartTitle = 'The Obstacles Preventing Populations of Concern From Enjoying Their Rights';
+        var firstChartTitle = 'The Type and Severity of Obstacles Preventing Populations of Concern From Enjoying Their Rights';
         var firstChartSubTitle = '(1=\"The Obstacles Do Not, or Minimally, Prevent Populations of Concern From Enjoying Their Rights\"' +
                          ',<br>3=\"The Obstacles Determinatively Prevent Populations of Concern From Enjoying Their Rights\")';
         /* var footnote = '*Rating is based on a scale from 1 to 3 where 1 indicates that the obstacle does not ' + 

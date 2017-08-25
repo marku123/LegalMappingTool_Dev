@@ -85,38 +85,42 @@ function judicialAddRow() {
     var arrayIndex = noRows - 1;
     var row;
 
-    row = "<tr>";
-    row = row + "<td>";
-    row = row + "<input type='text' maxlength='50' name='entitycourt[" + arrayIndex + "]' value=''>";
-    row = row + "</td>";
-    row = row + "<td>";
-    row = row + "<input type='radio' name='refugeesaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
-    row = row + "<input type='radio' name='refugeesaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
-    row = row + "<input type='radio' name='refugeesaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-    row = row + "</td>";
-    row = row + "<td>";
-    row = row + "<input type='radio' name='IDPsaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
-    row = row + "<input type='radio' name='IDPsaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
-    row = row + "<input type='radio' name='IDPsaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-    row = row + "</td>";
-    row = row + "<td>";
-    row = row + "<input type='radio' name='returneesaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
-    row = row + "<input type='radio' name='returneesaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
-    row = row + "<input type='radio' name='returneesaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-    row = row + "</td>";
-    row = row + "<td>";
-    row = row + "<input type='radio' name='statelessaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
-    row = row + "<input type='radio' name='statelessaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
-    row = row + "<input type='radio' name='statelessaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-    row = row + "</td>";
-    row = row + "<td>";
-    row = row + "<input type='radio' name='asylumaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
-    row = row + "<input type='radio' name='asylumaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
-    row = row + "<input type='radio' name='asylumaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-    row = row + "</td>";
-    row = row + "</tr>";
+    if (($("input[type=hidden][name=authEditView]").val() === "true")) {
 
-    jQuery('#judicialTableAddRow').append(row);
+        row = "<tr>";
+        row = row + "<td>";
+        row = row + "<input type='text' maxlength='50' name='entitycourt[" + arrayIndex + "]' value=''>";
+        row = row + "</td>";
+        row = row + "<td>";
+        row = row + "<input type='radio' name='refugeesaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
+        row = row + "<input type='radio' name='refugeesaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
+        row = row + "<input type='radio' name='refugeesaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+        row = row + "</td>";
+        row = row + "<td>";
+        row = row + "<input type='radio' name='IDPsaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
+        row = row + "<input type='radio' name='IDPsaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
+        row = row + "<input type='radio' name='IDPsaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+        row = row + "</td>";
+        row = row + "<td>";
+        row = row + "<input type='radio' name='returneesaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
+        row = row + "<input type='radio' name='returneesaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
+        row = row + "<input type='radio' name='returneesaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+        row = row + "</td>";
+        row = row + "<td>";
+        row = row + "<input type='radio' name='statelessaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
+        row = row + "<input type='radio' name='statelessaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
+        row = row + "<input type='radio' name='statelessaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+        row = row + "</td>";
+        row = row + "<td>";
+        row = row + "<input type='radio' name='asylumaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
+        row = row + "<input type='radio' name='asylumaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
+        row = row + "<input type='radio' name='asylumaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+        row = row + "</td>";
+        row = row + "</tr>";
+
+        jQuery('#judicialTableAddRow').append(row);
+
+    }
 }
 
 // Add another row to the Administrative Entities table.
@@ -125,39 +129,42 @@ function adminAddRow() {
     var noRows = table.rows.length;
     var arrayIndex = noRows - 1;
     var row;
+    if (($("input[type=hidden][name=authEditView]").val() === "true")) {
 
-    row = "<tr>";
-    row = row + "<td>";
-    row = row + "<input type='text'  maxlength='50' name='adminentityname[" + arrayIndex + "]' value=''>";
-    row = row + "</td>";
-    row = row + "<td>";
-    row = row + "<input type='radio' name='refugeesaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
-    row = row + "<input type='radio' name='refugeesaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
-    row = row + "<input type='radio' name='refugeesaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-    row = row + "</td>";
-    row = row + "<td>";
-    row = row + "<input type='radio' name='IDPsaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
-    row = row + "<input type='radio' name='IDPsaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
-    row = row + "<input type='radio' name='IDPsaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-    row = row + "</td>";
-    row = row + "<td>";
-    row = row + "<input type='radio' name='returneesaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
-    row = row + "<input type='radio' name='returneesaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
-    row = row + "<input type='radio' name='returneesaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-    row = row + "</td>";
-    row = row + "<td>";
-    row = row + "<input type='radio' name='statelessaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
-    row = row + "<input type='radio' name='statelessaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
-    row = row + "<input type='radio' name='statelessaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-    row = row + "</td>";
-    row = row + "<td>";
-    row = row + "<input type='radio' name='asylumaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
-    row = row + "<input type='radio' name='asylumaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
-    row = row + "<input type='radio' name='asylumaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-    row = row + "</td>";
-    row = row + "</tr>";
+        row = "<tr>";
+        row = row + "<td>";
+        row = row + "<input type='text'  maxlength='50' name='adminentityname[" + arrayIndex + "]' value=''>";
+        row = row + "</td>";
+        row = row + "<td>";
+        row = row + "<input type='radio' name='refugeesaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
+        row = row + "<input type='radio' name='refugeesaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
+        row = row + "<input type='radio' name='refugeesaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+        row = row + "</td>";
+        row = row + "<td>";
+        row = row + "<input type='radio' name='IDPsaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
+        row = row + "<input type='radio' name='IDPsaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
+        row = row + "<input type='radio' name='IDPsaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+        row = row + "</td>";
+        row = row + "<td>";
+        row = row + "<input type='radio' name='returneesaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
+        row = row + "<input type='radio' name='returneesaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
+        row = row + "<input type='radio' name='returneesaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+        row = row + "</td>";
+        row = row + "<td>";
+        row = row + "<input type='radio' name='statelessaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
+        row = row + "<input type='radio' name='statelessaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
+        row = row + "<input type='radio' name='statelessaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+        row = row + "</td>";
+        row = row + "<td>";
+        row = row + "<input type='radio' name='asylumaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
+        row = row + "<input type='radio' name='asylumaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
+        row = row + "<input type='radio' name='asylumaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+        row = row + "</td>";
+        row = row + "</tr>";
 
-    jQuery('#administrativeTableAddRow').append(row);
+        jQuery('#administrativeTableAddRow').append(row);
+
+    }
 }
 
 // Add another row to the Traditional Mechanisms table.
@@ -167,36 +174,41 @@ function tradAddRow() {
     var arrayIndex = noRows - 1;
     var row;
 
-    row = "<tr>";
-    row = row + "<td>";
-    row = row + "<input type='text'  maxlength='50' name='tradmechname[" + arrayIndex + "]' value=''>";
-    row = row + "</td>";
-    row = row + "<td>";
-    row = row + "<input type='radio' name='refugeesaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
-    row = row + "<input type='radio' name='refugeesaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
-    row = row + "<input type='radio' name='refugeesaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-    row = row + "</td>";
-    row = row + "<td>";
-    row = row + "<input type='radio' name='IDPsaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
-    row = row + "<input type='radio' name='IDPsaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
-    row = row + "<input type='radio' name='IDPsaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-    row = row + "</td>";
-    row = row + "<td>";
-    row = row + "<input type='radio' name='returneesaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
-    row = row + "<input type='radio' name='returneesaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
-    row = row + "<input type='radio' name='returneesaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-    row = row + "</td>";
-    row = row + "<td>";
-    row = row + "<input type='radio' name='statelessaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
-    row = row + "<input type='radio' name='statelessaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
-    row = row + "<input type='radio' name='statelessaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-    row = row + "</td>";
-    row = row + "<td>";
-    row = row + "<input type='radio' name='asylumaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
-    row = row + "<input type='radio' name='asylumaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
-    row = row + "<input type='radio' name='asylumaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-    row = row + "</td>";
-    row = row + "</tr>";
+    if (($("input[type=hidden][name=authEditView]").val() === "true")) {
 
-    jQuery('#traditionalTableAddRow').append(row);
+        row = "<tr>";
+        row = row + "<td>";
+        row = row + "<input type='text'  maxlength='50' name='tradmechname[" + arrayIndex + "]' value=''>";
+        row = row + "</td>";
+        row = row + "<td>";
+        row = row + "<input type='radio' name='refugeesaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
+        row = row + "<input type='radio' name='refugeesaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
+        row = row + "<input type='radio' name='refugeesaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+        row = row + "</td>";
+        row = row + "<td>";
+        row = row + "<input type='radio' name='IDPsaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
+        row = row + "<input type='radio' name='IDPsaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
+        row = row + "<input type='radio' name='IDPsaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+        row = row + "</td>";
+        row = row + "<td>";
+        row = row + "<input type='radio' name='returneesaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
+        row = row + "<input type='radio' name='returneesaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
+        row = row + "<input type='radio' name='returneesaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+        row = row + "</td>";
+        row = row + "<td>";
+        row = row + "<input type='radio' name='statelessaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
+        row = row + "<input type='radio' name='statelessaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
+        row = row + "<input type='radio' name='statelessaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+        row = row + "</td>";
+        row = row + "<td>";
+        row = row + "<input type='radio' name='asylumaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
+        row = row + "<input type='radio' name='asylumaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
+        row = row + "<input type='radio' name='asylumaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+        row = row + "</td>";
+        row = row + "</tr>";
+
+        jQuery('#traditionalTableAddRow').append(row);
+
+    }
+
 }

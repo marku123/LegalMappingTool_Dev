@@ -88,7 +88,7 @@
                    <%=natlInstrumentsTables%> 
                <br>
                <div class="addinstrument">
-                  <input onclick="natlInstruAddRow('<%=rightgroup%>');" type="button" value="Add An Instrument" />  
+                  <input type="button" value="Add An Instrument" onclick="natlInstruAddRow('<%=rightgroup%>');" />  
                </div>
                                 
                <br><br>

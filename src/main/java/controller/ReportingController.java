@@ -10,11 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import dbhelper.analytical.QueryAnalyticsCLegalFramework;
 import dbhelper.analytical.QueryAnalyticsCNatInstruments;
 import dbhelper.analytical.QueryAnalyticsCObstacles;
-import dbhelper.analytical.QueryNarrativeAnalysis;
 import dbhelper.datacollection.QueryA1DB;
 import dbhelper.datacollection.QueryA2DB;
-import dbhelper.datacollection.QueryCDB;
-import dbhelper.datacollection.QueryDDB;
 import dbhelper.reporting.QueryBDBReporting;
 import dbhelper.reporting.QueryCDCReporting;
 import model.Country;
@@ -75,14 +72,7 @@ public class ReportingController extends HttpServlet {
 			countryObj = QueryAnalyticsCNatInstruments.getNatInstruData(countryObj);
 			countryObj = QueryAnalyticsCObstacles.getObstaclesData(countryObj);
 			countryObj = QueryAnalyticsCLegalFramework.getLegalFrameworkData(countryObj);
-			
-			//Get the Narrative data from the database. 
-			
-			countryObj = QueryNarrativeAnalysis.getAnalyticalNarrative(countryObj);
-			countryObj = QueryDDB.getNarrativePriorities(countryObj);
-			countryObj = QueryCDB.getNarrativeObstacles(countryObj);
-			
-			
+						
 			request.setAttribute("countryObj", countryObj);
 			page = "/pages/reporting/reporting.jsp";
 
@@ -110,14 +100,7 @@ public class ReportingController extends HttpServlet {
 			countryObj = QueryAnalyticsCNatInstruments.getNatInstruData(countryObj);
 			countryObj = QueryAnalyticsCObstacles.getObstaclesData(countryObj);
 			countryObj = QueryAnalyticsCLegalFramework.getLegalFrameworkData(countryObj);
-			
-			//Get the Narrative data from the database. 
-			
-			countryObj = QueryNarrativeAnalysis.getAnalyticalNarrative(countryObj);
-			countryObj = QueryDDB.getNarrativePriorities(countryObj);
-			countryObj = QueryCDB.getNarrativeObstacles(countryObj);
-			
-			
+						
 			request.setAttribute("countryObj", countryObj);
 			page = "/pages/reporting/reporting_html.jsp";
 

@@ -5,7 +5,8 @@
    String countryName = countryObj.getCountryName();
    String countryNameForMenu = countryName.replaceAll("'", "%27").replaceAll("\"", "%22").replaceAll("&", "%26"); 
    String actionMenu = String.valueOf(request.getParameter("action"));
-   String anchor = request.getParameter("anchor"); 
+   String anchor = request.getParameter("anchor");
+
 %>
 
 <div id="left-col">
@@ -30,9 +31,7 @@
          <li id='menu-country-datacollection-4'><a href='/LegalMappingTool_Dev/DataCollectionController?action=datacollection3&country=<%=countryNameForMenu%>'> B. Obstacles to Enjoying Rights</a></li>
                 
          <!--Section C: Areas for Improvement-->
-         <li id='menu-country-analytical-3'><a href='/LegalMappingTool_Dev/AnalyticalToolController?action=analytics&country=<%=countryNameForMenu%>'> C. Identifying Priorities</a></li>
-          <li class="submenu" id='menu-country-analytical-5'><a href='/LegalMappingTool_Dev/AnalyticalToolController?action=analytics&country=<%=countryNameForMenu%>'>C.1 Analytics</a></li>
-         <li class="submenu" id='menu-country-analytical-6_a'><a href='/LegalMappingTool_Dev/AnalyticalToolController?action=narrative&country=<%=countryNameForMenu%>&anchor=%23B'>C.2 Narrative Analysis</a></li>
+         <li id='menu-country-analytical-3'><a href='/LegalMappingTool_Dev/AnalyticalToolController?action=analytics&country=<%=countryNameForMenu%>'> C. Analytics</a></li>
 
          <!--Section D: Reporting-->
          <li id='menu-country-reporting'><a href='/LegalMappingTool_Dev/ReportingController?action=reporting&country=<%=countryNameForMenu%>'> D. Create Reports</a></li>
@@ -68,8 +67,6 @@ $(document).ready(function(){
                 $("#menu-country-datacollection-2_2_a").hide();
                 $("#menu-country-datacollection-3").hide();
 
-                $("#menu-country-analytical-5").hide(); 
-                $("#menu-country-analytical-6_a").hide(); 
 
 
             } else if (page == 'datacollection') {
@@ -87,8 +84,7 @@ $(document).ready(function(){
                 $("#menu-country-datacollection-2_1").hide();
                 $("#menu-country-datacollection-2_2").hide();
                 
-                $("#menu-country-analytical-5").hide(); 
-                $("#menu-country-analytical-6_a").hide(); 
+
 
                 
       	      /* if(!(anchor === 'null')) {
@@ -110,8 +106,6 @@ $(document).ready(function(){
                 $("#menu-country-datacollection-2_1").hide();
                 $("#menu-country-datacollection-2_2").hide();
 
-                $("#menu-country-analytical-5").hide(); 
-                $("#menu-country-analytical-6_a").hide(); 
                 
       	      /* if(!(anchor === 'null')) {
                   $(document).scrollTop($(anchor).offset().top );  
@@ -133,8 +127,6 @@ $(document).ready(function(){
                 $("#menu-country-datacollection-2_1").hide();
                 $("#menu-country-datacollection-2_2").hide();
 
-                $("#menu-country-analytical-5").hide(); 
-                $("#menu-country-analytical-6_a").hide(); 
                 
                 
             } else if (page == 'datacollection3') {
@@ -154,9 +146,7 @@ $(document).ready(function(){
                 $("#menu-country-datacollection-2_2").hide();
                 $("#menu-country-datacollection-2_2_a").hide();
                 $("#menu-country-datacollection-3").hide();
-                
-                $("#menu-country-analytical-5").hide(); 
-                $("#menu-country-analytical-6_a").hide(); 
+
                 
             } else if (page == 'analytics') {
                 /* Section D Identifying Priorities, Analytics. */
@@ -217,9 +207,7 @@ $(document).ready(function(){
                   $("#menu-country-datacollection-2_1_a").hide();
                   $("#menu-country-datacollection-2_2_a").hide(); 
                   $("#menu-country-datacollection-3").hide(); 
-                  
-                  $("#menu-country-analytical-5").hide(); 
-                  $("#menu-country-analytical-6_a").hide(); 
+
                   
                   $("#menu-country-reporting").addClass("visited-menu");
 

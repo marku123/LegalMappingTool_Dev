@@ -119,28 +119,28 @@ public class FormatDataColBReporting {
     		String NatlInstruments[][] = RightsGroups.getNatlInstruments();
     		
     		//Format comment for consistency with international standards. 
-    		String commentConsistencyIntlStan = FormatingUtilities.formatReportCommentNatInstru("",NatlInstruments[i][7]);
+    		String commentConsistencyIntlStan = FormatingUtilities.formatReportCommentNatInstru("Comment:",NatlInstruments[i][7]);
     		
     		//Format comment for consistency with 1951 Refugee Conventions. 
-    		String comment1951Conven = FormatingUtilities.formatReportCommentNatInstru("",NatlInstruments[i][9]);   		
+    		String comment1951Conven = FormatingUtilities.formatReportCommentNatInstru("Comment:",NatlInstruments[i][9]);   		
     		
     		//Format comment for supports/restricts nationals. 
-    		String commentSupResNat = FormatingUtilities.formatReportCommentNatInstru("",NatlInstruments[i][12]);   
+    		String commentSupResNat = FormatingUtilities.formatReportCommentNatInstru("Comment:",NatlInstruments[i][12]);   
 
     		//Format comment for supports/restricts IDPs. 
-    		String commentSupResIDP = FormatingUtilities.formatReportCommentNatInstru("",NatlInstruments[i][15]);
+    		String commentSupResIDP = FormatingUtilities.formatReportCommentNatInstru("Comment:",NatlInstruments[i][15]);
     		
     		//Format comment for supports/restricts Refugees. 
-    		String commentSupResRef = FormatingUtilities.formatReportCommentNatInstru("",NatlInstruments[i][18]);
+    		String commentSupResRef = FormatingUtilities.formatReportCommentNatInstru("Comment:",NatlInstruments[i][18]);
     		
     		//Format comment for supports/restricts Asylum Seekers. 
-    		String commentSupResAsy = FormatingUtilities.formatReportCommentNatInstru("",NatlInstruments[i][21]);  		
+    		String commentSupResAsy = FormatingUtilities.formatReportCommentNatInstru("Comment:",NatlInstruments[i][21]);  		
     		
     		//Format comment for supports/restricts Asylum Seekers. 
-    		String commentSupResRet = FormatingUtilities.formatReportCommentNatInstru("",NatlInstruments[i][24]);  	
+    		String commentSupResRet = FormatingUtilities.formatReportCommentNatInstru("Comment:",NatlInstruments[i][24]);  	
     		
     		//Format comment for supports/restricts Stateless Persons. 
-    		String commentSupResState = FormatingUtilities.formatReportCommentNatInstru("",NatlInstruments[i][27]);  	
+    		String commentSupResState = FormatingUtilities.formatReportCommentNatInstru("Comment:",NatlInstruments[i][27]);  	
     		
     		//Format the discrimination groups. 
     		String groupsInstrumentDiscriminatesFinal = FormatingUtilities.formatNatInstrurmentsDiscrimString(NatlInstruments[i][28],NatlInstruments[i][29]); 

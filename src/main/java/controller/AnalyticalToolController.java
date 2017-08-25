@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import dbhelper.analytical.QueryAnalyticsCLegalFramework;
 import dbhelper.analytical.QueryAnalyticsCNatInstruments;
 import dbhelper.analytical.QueryAnalyticsCObstacles;
-import dbhelper.analytical.QueryNarrativeAnalysis;
-import dbhelper.analytical.UpdateNarrativeDB;
-import dbhelper.datacollection.*;
 import model.Country;
 
 
@@ -46,19 +43,12 @@ public class AnalyticalToolController extends HttpServlet {
 
 		String action = request.getParameter("action");
 		String country = request.getParameter("country");
-		String savedata = request.getParameter("savedata");
 		String page = null;
 		Country countryObj = new Country();
 
 		countryObj.setCountryName(country);
 
-		if (action.equals("analytical")) {
-
-			countryObj = QueryA1DB.getLegalFrameworkConstIntro(countryObj);
-			request.setAttribute("countryObj", countryObj);
-			page = "/pages/analytical/analytical.jsp";
-
-		} else if (action.equals("analytics")) {
+		if (action.equals("analytics")) {
 
 		
 			countryObj = QueryAnalyticsCNatInstruments.getNatInstruData(countryObj);
@@ -69,29 +59,6 @@ public class AnalyticalToolController extends HttpServlet {
 			request.setAttribute("countryObj", countryObj);
 			page = "/pages/analytical/analytics/analytics.jsp";
 
-		} else if (action.equals("narrative")) {
-			if (savedata != null) {
-				//Insert narrative data into the database.
-
-				UpdateNarrativeDB.updateNarrative(request);				
-				UpdateNarrativeDB.updatePrioritiesNarrative(request);
-				UpdateCDB.updateObstaclesNarrative(request);
-			}
-			
-			//Get the Analytics data from the database. 
-
-			countryObj = QueryAnalyticsCNatInstruments.getNatInstruData(countryObj);
-			countryObj = QueryAnalyticsCObstacles.getObstaclesData(countryObj);
-			countryObj = QueryAnalyticsCLegalFramework.getLegalFrameworkData(countryObj);
-			
-			//Get the Narrative data from the database. 
-			
-			countryObj = QueryNarrativeAnalysis.getAnalyticalNarrative(countryObj);
-			countryObj = QueryDDB.getNarrativePriorities(countryObj);
-			countryObj = QueryCDB.getNarrativeObstacles(countryObj);
-
-			request.setAttribute("countryObj", countryObj);
-			page = "/pages/analytical/narrative/narrative1.jsp";
 		} 
 
 		getServletContext().getRequestDispatcher(page).forward(request, response);

@@ -1,8 +1,5 @@
 package model;
 
-
-
-
 public class Country {
 
 	private String CountryName;
@@ -40,17 +37,14 @@ public class Country {
 	//B Variables
 	private String POC;
 	private String[][] Obstacles;
-	private String[] narrativeObstacles;
 	private String[][] obstaclesDocumenation;
 	
 	//B Reporting Variables
 	private PersonsOfConcern[] PersonsOfConcern;
 	
 	//D Variables
-    private String[][] POCPriorities;
 	private String[][] POCDifferencesPriorities;
 	private String[][] OtherSubGrps;
-	private String[] narrativePriorities;
 
 	//Analytics Legal Framework
     private String[][] ConsistencyWithInternational; 
@@ -71,8 +65,6 @@ public class Country {
     private String AllPOCALLRightsGroupsObtacles;//All POC rights groups obstacles. No individual POC nor right groups data. 
     private Boolean ObstaclesMissingData; 
 
-	//Narrative.
-	private String[] narrative;
 
 
 
@@ -114,18 +106,7 @@ public class Country {
 	public void setObstaclesDocumenation(String[][] obstaclesDocumenation) {
 		this.obstaclesDocumenation = obstaclesDocumenation;
 	}
-	public String[] getNarrativePriorities() {
-		return narrativePriorities;
-	}
-	public void setNarrativePriorities(String[] narrativePriorities) {
-		this.narrativePriorities = narrativePriorities;
-	}
-	public String[] getNarrativeObstacles() {
-		return narrativeObstacles;
-	}
-	public void setNarrativeObstacles(String[] narrativeObstacles) {
-		this.narrativeObstacles = narrativeObstacles;
-	}
+
 	public String getTradMechComments() {
 		return TradMechComments;
 	}
@@ -206,12 +187,7 @@ public class Country {
 	public void setPOCDifferencesPriorities(String[][] pOCDifferencesPriorities) {
 		POCDifferencesPriorities = pOCDifferencesPriorities;
 	}
-	public String[][] getPOCPriorities() {
-		return POCPriorities;
-	}
-	public void setPOCPriorities(String[][] pOCPriorities) {
-		POCPriorities = pOCPriorities;
-	}
+
 	public String getPOC() {
 		return POC;
 	}
@@ -236,12 +212,7 @@ public class Country {
 	public void setRightsGroup(String rightsGroup) {
 		RightsGroup = rightsGroup;
 	}
-	public String[] getNarrative() {
-		return narrative;
-	}
-	public void setNarrative(String[] narrative) {
-		this.narrative = narrative;
-	}
+
 	public String getComments() {
 		return Comments;
 	}

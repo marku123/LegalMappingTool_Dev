@@ -25,9 +25,9 @@
       
    //Narrative Analysis
    
-   String allNarratives[] = countryObj.getNarrative();
+/*    String allNarratives[] = countryObj.getNarrative();
    String NarrativesPriorities[] = countryObj.getNarrativePriorities();
-   String NarrativesObstacles[] = countryObj.getNarrativeObstacles();
+   String NarrativesObstacles[] = countryObj.getNarrativeObstacles(); */
    
    %>
    
@@ -53,11 +53,11 @@
             
                1. In the opinion of the operation, are any rights of particular importance in your 
                operational context? If so, why?  <br> <br> 
-               <textarea class="narrativeanswers" name="narrative4"><%=NarrativesPriorities[0]%></textarea><br><br>
+<%--                <textarea class="narrativeanswers" name="narrative4"><%=NarrativesPriorities[0]%></textarea><br><br>
             
               2. In the opinion  of populations of concern, are any rights of particular importance 
               in your operational context? If so, why? <br> <br> 
-               <textarea class="narrativeanswers" name="narrative5"><%=NarrativesPriorities[1]%></textarea><br><br>           
+               <textarea class="narrativeanswers" name="narrative5"><%=NarrativesPriorities[1]%></textarea><br><br>    --%>        
             </p>  
              <div class="savebuttonandtooltip">
                <input class="savebutton" type="submit" name="savedata" value="Save Changes" /><span class="tooltiptext">All changes on page will be saved.</span>
@@ -70,12 +70,12 @@
                1. Using the data from section "D1. Analytics" and your knowledge of your country's legal context, what are the main obstacles
                preventing populations of concern from being able to enjoy their rights?<br> <br> 
    
-               <textarea class="narrativeanswers" name="narrative6"><%=NarrativesObstacles[0]%></textarea>
+       <%--         <textarea class="narrativeanswers" name="narrative6"><%=NarrativesObstacles[0]%></textarea>
    
                <br> <br> 
                2. For the obstacles you identified in question 1, please describe the underlying reasons as to why these obstacles
                exist. <br><br>
-               <textarea class="narrativeanswers" name="narrative7"><%=NarrativesObstacles[1]%></textarea><br><br> 
+               <textarea class="narrativeanswers" name="narrative7"><%=NarrativesObstacles[1]%></textarea><br><br>  --%>
    
                
              </p>
@@ -87,12 +87,12 @@
              
             <p class="mediumparagraph">
             
-               1. On the basis of the information gathered in the Legal Mapping Tool, what priority areas of law and policy reform should be considered 
+            <%--    1. On the basis of the information gathered in the Legal Mapping Tool, what priority areas of law and policy reform should be considered 
                to strengthen the protection of rights of populations of concern? <br> <br> 
                <textarea class="narrativeanswers" name="narrative1"><%=allNarratives[0]%></textarea><br><br>
             
                2. What advocacy will be required to achieve the priority reforms identified above?  <br> <br> 
-               <textarea class="narrativeanswers" name="narrative2"><%=allNarratives[1]%></textarea><br><br>           
+               <textarea class="narrativeanswers" name="narrative2"><%=allNarratives[1]%></textarea><br><br>    --%>        
 
             </p>
             <div class="savebuttonandtooltip">
@@ -104,8 +104,8 @@
             <p class="mediumparagraph">
             
               1. Please identify the priority areas of intervention that you would propose for your operation in the coming 2 to 3 years? <br> <br> 
-               <textarea class="narrativeanswers" name="narrative3"><%=allNarratives[2]%></textarea><br><br>        
-
+<%--                <textarea class="narrativeanswers" name="narrative3"><%=allNarratives[2]%></textarea><br><br>        
+ --%>
              </p>            
 
              <div class="savebuttonandtooltip">

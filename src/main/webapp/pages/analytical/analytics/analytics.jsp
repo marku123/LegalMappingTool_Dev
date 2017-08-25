@@ -59,11 +59,9 @@
       </div>
 
       <div id="content-onecolumn">
-         <h2>C. IDENTIFYING PRIORITIES</h2>         
+         <h2>C. ANALYTICS</h2>         
          
-         <h3>C.1 Analytics</h3>
-
-        
+       
          <!-- Summary Findings -->
          <div id='findingstablediv'>
             <%=obstaclesFindingsTable%>
@@ -272,7 +270,7 @@ $(function () {
     //Configuration of the POC obstacles summary chart. 
     
     
-        var firstChartTitle = 'Obstacles Populations of Concern Face in Being Able to Enjoy Their Rights';
+        var firstChartTitle = 'Severity of Obstacles Populations of Concern Face in Being Able to Enjoy Their Rights';
         var firstChartSubTitle = '(1=\"No or Minor Obstacles to Enjoying Their Rights\", 3=\"Determinative Obstacles to Enjoying Their Rights\")';
        /*  var footnote = '*Rating is based on a scale from 1 to 3 where 1 indicates persons of concern face no obstacles to enjoying their '+ 
         		    'rights and 3 indicates they face significant obstacles.'; */
@@ -348,7 +346,7 @@ $(function () {
     //Configuration of the POC obstacles detail chart. 
     
     
-        var firstChartTitle = 'The Obstacles Preventing Populations of Concern From Enjoying Their Rights';
+        var firstChartTitle = 'The Type and Severity of Obstacles Preventing Populations of Concern From Enjoying Their Rights';
         var firstChartSubTitle = '(1=\"The Obstacles Do Not, or Minimally, Prevent Populations of Concern From Enjoying Their Rights\"' +
                 		    ',<br>3=\"The Obstacles Determinatively Prevent Populations of Concern From Enjoying Their Rights\")';
         /* var footnote = '*Rating is based on a scale from 1 to 3 where 1 indicates that the obstacle does not ' + 
@@ -363,6 +361,7 @@ $(function () {
             },
             title: {
                 text: firstChartTitle,
+
                 style:{fontWeight:'bold',fontSize:'17px'}
                 
             },

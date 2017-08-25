@@ -147,78 +147,82 @@ function intlInstruAddRow() {
         row = row + "<br>";
     }
 
-    // Create the empty instrument table.
-    row = row + "<table id='intltable" + arrayIndex + "' class='interinstruments'>";
-    row = row + "<thead  onclick=\"intltoggletablebody('intltable" + arrayIndex + "','intlinputtable" + arrayIndex + "')\">";
-    row = row + "<tr> ";
-    row = row + "<th class='tablehead' colspan='2'> ";
-    row = row + "<input class='inputinstrumenthead' id='intlinputtable" + arrayIndex + "' type='text' value='' onfocus='this.blur()' readonly>";
-    row = row + "<span class='tooltiptext'>Click to Expand/Collapse</span>";
-    row = row + "</th> ";
-    row = row + "</tr> ";
-    row = row + "</thead> ";
-    row = row + "<tbody class='intltablebody'>  ";
-    row = row + "<tr> ";
-    row = row + "<td class='col1' >Name of the instrument:</td> ";
-    row = row + "<td class='col2'> ";
-    row = row + "<input id='intlinputtable" + arrayIndex + "a' name='intlinstruname[" + arrayIndex + "]' type='text' value='' size='90'> ";
-    row = row + "</td> ";
-    row = row + "</tr> ";
-    row = row + "<tr>  ";
-    row = row + "<td>Type of instrument:</td>  ";
-    row = row + "<td>  ";
-    row = row + "<select name='intlinstrutype[" + arrayIndex + "]'>  ";
-    row = row + "<option value=''></option> ";
-    row = row + "<option value='international'>International </option> ";
-    row = row + "<option value='regional'>Regional </option> ";
-    row = row + "<option value='bilateral'>Bilateral</option> ";
-    row = row + "</select> ";
-    row = row + "</td> ";
-    row = row + "</tr>  ";
-    row = row + "<tr> ";
-    row = row + "<td>The instrument has been ratified:</td> ";
-    row = row + "<td> ";
-    row = row + "<select name='intlinstruratified[" + arrayIndex + "]'> ";
-    row = row + "<option value=''></option> ";
-    row = row + "<option value='ratified'>Ratified</option>  ";
-    row = row + "<option value='signed'>Signed</option> ";
-    row = row + "<option value='notaparty'>Not a Party</option> ";
-    row = row + "<option value='notgeo'>Not Geographically Applicable</option> ";
-    row = row + "</select>  ";
-    row = row + "</td> ";
-    row = row + "</tr>  ";
-    row = row + "<tr> ";
-    row = row + "<td>Articles from the instrument related to the rights:</td> ";
-    row = row + "<td> ";
-    row = row + "<textarea name='intlinstruarticles[" + arrayIndex + "]'></textarea> ";
-    row = row + "</td> ";
-    row = row + "</tr> ";
-    row = row + "<tr> ";
-    row = row + "<td>Reservations related to the right have been taken:</td>  ";
-    row = row + "<td> ";
-    row = row + "<input type='radio' name='intlinstrures[" + arrayIndex + "]' value='yes'>Yes ";
-    row = row + "<input type='radio' name='intlinstrures[" + arrayIndex + "]' value='no'>No ";
-    row = row + "</td> ";
-    row = row + "</tr> ";
-    row = row + "<tr> ";
-    row = row + "<td>Nature and scope of the reservations (if any):</td>  ";
-    row = row + "<td> ";
-    row = row + "<textarea name='intlinstruresnature[" + arrayIndex + "]'></textarea> ";
-    row = row + "</td> ";
-    row = row + "</tr> ";
-    row = row + "</tbody>  ";
-    row = row + "</table>  ";
+    // Make sure the user has the permission to add data.
+    if (($("input[type=hidden][name=authEditView]").val() === "true")) {
 
-    // If there are no instruments in the database, then add the empty
-    // instrument after the hidden rights group input element.
-    if (indexOfLastTable < 0) {
-        jQuery('#question1para').after(row);
-    } else {
-        jQuery('#' + idOfLastTable).after(row);
+        // Create the empty instrument table.
+        row = row + "<table id='intltable" + arrayIndex + "' class='interinstruments'>";
+        row = row + "<thead  onclick=\"intltoggletablebody('intltable" + arrayIndex + "','intlinputtable" + arrayIndex + "')\">";
+        row = row + "<tr> ";
+        row = row + "<th class='tablehead' colspan='2'> ";
+        row = row + "<input class='inputinstrumenthead' id='intlinputtable" + arrayIndex + "' type='text' value='' onfocus='this.blur()' readonly>";
+        row = row + "<span class='tooltiptext'>Click to Expand/Collapse</span>";
+        row = row + "</th> ";
+        row = row + "</tr> ";
+        row = row + "</thead> ";
+        row = row + "<tbody class='intltablebody'>  ";
+        row = row + "<tr> ";
+        row = row + "<td class='col1' >Name of the instrument:</td> ";
+        row = row + "<td class='col2'> ";
+        row = row + "<input id='intlinputtable" + arrayIndex + "a' name='intlinstruname[" + arrayIndex + "]' type='text' value='' size='90'> ";
+        row = row + "</td> ";
+        row = row + "</tr> ";
+        row = row + "<tr>  ";
+        row = row + "<td>Type of instrument:</td>  ";
+        row = row + "<td>  ";
+        row = row + "<select name='intlinstrutype[" + arrayIndex + "]'>  ";
+        row = row + "<option value=''></option> ";
+        row = row + "<option value='international'>International </option> ";
+        row = row + "<option value='regional'>Regional </option> ";
+        row = row + "<option value='bilateral'>Bilateral</option> ";
+        row = row + "</select> ";
+        row = row + "</td> ";
+        row = row + "</tr>  ";
+        row = row + "<tr> ";
+        row = row + "<td>The instrument has been ratified:</td> ";
+        row = row + "<td> ";
+        row = row + "<select name='intlinstruratified[" + arrayIndex + "]'> ";
+        row = row + "<option value=''></option> ";
+        row = row + "<option value='ratified'>Ratified</option>  ";
+        row = row + "<option value='signed'>Signed</option> ";
+        row = row + "<option value='notaparty'>Not a Party</option> ";
+        row = row + "<option value='notgeo'>Not Geographically Applicable</option> ";
+        row = row + "</select>  ";
+        row = row + "</td> ";
+        row = row + "</tr>  ";
+        row = row + "<tr> ";
+        row = row + "<td>Articles from the instrument related to the rights:</td> ";
+        row = row + "<td> ";
+        row = row + "<textarea name='intlinstruarticles[" + arrayIndex + "]'></textarea> ";
+        row = row + "</td> ";
+        row = row + "</tr> ";
+        row = row + "<tr> ";
+        row = row + "<td>Reservations related to the right have been taken:</td>  ";
+        row = row + "<td> ";
+        row = row + "<input type='radio' name='intlinstrures[" + arrayIndex + "]' value='yes'>Yes ";
+        row = row + "<input type='radio' name='intlinstrures[" + arrayIndex + "]' value='no'>No ";
+        row = row + "</td> ";
+        row = row + "</tr> ";
+        row = row + "<tr> ";
+        row = row + "<td>Nature and scope of the reservations (if any):</td>  ";
+        row = row + "<td> ";
+        row = row + "<textarea name='intlinstruresnature[" + arrayIndex + "]'></textarea> ";
+        row = row + "</td> ";
+        row = row + "</tr> ";
+        row = row + "</tbody>  ";
+        row = row + "</table>  ";
+
+        // If there are no instruments in the database, then add the empty
+        // instrument after the hidden rights group input element.
+        if (indexOfLastTable < 0) {
+            jQuery('#question1para').after(row);
+        } else {
+            jQuery('#' + idOfLastTable).after(row);
+        }
+
+        // Expand the table once it has been added.
+        $("#intltable" + arrayIndex + " tbody").toggle();
     }
-
-    // Expand the table once it has been added.
-    $("#intltable" + arrayIndex + " tbody").toggle();
 }
 
 /*
@@ -272,18 +276,21 @@ function natlInstruAddRow(rightsgroup) {
         row = row + "<br>";
     }
 
-    row = row + newNationalTable(arrayIndex, rightsgroup);
+    if (($("input[type=hidden][name=authEditView]").val() === "true")) {
 
-    // If there are no instruments in the database, then add the empty
-    // instrument after the hidden rights group input element.
-    if (indexOfLastTable < 0) {
-        jQuery('#question2para').after(row);
-    } else {
-        jQuery('#' + idOfLastTable).after(row);
+        row = row + newNationalTable(arrayIndex, rightsgroup);
+        // If there are no instruments in the database, then add the empty
+        // instrument after the hidden rights group input element.
+        if (indexOfLastTable < 0) {
+            jQuery('#question2para').after(row);
+        } else {
+            jQuery('#' + idOfLastTable).after(row);
+        }
+
+        // Expand the table once it has been added.
+        $("#natltable" + arrayIndex + " tbody").toggle();
     }
 
-    // Expand the table once it has been added.
-    $("#natltable" + arrayIndex + " tbody").toggle();
 }
 
 /*

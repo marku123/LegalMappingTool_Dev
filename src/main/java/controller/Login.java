@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dbhelper.authentication.QueryAuthentication;
+
 /**
  * Servlet implementation class Login
  */
@@ -39,6 +41,7 @@ public class Login extends HttpServlet {
 		String user = "";
 		String pass = "";
 		String loginbutton = "";
+		String[] authenticationData = new String[3];
 		Boolean loginattempted;
 		Boolean authenticated;
 		String page = null;
@@ -62,21 +65,22 @@ public class Login extends HttpServlet {
 			} else if (user.isEmpty() || pass.isEmpty()) {
 				session.invalidate();
 				page = "/login.jsp";
-			} else if (user.equals("costa_rica") && pass.equals("CRLEg@17%%Ed")) {
-				session.setAttribute("authenticateduser", true);
-				session.setAttribute("editor", true);
-				session.setAttribute("country", "Costa Rica");
-				page = "/index.jsp";
-			} else if (user.equals("gen_user_noed") && pass.equals("LEg@17%%N0Ed")) {
-				session.setAttribute("authenticateduser", true);
-				session.setAttribute("editor", false);
-				session.setAttribute("country", "None");
-				page = "/index.jsp";
-			} else if (user.equals("gen_user_ed") && pass.equals("LEg@17%%Ed")) {
-				session.setAttribute("authenticateduser", true);
-				session.setAttribute("editor", true);
-				session.setAttribute("country", "All");
-				page = "/index.jsp";
+			} else if (!user.isEmpty() && !pass.isEmpty()) {
+				
+				authenticationData = QueryAuthentication.authenticateLogin(user, pass);
+				Boolean authenticatedFromDB = Boolean.valueOf(authenticationData[0]);
+				Boolean editorFromDB = Boolean.valueOf(authenticationData[1]);
+				String countryFromDB = authenticationData[2];
+				
+				if(authenticatedFromDB){
+					session.setAttribute("authenticateduser", authenticatedFromDB);
+					session.setAttribute("editor", editorFromDB);
+					session.setAttribute("country", countryFromDB);
+					page = "/index.jsp";
+				} else {
+					page = "/login.jsp";
+				}
+				
 			} else {
 				session.invalidate();
 				page = "/login.jsp";

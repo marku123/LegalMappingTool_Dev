@@ -150,39 +150,7 @@ public class UpdateCDB {
 		}
 	}
 	
-	static public void updateObstaclesNarrative(HttpServletRequest request) {
-		Connection c = MySql.connect();
-		String country = request.getParameter("country");	
 
-		String sql;
-		PreparedStatement pst;
-		String narrative1 = StringUtils.defaultString(request.getParameter("narrative6").replace("'", "\\'"),"");
-		String narrative2 = StringUtils.defaultString(request.getParameter("narrative7").replace("'", "\\'"),"");
-				
-		try {
-		
-			sql = "INSERT INTO obstacles_c1_narrative "
-						+ "(CountryName,Narrative1,Narrative2) VALUES "
-							+ "('"+country+"','"+ narrative1 +"','"+narrative2+"')"
-							+ "ON DUPLICATE KEY "
-							+ "UPDATE "
-								+ "Narrative1 = '"+narrative1+"', "
-								+ "Narrative2 = '"+narrative2+"' "
-								+ "";				
-		
-			pst = c.prepareStatement(sql);
-			pst.executeUpdate();
-			pst.close();
-
-
-			MySql.close(c);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	
-	}
-	
 	static public void updateCObstacleDocumentation(HttpServletRequest request) {
 		Connection c = MySql.connect();
 		String country = request.getParameter("country");	

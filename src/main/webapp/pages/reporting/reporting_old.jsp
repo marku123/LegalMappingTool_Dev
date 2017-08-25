@@ -89,11 +89,7 @@
 
           String obstaclesMissingData = FormatAnalytics.formatObstaclesMissingData(countryObj);
           
-          //Narrative Analysis
-          
-          String allNarratives[] = countryObj.getNarrative();
-          String NarrativesPriorities[] = countryObj.getNarrativePriorities();
-          String NarrativesObstacles[] = countryObj.getNarrativeObstacles();
+
           
           
       
@@ -403,7 +399,6 @@
                operational context? If so, why? 
          </p> <br> 
          <p class="narrativeanswer">      
-                <%=NarrativesPriorities[0]%>
          </p>   <br>
          <p>
               2. In the opinion  of populations of concern, are any rights of particular importance 
@@ -412,7 +407,6 @@
               <br> 
          <p class="narrativeanswer">      
 
-              <%=NarrativesPriorities[1]%>       
          </p>                                  
          <br> 
          <h4>Obstacle Analysis</h4>
@@ -424,7 +418,6 @@
          </p><br> 
                
          <p class="narrativeanswer">      
-               <%=NarrativesObstacles[0]%>
          </p>
          <br> 
          <p>
@@ -432,7 +425,6 @@
                exist. 
          </p> <br> 
          <p class="narrativeanswer">      
-               <%=NarrativesObstacles[1]%>
          </p>
          <br> 
          <h4>Areas for Law and Policy Reform</h4>
@@ -445,7 +437,6 @@
          </p>
          <br> 
          <p class="narrativeanswer">      
-               <%=allNarratives[0]%>
          </p> 
          <br>
          <p>
@@ -453,7 +444,6 @@
          </p>
          <br>   
          <p class="narrativeanswer">      
-              <%=allNarratives[1]%>           
          </p>
          <br>           
          <h4>Priority Areas for Complementary Programming</h4>
@@ -463,7 +453,6 @@
          </p>
          <br> 
          <p class="narrativeanswer">      
-            <%=allNarratives[2]%>
          </p>            
          <br>        
          

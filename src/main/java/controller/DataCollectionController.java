@@ -6,7 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -46,13 +45,10 @@ public class DataCollectionController extends HttpServlet {
 		String action = request.getParameter("action");
 		String country = request.getParameter("country");
 		String savedata = request.getParameter("savedata");
-
 		String page = null;
 		Country countryObj = new Country();
 		
 		countryObj.setCountryName(country);
-
-
 		
 		if (action.equals("datacollection")) {
 	
