@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import dbhelper.dbutilities.CountRows;
 import dbhelper.dbutilities.MySql;
+import dbhelper.dbutilities.RightsCategoriesManagement;
 
 public class QueryCDB {
 
@@ -17,9 +18,12 @@ public class QueryCDB {
 		Connection c = MySql.connect();
 		String countryName = countryObj.getCountryName();
 		String personsofconcern = countryObj.getPOC();
-		String AllRightsGrpObs[][] = new String[12][26]; 
+		int numOfRightsCategories = CountRows.countRows("rightscategory");
+		String AllRightsGrpObs[][] = new String[numOfRightsCategories][26]; 
 		int i = 0;
 	
+		String[] RightsGroupsNames = new String[numOfRightsCategories];
+		RightsGroupsNames = RightsCategoriesManagement.getRightsCategories();
 		
 		try {
 		
@@ -78,20 +82,8 @@ public class QueryCDB {
 			} else {
 				
 				//If there is no information in the database for the country, set everything to an empty string.
-				AllRightsGrpObs[0][0] = "Documentation";
-				AllRightsGrpObs[1][0] = "Education";
-				AllRightsGrpObs[2][0] = "Fair Trial and Right to Redress";
-				AllRightsGrpObs[3][0] = "Family Unity";
-				AllRightsGrpObs[4][0] = "Freedom of Movement";
-				AllRightsGrpObs[5][0] = "Health";
-				AllRightsGrpObs[6][0] = "Housing, Land and Property";
-				AllRightsGrpObs[7][0] = "Liberty and Security of Person";
-				AllRightsGrpObs[8][0] = "Non-Discrimination";
-				AllRightsGrpObs[9][0] = "Political Participation";
-				AllRightsGrpObs[10][0] = "Right to Work and Rights at Work";
-				AllRightsGrpObs[11][0] = "Social Security";
-				
-	            for (int j = 0; j < 12 ; j++) {
+	            for (int j = 0; j < numOfRightsCategories; j++) {
+					AllRightsGrpObs[j][0] = RightsGroupsNames[j];
 	            	for (int x = 1; x <26; x++) {
 	            		AllRightsGrpObs[j][x] = "";
 	            	}

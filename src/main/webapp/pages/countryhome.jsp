@@ -2,7 +2,7 @@
 <%@page import="uploader.*"%>
 <%@page import="access.*"%>
 <%@include file="/header.jsp"%>
-<script src="./js/pages/countryhome/countryhome.js"></script>
+<script type="text/javascript"  src="./js/pages/countryhome/countryhome.js"></script>
 
 <div id="content-menu-container">
 
@@ -13,7 +13,7 @@
    Boolean authenticatedToEd = Authentication.AuthenticateUser(request,response);
    
    //Initialize files uploaded to the Legal Mapping Tool server.
-   UploadUtilities.initializeFiles();
+   UploadUtilities.initializeFiles(countryName);
 
    String nameOfCurrentFile = this.getClass().getSimpleName();
 

@@ -21,7 +21,7 @@ public class UpdateCDB {
         String personofconcern = request.getParameter("personofconcern");
 		
 		//Determine how many rows there are in the table we are submitting to the database.
-		int numberOfRightsGroups = 12;
+		int numberOfRightsGroups = CountRows.countRows("rightscategory");
 		//Initialize the variables.
 		String sql[] = new String[numberOfRightsGroups];
 		PreparedStatement[] pst = new PreparedStatement[numberOfRightsGroups];
@@ -61,6 +61,7 @@ public class UpdateCDB {
 		String otherobscomments[] = new String[numberOfRightsGroups];
 		String otherobsgrps[] = new String[numberOfRightsGroups];
 	
+		
 		//Get all of the data from the request.
 		for (int i=0;i< numberOfRightsGroups;i++){
 			rightsgroup[i] = StringUtils.defaultString(request.getParameter("rightsgroup["+i+"]"),"");
@@ -98,14 +99,12 @@ public class UpdateCDB {
 			otherobsdrop[i] = StringUtils.defaultString(request.getParameter("otherobsdrop["+i+"]"),"");
 			otherobscomments[i] = StringUtils.defaultString(request.getParameter("otherobscomments["+i+"]").replace("'", "\\'"),"");
 			otherobsgrps[i] = Arrays.toString(ArrayUtils.nullToEmpty(request.getParameterValues("otherobsgrps["+i+"]"))).replaceAll("(^\\[|\\]$)", "").replaceAll(",\\s",",");
-			System.out.println(otherobsgrps[i] );
 
 		}
-			
+
 		try {
 
 			DeleteCountry.deleteCountryPOCFromTable(country, personofconcern, "obstacles_c1");
-			
 			
 			for(int i = 0; i<numberOfRightsGroups; i++) { 
 				sql[i] = "INSERT INTO obstacles_c1 "
@@ -127,7 +126,6 @@ public class UpdateCDB {
 									+ "'"+otherobsname[i]+"','"+otherobsdrop[i]+"','"+otherobscomments[i]+"',?"
 								+ ")";	
 						
-					
 				pst[i] = c.prepareStatement(sql[i]);
 				pst[i].setString(1, country);
 				pst[i].setString(2, legalobsgrps[i]);
@@ -169,8 +167,6 @@ public class UpdateCDB {
 			docURL[i] = StringUtils.defaultString(request.getParameter("docURL["+i+"]").replace("\\", "\\\\"),"");
 			
 		}
-		
-
 				
 		try {
 		

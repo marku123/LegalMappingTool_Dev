@@ -5,7 +5,7 @@
 <%@page import="access.*"%>
 <%@include file="/header.jsp"%>
 <link href="./css/pages/datacollection/datacollection3.css" rel="stylesheet" type="text/css">
-<script src="./js/pages/datacollection/datacollection3.js"></script>
+<script type="text/javascript"  src="./js/pages/datacollection/datacollection3.js"></script>
 
 <div id="content-menu-container">
 
@@ -16,7 +16,7 @@
    Boolean authenticatedToEd = Authentication.AuthenticateUser(request,response);
    
    //Initialize files uploaded to the Legal Mapping Tool server.
-   UploadUtilities.initializeFiles();
+   UploadUtilities.initializeFiles(countryName);
    
    String nameOfCurrentFile = this.getClass().getSimpleName();
 
@@ -87,6 +87,7 @@
                   <p class='uploadfilesuccess' id='uploadsuccess' ></p>
 
                </div><br><br>
+          <input name="countryNameForFileUpload" type="hidden" value="<%=countryName%>">
          
          <div class="savebuttonandtooltip">
                <input class="savebutton" type="submit" name="savedata" value="Save Changes" onclick='test()'/><span class="tooltiptext">All changes on page will be saved.</span>

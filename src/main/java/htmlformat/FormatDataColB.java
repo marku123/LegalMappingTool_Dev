@@ -1,72 +1,55 @@
 package htmlformat;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import java.util.List;
 
+import dbhelper.dbutilities.RightsCategoriesManagement;
 import model.Country;
 
 public class FormatDataColB {
 
 	public static String formatRightsGroupsDropDown(Country countryObj) {
-		 
-		String htmlDropDown = new String(""); 
-		String rightsGroup = countryObj.getRightsGroup();
+
+		String htmlDropDown2 = new String("");
+		String selectedRightsGroup = countryObj.getRightsGroup();
+		List<String> rightsCategoryGroupName;
+		List<String> rightsCategoriesPerGroupName;
+		String selectedOption = "";
 		String selectedOptionsDefault;
-		String selectedOptions[];
-		String dropDownOptions = ""
-				+ "Documentation,"
-				+ "Education,"
-				+ "Fair Trial and Right to Redress,"
-				+ "Family Unity,"
-				+ "Freedom of Movement,"
-				+ "Health,"
-				+ StringEscapeUtils.escapeCsv("Housing, Land and Property") + ","
-				+ "Liberty and Security of Person,"
-				+ "Non-Discrimination,"
-				+ "Political Participation,"			
-				+ "Right to Work and Rights at Work,"
-				+ "Social Security";
-		
-		//Format the options, ensure that the one that is selected is set to "selected". 
-		selectedOptions = FormatingUtilities.setSelectedDropDownOptions(rightsGroup, dropDownOptions);
+		int i = 0;
 
-
-		//If none of the options have been select ensure a default one has been set. 
-		if (rightsGroup == "") {
+		// If none of the options have been select ensure a default one has been set.
+		if (selectedRightsGroup == "") {
 			selectedOptionsDefault = "selected";
 		} else {
 			selectedOptionsDefault = "";
 		}
-		
-        //Create the HTML table.
-        htmlDropDown = htmlDropDown + ""
-				+ "<option "+selectedOptionsDefault +" disabled>Select a Rights Category</option> \n"
-				+ "<optgroup label='Civil/Political'> \n"
-					+ "<option " +selectedOptions[2]+ ">Fair Trial and Right to Redress</option> \n"
-					+ "<option " +selectedOptions[4]+ ">Freedom of Movement</option> \n"
-					+ "<option " +selectedOptions[7]+ ">Liberty and Security of Person</option> \n"
-					+ "<option " +selectedOptions[8]+ ">Non-Discrimination</option> \n"
-					+ "<option " +selectedOptions[9]+ ">Political Participation</option> \n"
-				+ "</optgroup> \n"
-				+ "<optgroup label='Economic'> \n"
-					+ "<option " +selectedOptions[6]+ ">Housing, Land and Property</option> \n"
-					+ "<option " +selectedOptions[10]+ ">Right to Work and Rights at Work</option> \n"			
-					+ "<option " +selectedOptions[11]+ ">Social Security</option> \n"	
-				+ "</optgroup> \n"
-				+ "<optgroup label='Legal'> \n"
-					+ "<option " +selectedOptions[0]+ ">Documentation</option> \n"
-				+ "</optgroup> \n"
-				+ "<optgroup label='Socio-cultural'> \n"
-					+ "<option " +selectedOptions[1]+ ">Education</option> \n"
-					+ "<option " +selectedOptions[3]+ ">Family Unity</option> \n"
-					+ "<option " +selectedOptions[5]+ ">Health</option> \n"
-				+ "</optgroup> \n";
 
-		return htmlDropDown; 
+		//Get all of the rights category group names.
+		rightsCategoryGroupName = RightsCategoriesManagement.getRightsCategoryGroupName();
+		htmlDropDown2 = "<option " + selectedOptionsDefault + " disabled>Select a Rights Category</option> \n";
+
+		while (i < rightsCategoryGroupName.size()) {
+
+			rightsCategoriesPerGroupName = RightsCategoriesManagement.getRightsCategoriesPerGroupName(rightsCategoryGroupName.get(i));
+			htmlDropDown2 = htmlDropDown2 + "<optgroup label='" + rightsCategoryGroupName.get(i) + "'> \n";
+
+			int j = 0;
+			while (j < rightsCategoriesPerGroupName.size()) {
+
+				if (selectedRightsGroup.equals(rightsCategoriesPerGroupName.get(j))) {
+					selectedOption = "selected"; 
+				} else {
+					selectedOption = ""; 
+				}
+				htmlDropDown2 = htmlDropDown2 + "<option " + selectedOption + ">" + rightsCategoriesPerGroupName.get(j) + "</option> \n";
+				j++;
+			}
+			i++;
+		}
+
+		return htmlDropDown2;
 	}
 
-	
-	
-	
 	
 	
 	public static String formatIntlInstrumentTables(Country countryObj) {
@@ -164,9 +147,6 @@ public class FormatDataColB {
         }
 		return htmlTable; 
 	}
-	
-	
-	
 	
 	
 	public static String formatNationalInstrumentTables(Country countryObj) {
@@ -573,7 +553,8 @@ public class FormatDataColB {
 								+ "<td> \n "
 									+ "<div class='otherlegischeckboxes1'> \n"
 										+ "<p class='otherlegisheadertop'>Civil/Political Rights Categories</p>"
-											+ "<input type='checkbox' name='natinstruotherlegischecked["+ i +"]' value='fair' "+ otherlegischecked[2] +">Fair Trial and Right to Redress <br>\n"
+											+ "<input type='checkbox' name='natinstruotherlegischecked["+ i +"]' value='fair' "+ otherlegischecked[2] +">Access to Justice <br>\n"
+											+ "<input type='checkbox' name='natinstruotherlegischecked["+ i +"]' value='docu'  "+ otherlegischecked[0] +">Documentation<br>  \n"
 											+ "<input type='checkbox' name='natinstruotherlegischecked["+ i +"]' value='free' "+ otherlegischecked[4] +">Freedom of Movement <br>\n"
 											+ "<input type='checkbox' name='natinstruotherlegischecked["+ i +"]' value='lib'  "+ otherlegischecked[7] +">Liberty and Security of Person<br> \n"
 											+ "<input type='checkbox' name='natinstruotherlegischecked["+ i +"]' value='nondis'  "+ otherlegischecked[8] +">Non-Discrimination<br> \n"
@@ -584,8 +565,6 @@ public class FormatDataColB {
 									+ "<div class='otherlegischeckboxes2'> \n"
 											+ "<input type='checkbox' name='natinstruotherlegischecked["+ i +"]' value='work'  "+ otherlegischecked[10] +">Right to Work and Rights at Work<br> \n "
 											+ "<input type='checkbox' name='natinstruotherlegischecked["+ i +"]' value='soc'  "+ otherlegischecked[11] +">Social Security<br>\n "
-										+ "<p class='otherlegisheaders'>Legal Rights Categories</p>"
-											+ "<input type='checkbox' name='natinstruotherlegischecked["+ i +"]' value='docu'  "+ otherlegischecked[0] +">Documentation<br>  \n"
 										+ "<p class='otherlegisheaders'>Socio-cultural Rights Categories</p>"
 											+ "<input type='checkbox' name='natinstruotherlegischecked["+ i +"]' value='edu'  "+ otherlegischecked[1] +">Education<br>  \n"
 											+ "<input type='checkbox' name='natinstruotherlegischecked["+ i +"]' value='fam' "+ otherlegischecked[3] +">Family Unity <br>\n"

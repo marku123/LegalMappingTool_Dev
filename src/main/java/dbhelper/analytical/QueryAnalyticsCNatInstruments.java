@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 
 import org.apache.commons.lang3.StringUtils;
 
+import dbhelper.dbutilities.CountRows;
 import dbhelper.dbutilities.MySql;
+import dbhelper.dbutilities.RightsCategoriesManagement;
 import model.Country;
 
 public class QueryAnalyticsCNatInstruments {
@@ -30,10 +32,13 @@ public class QueryAnalyticsCNatInstruments {
 	public static Country getNatInstruPOCDetailData(Country countryObj) {
 		Connection c = MySql.connect();
 		String countryName = countryObj.getCountryName();
-		String POCNatInstru[][] = new String[13][6]; 
+		int numOfRightsCategories = CountRows.countRows("rightscategory");
+		String POCNatInstru[][] = new String[numOfRightsCategories + 1][6]; 
 		String[] NamesOfPOC = new String[6];
-		String[] RightsGroupsNames = new String[13];
-
+		String[] RightsGroupsNames = new String[numOfRightsCategories + 1];
+		RightsGroupsNames = RightsCategoriesManagement.getRightsCategories();
+		
+		
 		int i = 0;
 		
 		NamesOfPOC[0] = "Asylum Seekers";
@@ -42,19 +47,6 @@ public class QueryAnalyticsCNatInstruments {
 		NamesOfPOC[3] = "Refugees";
 		NamesOfPOC[4] = "Returnees";
 		NamesOfPOC[5] = "Stateless Persons";
-		
-		RightsGroupsNames[0] = "Documentation";
-		RightsGroupsNames[1] = "Education";
-		RightsGroupsNames[2] = "Fair Trial and Right to Redress";
-		RightsGroupsNames[3] = "Family Unity";
-		RightsGroupsNames[4] = "Freedom of Movement";
-		RightsGroupsNames[5] = "Health";
-		RightsGroupsNames[6] = "Housing, Land and Property";
-		RightsGroupsNames[7] = "Liberty and Security of Person";
-		RightsGroupsNames[8] = "Non-Discrimination";
-		RightsGroupsNames[9] = "Political Participation";
-		RightsGroupsNames[10] = "Right to Work and Rights at Work";
-		RightsGroupsNames[11] = "Social Security";
 		
 		try {
 		
@@ -82,7 +74,7 @@ public class QueryAnalyticsCNatInstruments {
 			
 			
 			//Initialize the output array. 
-            for (int j = 0; j < 13 ; j++) {
+            for (int j = 0; j < numOfRightsCategories+1 ; j++) {
             	for (int x = 0; x <6; x++) {
             		POCNatInstru[j][x] = "-";
             	}

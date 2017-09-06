@@ -1,5 +1,8 @@
 package htmlformat;
 
+
+import java.util.List;
+import dbhelper.dbutilities.RightsCategoriesManagement;
 import model.Country;
 
 public class FormatDataColC {
@@ -45,32 +48,12 @@ public class FormatDataColC {
 		String htmlTable = new String(""); 
 		String AllRightsGrpObs[][] = countryObj.getObstacles();
 		String personsofconcern = countryObj.getPOC();
-		String [] RightsCategorySubGroups = new String[4];
-		String [] RightsGroupsNames = new String[12];
-		
-		RightsGroupsNames[0] = "Documentation";
-		RightsGroupsNames[1] = "Education";
-		RightsGroupsNames[2] = "Fair Trial and Right to Redress";
-		RightsGroupsNames[3] = "Family Unity";
-		RightsGroupsNames[4] = "Freedom of Movement";
-		RightsGroupsNames[5] = "Health";
-		RightsGroupsNames[6] = "Housing, Land and Property";
-		RightsGroupsNames[7] = "Liberty and Security of Person";
-		RightsGroupsNames[8] = "Non-Discrimination";
-		RightsGroupsNames[9] = "Political Participation";
-		RightsGroupsNames[10] = "Right to Work and Rights at Work";
-		RightsGroupsNames[11] = "Social Security";
-		
-		RightsCategorySubGroups[0] = "<p class='obstaclesub'>Civil/Political Rights</p>";
-		RightsCategorySubGroups[1] = "<p class='obstaclesub'>Economic Rights</p>";
-		RightsCategorySubGroups[2] = "<p class='obstaclesub'>Legal Rights</p>";
-		RightsCategorySubGroups[3] = "<p class='obstaclesub'>Socio-cultural Rights</p>";
+		String[][] htmlWithGroupNames = new String[AllRightsGrpObs.length][2];
+		List<String> RightsGroupNames = RightsCategoriesManagement.getRightsCategoryGroupName();
+    	String finalHTMLTable = "";
 
-        int i = 0;
-    	
+		int i = 0;
     	while(i<AllRightsGrpObs.length) {
-   		 
-    		
     		//Format the drop down boxes.
     		String[] legaloldnewgroups = FormatingUtilities.getNewOldGroups(AllRightsGrpObs[i][3]);
     		String[] legalobsselected = FormatingUtilities.setSelectedDropDownOptions(AllRightsGrpObs[i][1], "significant,moderate,none,unknown");
@@ -111,6 +94,8 @@ public class FormatDataColC {
     		String[] otherobsselected = FormatingUtilities.setSelectedDropDownOptions(AllRightsGrpObs[i][23], "significant,moderate,none,unknown");
     		String[] otherobsgrpselected = FormatingUtilities.setCheckedBoxes(otheroldgroups[0], "men,boys,oldermen,malesdisabilities,lgbtipersons,women,girls,olderwomen,femalesdisabilities");
 			String otherobsgrpsother = FormatingUtilities.formatObstacleGroups(i,otheroldgroups[1],"other","men,boys,oldermen,malesdisabilities,lgbtipersons,women,girls,olderwomen,femalesdisabilities");
+
+			String rightsCategoryGroupName = RightsCategoriesManagement.getRightGroupName(AllRightsGrpObs[i][0]);
 
 			//Create the HTML table.
 			htmlTable = ""
@@ -437,22 +422,28 @@ public class FormatDataColC {
 				+ "</table> \n "
 				+ "</div> \n";
 			
-			//Group the Rights Groups into sub categories. 
-			if(AllRightsGrpObs[i][0].matches(RightsGroupsNames[2]+".*") || AllRightsGrpObs[i][0].matches(RightsGroupsNames[4]+".*") || AllRightsGrpObs[i][0].matches(RightsGroupsNames[7]+".*") || AllRightsGrpObs[i][0].matches(RightsGroupsNames[8]+".*") || AllRightsGrpObs[i][0].matches(RightsGroupsNames[9]+".*")){
-				RightsCategorySubGroups[0] = RightsCategorySubGroups[0] + htmlTable;	
-			} else if (AllRightsGrpObs[i][0].matches(RightsGroupsNames[6]+".*") || AllRightsGrpObs[i][0].matches(RightsGroupsNames[10]+".*") || AllRightsGrpObs[i][0].matches(RightsGroupsNames[11]+".*")) {
-				RightsCategorySubGroups[1] = RightsCategorySubGroups[1] + htmlTable;	
-			} else if (AllRightsGrpObs[i][0].matches(RightsGroupsNames[0]+".*")){
-				RightsCategorySubGroups[2] = RightsCategorySubGroups[2] + htmlTable;											
-			} else if (AllRightsGrpObs[i][0].matches(RightsGroupsNames[1]+".*") || AllRightsGrpObs[i][0].matches(RightsGroupsNames[3]+".*") || AllRightsGrpObs[i][0].matches(RightsGroupsNames[5]+".*")){
-				RightsCategorySubGroups[3] = RightsCategorySubGroups[3] + htmlTable;											
-			}
+			htmlWithGroupNames[i][0] = rightsCategoryGroupName;
+			htmlWithGroupNames[i][1] = htmlTable;
+
 			
 			i++;
 		}
 
-    	htmlTable = RightsCategorySubGroups[0] + RightsCategorySubGroups[1] + RightsCategorySubGroups[2] + RightsCategorySubGroups[3];
-		return htmlTable ;  
+    	//Group the rights categories by rights groups. 
+    	for(int z = 0; z < RightsGroupNames.size();z++) {
+    		
+    		RightsGroupNames.get(z);
+    		finalHTMLTable = finalHTMLTable + "<p class='obstaclesub'>"+RightsGroupNames.get(z) +"</p>";
+
+        	for(int x = 0; x < AllRightsGrpObs.length;x++){
+        		if(RightsGroupNames.get(z).equals(htmlWithGroupNames[x][0])){
+        			finalHTMLTable = finalHTMLTable + htmlWithGroupNames[x][1]; 
+        		} 
+        	}
+    	}
+    	
+
+		return finalHTMLTable ;  
 	}
 	
 	public static String formatObstacleDocumentation(Country countryObj) {

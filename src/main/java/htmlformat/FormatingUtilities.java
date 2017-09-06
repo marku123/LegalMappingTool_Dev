@@ -330,7 +330,7 @@ public class FormatingUtilities {
 			} else if(linksOtherRightsCatsSplit[ii].equals("edu")) {
 				linksOtherRightsCatsFinal = linksOtherRightsCatsFinal + "Education<br>";
 			} else if(linksOtherRightsCatsSplit[ii].equals("fair")) {
-				linksOtherRightsCatsFinal = linksOtherRightsCatsFinal + "Fair Trial and Right to Redress<br>";
+				linksOtherRightsCatsFinal = linksOtherRightsCatsFinal + "Access to Justics<br>";
 			} else if(linksOtherRightsCatsSplit[ii].equals("fam")) {
 				linksOtherRightsCatsFinal = linksOtherRightsCatsFinal + "Family Unity<br>";
 			} else if(linksOtherRightsCatsSplit[ii].equals("free")) {

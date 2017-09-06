@@ -8,6 +8,7 @@ import model.Country;
 
 import org.apache.commons.lang3.StringUtils;
 
+import dbhelper.dbutilities.CountRows;
 import dbhelper.dbutilities.MySql;
 
 public class QueryAnalyticsCObstacles {
@@ -276,7 +277,7 @@ public class QueryAnalyticsCObstacles {
 	//This method selects the obstacles data for each rights group and each POC. It does not include ALL POCs nor data for ALL rights groups.
 	public static Country getPOCObstaclesRightsGroupsData(Country countryObj) {
 		Connection c = MySql.connect();
-		int numberOfRightsGroups = 12;
+		int numberOfRightsGroups = CountRows.countRows("rightscategory");
 		String countryName = countryObj.getCountryName();
 		String POCRightsGroupsObtacles[][] = new String[5][numberOfRightsGroups]; 
 		int y = 0;
@@ -373,7 +374,7 @@ public class QueryAnalyticsCObstacles {
 	//This method selects the obstacles data for each rights group and ALL POCs. It does not include individual POCs nor data for ALL rights groups.
 	public static Country getAllPOCObstaclesRightsGroupsData(Country countryObj) {
 		Connection c = MySql.connect();
-		int numOfRightsGroups = 12;
+		int numOfRightsGroups = CountRows.countRows("rightscategory");
 		String countryName = countryObj.getCountryName();
 		String AllPOCRightsGroupsObtacles[] = new String[numOfRightsGroups]; 
 		int i = 0;

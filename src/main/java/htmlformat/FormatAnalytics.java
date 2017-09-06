@@ -2,6 +2,8 @@ package htmlformat;
 
 import java.util.Arrays;
 
+import dbhelper.dbutilities.CountRows;
+import dbhelper.dbutilities.RightsCategoriesManagement;
 import model.Country;
 
 public class FormatAnalytics {
@@ -18,6 +20,7 @@ public class FormatAnalytics {
 		Boolean missingDataConsistencyWithInternational = countryObj.getConsistencyWithInternationalDataMissing();
 		Boolean NatInstruPOCDataMissing = countryObj.getNatInstruPOCDataMissing();
 		Boolean ObstaclesMissingData = countryObj.getObstaclesMissingData();
+		int numOfRightsCategories = CountRows.countRows("rightscategory");
 
 		String leastConsistentRightsGroups;
 		String natInstrumentsSupportRightsGroups;
@@ -25,7 +28,7 @@ public class FormatAnalytics {
 		String greatestObstaclePOC;
 		String greatestObstacles;
 
-		String[] RightsGroupsNames = new String[12];
+		String[] RightsGroupsNames = new String[numOfRightsCategories];
 		String[] POCNames = new String[5];
 		String[] POCNamesNationals = new String[6];
 
@@ -44,19 +47,8 @@ public class FormatAnalytics {
 		POCNamesNationals[4] = "Returnees";
 		POCNamesNationals[5] = "Stateless Persons";
 
-		RightsGroupsNames[0] = "Documentation";
-		RightsGroupsNames[1] = "Education";
-		RightsGroupsNames[2] = "Fair Trial and Right to Redress";
-		RightsGroupsNames[3] = "Family Unity";
-		RightsGroupsNames[4] = "Freedom of Movement";
-		RightsGroupsNames[5] = "Health";
-		RightsGroupsNames[6] = "Housing, Land and Property";
-		RightsGroupsNames[7] = "Liberty and Security of Person";
-		RightsGroupsNames[8] = "Non-Discrimination";
-		RightsGroupsNames[9] = "Political Participation";
-		RightsGroupsNames[10] = "Right to Work and Rights at Work";
-		RightsGroupsNames[11] = "Social Security";
-
+		RightsGroupsNames = RightsCategoriesManagement.getRightsCategories();
+		
 		ObstacleNames[0] = "Legal Status and Documentation";
 		ObstacleNames[1] = "Financial";
 		ObstacleNames[2] = "Geographic";
@@ -170,20 +162,10 @@ public class FormatAnalytics {
 
 		String chartData = "";
 		String ConsistencyWithInternational[][] = countryObj.getConsistencyWithInternational();
+		int numOfRightsCategories = CountRows.countRows("rightscategory");
+		String[] RightsGroupsNames = new String[numOfRightsCategories];
 
-		String[] RightsGroupsNames = new String[12];
-		RightsGroupsNames[0] = "Documentation";
-		RightsGroupsNames[1] = "Education";
-		RightsGroupsNames[2] = "Fair Trial and Right to Redress";
-		RightsGroupsNames[3] = "Family Unity";
-		RightsGroupsNames[4] = "Freedom of Movement";
-		RightsGroupsNames[5] = "Health";
-		RightsGroupsNames[6] = "Housing, Land and Property";
-		RightsGroupsNames[7] = "Liberty and Security of Person";
-		RightsGroupsNames[8] = "Non-Discrimination";
-		RightsGroupsNames[9] = "Political Participation";
-		RightsGroupsNames[10] = "Right to Work and Rights at Work";
-		RightsGroupsNames[11] = "Social Security";
+		RightsGroupsNames = RightsCategoriesManagement.getRightsCategories();
 
 		// Formatting for the parent chart.
 
@@ -213,21 +195,10 @@ public class FormatAnalytics {
 
 		String htmlTable = new String();
 		String ConsistencyWithInternational[][] = countryObj.getConsistencyWithInternational();
+		int numOfRightsCategories = CountRows.countRows("rightscategory");
+		String[] RightsGroupsNames = new String[numOfRightsCategories];
 
-		String[] RightsGroupsNames = new String[12];
-
-		RightsGroupsNames[0] = "Documentation";
-		RightsGroupsNames[1] = "Education";
-		RightsGroupsNames[2] = "Fair Trial and Right to Redress";
-		RightsGroupsNames[3] = "Family Unity";
-		RightsGroupsNames[4] = "Freedom of Movement";
-		RightsGroupsNames[5] = "Health";
-		RightsGroupsNames[6] = "Housing, Land and Property";
-		RightsGroupsNames[7] = "Liberty and Security of Person";
-		RightsGroupsNames[8] = "Non-Discrimination";
-		RightsGroupsNames[9] = "Political Participation";
-		RightsGroupsNames[10] = "Right to Work and Rights at Work";
-		RightsGroupsNames[11] = "Social Security";
+		RightsGroupsNames = RightsCategoriesManagement.getRightsCategories();
 
 		htmlTable = "" + "<table id='consistencyinternationaltabletitle' >" + "<thead> \n" + "<tr > \n" + "<th colspan='5'>"
 				+ "The Consistency of National Legislations/Regulations with International Standards \n" + "</th>" + "</tr> \n" + "</thead> \n" + "</table>"
@@ -288,21 +259,10 @@ public class FormatAnalytics {
 		String htmlTable = new String();
 		String NatInstruPOCDetail[][] = countryObj.getNatInstruPOCDetail();
 		String NatInstruPOCSummary[] = countryObj.getNatInstruPOCSummary();
-		int numOfRightsGroups = 12;
+		int numOfRightsCategories = CountRows.countRows("rightscategory");
+		String[] RightsGroupsNames = new String[numOfRightsCategories];
 
-		String[] RightsGroupsNames = new String[12];
-		RightsGroupsNames[0] = "Documentation";
-		RightsGroupsNames[1] = "Education";
-		RightsGroupsNames[2] = "Fair Trial and Right to Redress";
-		RightsGroupsNames[3] = "Family Unity";
-		RightsGroupsNames[4] = "Freedom of Movement";
-		RightsGroupsNames[5] = "Health";
-		RightsGroupsNames[6] = "Housing, Land and Property";
-		RightsGroupsNames[7] = "Liberty and Security of Person";
-		RightsGroupsNames[8] = "Non-Discrimination";
-		RightsGroupsNames[9] = "Political Participation";
-		RightsGroupsNames[10] = "Right to Work and Rights at Work";
-		RightsGroupsNames[11] = "Social Security";
+		RightsGroupsNames = RightsCategoriesManagement.getRightsCategories();
 
 		htmlTable = "" + "<table id='tabletitle' >" + "<thead> \n" + "<tr > \n" + "<th colspan='5'>"
 				+ "Rating National Legal Instrument Support for the Rights of Nationals and Populations of Concern\n" + "<br>(1=\"National Instruments Do Not Support the Rights Category\", "
@@ -311,7 +271,7 @@ public class FormatAnalytics {
 				+ "<tr> \n" + "<th> Rights Category </th> \n" + "<th> Asylum Seekers</th> \n" + "<th> Internally Displaced Persons </th> \n" + "<th> Nationals</th> \n" + "<th> Refugees</th> \n"
 				+ "<th> Returnees </th> \n" + "<th> Stateless Persons</th> \n" + "</tr> \n" + "</thead> \n" + "<tbody> \n";
 
-		for (int i = 0; i < numOfRightsGroups; i++) {
+		for (int i = 0; i < numOfRightsCategories; i++) {
 			htmlTable = htmlTable + "" + "<tr>	\n" + "<td> " + RightsGroupsNames[i] + " </td> \n" + "<td> " + NatInstruPOCDetail[i][0] + " </td> \n" + "<td> " + NatInstruPOCDetail[i][1] + "</td> \n"
 					+ "<td> " + NatInstruPOCDetail[i][2] + " </td> \n" + "<td> " + NatInstruPOCDetail[i][3] + " </td> \n" + "<td> " + NatInstruPOCDetail[i][4] + " </td> \n" + "<td> "
 					+ NatInstruPOCDetail[i][5] + " </td> \n" + "</tr> \n";
@@ -440,19 +400,10 @@ public class FormatAnalytics {
 
 		String chartData = "";
 		String AllPOCRightsGrouopsObstacles[] = countryObj.getAllPOCRightsGrouopsObstacles();
-		String[] RightsGroupsNames = new String[12];
-		RightsGroupsNames[0] = "Documentation";
-		RightsGroupsNames[1] = "Education";
-		RightsGroupsNames[2] = "Fair Trial and Right to Redress";
-		RightsGroupsNames[3] = "Family Unity";
-		RightsGroupsNames[4] = "Freedom of Movement";
-		RightsGroupsNames[5] = "Health";
-		RightsGroupsNames[6] = "Housing, Land and Property";
-		RightsGroupsNames[7] = "Liberty and Security of Person";
-		RightsGroupsNames[8] = "Non-Discrimination";
-		RightsGroupsNames[9] = "Political Participation";
-		RightsGroupsNames[10] = "Right to Work and Rights at Work";
-		RightsGroupsNames[11] = "Social Security";
+		int numOfRightsCategories = CountRows.countRows("rightscategory");
+		String[] RightsGroupsNames = new String[numOfRightsCategories];
+
+		RightsGroupsNames = RightsCategoriesManagement.getRightsCategories();
 
 		for (int i = 0; i < RightsGroupsNames.length; i++) {
 			chartData = chartData + "" + "{ color : '#EFD468', name: '" + RightsGroupsNames[i] + "', y : " + AllPOCRightsGrouopsObstacles[i].replace("-", "null") + "},";
@@ -470,20 +421,10 @@ public class FormatAnalytics {
 		String AllPOCRightsGrouopsObstacles[] = countryObj.getAllPOCRightsGrouopsObstacles();
 		String POCALLRightsGroupsObtacles[] = countryObj.getPOCALLRightsGroupsObtacles();
 		String AllPOCALLRightsGroupsObtacles = countryObj.getAllPOCALLRightsGroupsObtacles();
+		int numOfRightsCategories = CountRows.countRows("rightscategory");
+		String[] RightsGroupsNames = new String[numOfRightsCategories];
 
-		String[] RightsGroupsNames = new String[12];
-		RightsGroupsNames[0] = "Documentation";
-		RightsGroupsNames[1] = "Education";
-		RightsGroupsNames[2] = "Fair Trial and Right to Redress";
-		RightsGroupsNames[3] = "Family Unity";
-		RightsGroupsNames[4] = "Freedom of Movement";
-		RightsGroupsNames[5] = "Health";
-		RightsGroupsNames[6] = "Housing, Land and Property";
-		RightsGroupsNames[7] = "Liberty and Security of Person";
-		RightsGroupsNames[8] = "Non-Discrimination";
-		RightsGroupsNames[9] = "Political Participation";
-		RightsGroupsNames[10] = "Right to Work and Rights at Work";
-		RightsGroupsNames[11] = "Social Security";
+		RightsGroupsNames = RightsCategoriesManagement.getRightsCategories();
 
 		htmlTable = "" + "<table id='tabletitle' >" + "<thead> \n" + "<tr > \n" + "<th colspan='5'>" + "Rating the Accessibility of Rights to Populations of Concern\n"
 				+ "<br>(1=\"There Are No, or Minimal, Obstacles to Enjoying the Rights in the Rights Category\", "

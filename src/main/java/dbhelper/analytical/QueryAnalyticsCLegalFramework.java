@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 
 import org.apache.commons.lang3.StringUtils;
 
+import dbhelper.dbutilities.CountRows;
 import dbhelper.dbutilities.MySql;
+import dbhelper.dbutilities.RightsCategoriesManagement;
 import model.Country;
 
 public class QueryAnalyticsCLegalFramework {
@@ -25,25 +27,12 @@ public class QueryAnalyticsCLegalFramework {
 	public static Country getConsistencyWithInternational(Country countryObj) {
 		Connection c = MySql.connect();
 		String countryName = countryObj.getCountryName();
-		int numOfRightsGroups = 12;
-		String[] RightsGroupsNames = new String[numOfRightsGroups]; 
-		String ConsistencyWithInternational[][] = new String[numOfRightsGroups][3]; 
 		int y = 0;
-			
-		RightsGroupsNames[0] = "Documentation";
-		RightsGroupsNames[1] = "Education";
-		RightsGroupsNames[2] = "Fair Trial and Right to Redress";
-		RightsGroupsNames[3] = "Family Unity";
-		RightsGroupsNames[4] = "Freedom of Movement";
-		RightsGroupsNames[5] = "Health";
-		RightsGroupsNames[6] = "Housing, Land and Property";
-		RightsGroupsNames[7] = "Liberty and Security of Person";
-		RightsGroupsNames[8] = "Non-Discrimination";
-		RightsGroupsNames[9] = "Political Participation";
-		RightsGroupsNames[10] = "Right to Work and Rights at Work";
-		RightsGroupsNames[11] = "Social Security";
-		
-		
+		int numOfRightsCategories = CountRows.countRows("rightscategory");
+		String[] RightsGroupsNames = new String[numOfRightsCategories];
+		RightsGroupsNames = RightsCategoriesManagement.getRightsCategories();
+		String ConsistencyWithInternational[][] = new String[numOfRightsCategories][3]; 
+
 		try {
 		
             for (int j = 0; j < RightsGroupsNames.length ; j++) {
@@ -67,7 +56,7 @@ public class QueryAnalyticsCLegalFramework {
 	
 			while (rs.next()) {
                 
-				for (int z = 0;z<numOfRightsGroups;z++){
+				for (int z = 0;z<numOfRightsCategories;z++){
 					if (rs.getString("RightsGroup").equals(RightsGroupsNames[z])) {
 						y=z;
 						break;
@@ -96,7 +85,7 @@ public class QueryAnalyticsCLegalFramework {
 	public static Country getConsistencyWithInternationalMissingData(Country countryObj) {
 		Connection c = MySql.connect();
 		String countryName = countryObj.getCountryName();
-		int noOfRightsGroups = 12;
+		int noOfRightsGroups = CountRows.countRows("rightscategory");
 		Boolean missingData = false;
 		
 		try {

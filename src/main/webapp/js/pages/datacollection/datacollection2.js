@@ -44,13 +44,12 @@ $(document).ready(function() {
 
     // Upload the selected file using Ajax.
     $(document).on('click', 'button[name^=uploadButton]', function() {
-
+        var countryName = $('input[name="countryNameForFileUpload"]').val();
+        console.log('online country name: ' + countryName);
         var element_id = $("button[name^=uploadButton]").index(this);
 
-        // $('p[id="uploadsuccess[' + element_id + ']"]').text('Upload in
-        // progress. Please wait.');
-
         var fileToUpload = new FormData();
+        fileToUpload.append('Country', countryName);
         fileToUpload.append('file', $('input[name="browseButton[' + element_id + ']"]')[0].files[0]);
 
         $.ajax({
@@ -60,6 +59,7 @@ $(document).ready(function() {
         cache : false,
         processData : false,
         contentType : false,
+        enctype : 'multipart/form-data',
         data : fileToUpload,
         success : function(responseText) {
             uploadResp(responseText, element_id);
@@ -382,9 +382,7 @@ function newNationalTable(arrayIndex, rightsGroup) {
     // References to other legislation in other rights groups.
     + "<tr>  " + "<td>The instrument references pieces of legislation related to other rights categories:</td>  " + "<td>  " + "<div class='otherlegisradio'>" + "<input type='radio' name='natlinstruotherlegis[" + arrayIndex + "]' value='yes' >Yes <br>  " + "<input type='radio' name='natlinstruotherlegis[" + arrayIndex + "]' value='no'  >No  " + "</div>" + "<textarea class='otherlegistextarea' name='natlinstruotherlegistextarea[" + arrayIndex + "]' placeholder='Comments'></textarea>  " + "</td>  " + "</tr>  "
 
-    + "<tr>  " + "<td>The instrument should be read in conjunction with instruments related to the following rights categories:</td>  " + "<td>  " + "<div class='otherlegischeckboxes1'> " + "<p class='otherlegisheadertop'>Civil/Political Rights Categories</p>" + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='fair'>Fair Trial and Right to Redress<br>" + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='free'>Freedom of Movement<br>" + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='lib'>Liberty and Security of Person<br>  " + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='nondis'>Non-Discrimination<br>  " + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='poli'>Political Participation<br>  " + "<p class='otherlegisheaders'>Economic Rights Categories</p>" + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='housing'>Housing, Land and Property Rights <br> " + "</div> " + "<div class='otherlegischeckboxes2'> " + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='work'>Right to Work and Rights at Work<br>" + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='soc'>Social Security<br>" + "<p class='otherlegisheaders'>Legal Rights Categories</p>" + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='docu'>Documentation<br>" + "<p class='otherlegisheaders'>Socio-cultural Rights Categories</p>" + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='edu'>Education<br>  " + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='fam'>Family Unity<br>  " + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='heal'>Health<br>" + "</div> " + "</td>  " + "</tr>  "
-
-    + "</tbody>  "
+    + "<tr>  " + "<td>The instrument should be read in conjunction with instruments related to the following rights categories:</td>  " + "<td>  " + "<div class='otherlegischeckboxes1'> " + "<p class='otherlegisheadertop'>Civil/Political Rights Categories</p>" + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='fair'>Access to Justice<br>" + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='docu'>Documentation<br>" + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='free'>Freedom of Movement<br>" + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='lib'>Liberty and Security of Person<br>  " + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='nondis'>Non-Discrimination<br>  " + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='poli'>Political Participation<br>  " + "<p class='otherlegisheaders'>Economic Rights Categories</p>" + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='housing'>Housing, Land and Property Rights <br> " + "</div> " + "<div class='otherlegischeckboxes2'> " + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='work'>Right to Work and Rights at Work<br>" + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='soc'>Social Security<br>" + "<p class='otherlegisheaders'>Legal Rights Categories</p>" + "<p class='otherlegisheaders'>Socio-cultural Rights Categories</p>" + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='edu'>Education<br>  " + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='fam'>Family Unity<br>  " + "<input type='checkbox' name='natinstruotherlegischecked[" + arrayIndex + "]' value='heal'>Health<br>" + "</div> " + "</td>  " + "</tr>  " + "</tbody>  "
 
     // Articles section.
     // Separator for the Articles section.
