@@ -61,7 +61,7 @@ public class QueryCDCReporting {
 		PreparedStatement pst;
 		ResultSet rs;
 		String ObstaclesToReturn[][] = null;
-		String AllRightsGrpObs[][] = new String[numOfRightsCategories][26]; 
+		String AllRightsGrpObs[][] = new String[numOfRightsCategories][30]; 
 
 		int i = 0;
 
@@ -113,6 +113,11 @@ public class QueryCDCReporting {
 					AllRightsGrpObs[i][24] = StringUtils.defaultString(rs.getString("OtherObsComment"), "");
 					AllRightsGrpObs[i][25] = StringUtils.defaultString(rs.getString("OtherObsGrps"), "");
 					
+					AllRightsGrpObs[i][26] = StringUtils.defaultString(rs.getString("Other2NameObs"), "");
+					AllRightsGrpObs[i][27] = StringUtils.defaultString(rs.getString("Other2Obs"), "");
+					AllRightsGrpObs[i][28] = StringUtils.defaultString(rs.getString("Other2ObsComment"), "");
+					AllRightsGrpObs[i][29] = StringUtils.defaultString(rs.getString("Other2ObsGrps"), "");
+					
 					i++;
 				}		
 
@@ -124,7 +129,7 @@ public class QueryCDCReporting {
 
 	            for (int j = 0; j < numOfRightsCategories ; j++) {
 	            	AllRightsGrpObs[j][0] = rightsCategories[j];
-	            	for (int x = 1; x <26; x++) {
+	            	for (int x = 1; x <30; x++) {
 	            		AllRightsGrpObs[j][x] = "";
 	            	}
 	            }

@@ -1,4 +1,22 @@
+$(document).ready(function() {
+
+    // If all of the POC checkboxes are checked then check the select all
+    // checkbox.
+    if ($("input[name^='populationgroupschecked[]']").length == $("input[name^='populationgroupschecked[]']:checked").length) {
+        $("input[name='populationgroupscheckedselectall']").prop('checked', true);
+    }
+
+});
+
 $(function() {
+    // Select all for the populations of concern.
+    $("input[name='populationgroupscheckedselectall']").change(function() {
+        if ($(this).is(':checked')) {
+            $("input[name^='populationgroupschecked[]']").prop('checked', true);
+        } else {
+            $("input[name^='populationgroupschecked[]']").prop('checked', false);
+        }
+    });
 
     // Datepicker.
     $("#constdateeffect").datepicker({
@@ -84,6 +102,7 @@ function judicialAddRow() {
     var noRows = table.rows.length;
     var arrayIndex = noRows - 1;
     var row;
+    var POCs = $("input[name='countrypocs']").val();
 
     if (($("input[type=hidden][name=authEditView]").val() === "true")) {
 
@@ -91,31 +110,45 @@ function judicialAddRow() {
         row = row + "<td>";
         row = row + "<input type='text' maxlength='50' name='entitycourt[" + arrayIndex + "]' value=''>";
         row = row + "</td>";
-        row = row + "<td>";
-        row = row + "<input type='radio' name='refugeesaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
-        row = row + "<input type='radio' name='refugeesaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
-        row = row + "<input type='radio' name='refugeesaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-        row = row + "</td>";
-        row = row + "<td>";
-        row = row + "<input type='radio' name='IDPsaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
-        row = row + "<input type='radio' name='IDPsaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
-        row = row + "<input type='radio' name='IDPsaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-        row = row + "</td>";
-        row = row + "<td>";
-        row = row + "<input type='radio' name='returneesaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
-        row = row + "<input type='radio' name='returneesaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
-        row = row + "<input type='radio' name='returneesaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-        row = row + "</td>";
-        row = row + "<td>";
-        row = row + "<input type='radio' name='statelessaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
-        row = row + "<input type='radio' name='statelessaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
-        row = row + "<input type='radio' name='statelessaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-        row = row + "</td>";
-        row = row + "<td>";
-        row = row + "<input type='radio' name='asylumaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
-        row = row + "<input type='radio' name='asylumaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
-        row = row + "<input type='radio' name='asylumaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-        row = row + "</td>";
+
+        if (POCs.includes('Asylum Seekers') || (POCs.length === 0)) {
+            row = row + "<td>";
+            row = row + "<input type='radio' name='asylumaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
+            row = row + "<input type='radio' name='asylumaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
+            row = row + "<input type='radio' name='asylumaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+            row = row + "</td>";
+        }
+
+        if (POCs.includes('Internally Displaced Persons') || (POCs.length === 0)) {
+            row = row + "<td>";
+            row = row + "<input type='radio' name='IDPsaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
+            row = row + "<input type='radio' name='IDPsaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
+            row = row + "<input type='radio' name='IDPsaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+            row = row + "</td>";
+        }
+        if (POCs.includes('Refugees') || (POCs.length === 0)) {
+            row = row + "<td>";
+            row = row + "<input type='radio' name='refugeesaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
+            row = row + "<input type='radio' name='refugeesaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
+            row = row + "<input type='radio' name='refugeesaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+            row = row + "</td>";
+        }
+
+        if (POCs.includes('Returnees') || (POCs.length === 0)) {
+            row = row + "<td>";
+            row = row + "<input type='radio' name='returneesaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
+            row = row + "<input type='radio' name='returneesaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
+            row = row + "<input type='radio' name='returneesaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+            row = row + "</td>";
+        }
+
+        if (POCs.includes('Stateless Persons') || (POCs.length === 0)) {
+            row = row + "<td>";
+            row = row + "<input type='radio' name='statelessaccesscourt[" + arrayIndex + "]' value='yes'>Yes <br>";
+            row = row + "<input type='radio' name='statelessaccesscourt[" + arrayIndex + "]' value='no'>No <br>";
+            row = row + "<input type='radio' name='statelessaccesscourt[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+            row = row + "</td>";
+        }
         row = row + "</tr>";
 
         jQuery('#judicialTableAddRow').append(row);
@@ -129,37 +162,53 @@ function adminAddRow() {
     var noRows = table.rows.length;
     var arrayIndex = noRows - 1;
     var row;
+    var POCs = $("input[name='countrypocs']").val();
+
     if (($("input[type=hidden][name=authEditView]").val() === "true")) {
 
         row = "<tr>";
         row = row + "<td>";
-        row = row + "<input type='text'  maxlength='50' name='adminentityname[" + arrayIndex + "]' value=''>";
+        row = row + "<input type='text' maxlength='50' name='adminentityname[" + arrayIndex + "]' value=''>";
         row = row + "</td>";
-        row = row + "<td>";
-        row = row + "<input type='radio' name='refugeesaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
-        row = row + "<input type='radio' name='refugeesaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
-        row = row + "<input type='radio' name='refugeesaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-        row = row + "</td>";
-        row = row + "<td>";
-        row = row + "<input type='radio' name='IDPsaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
-        row = row + "<input type='radio' name='IDPsaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
-        row = row + "<input type='radio' name='IDPsaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-        row = row + "</td>";
-        row = row + "<td>";
-        row = row + "<input type='radio' name='returneesaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
-        row = row + "<input type='radio' name='returneesaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
-        row = row + "<input type='radio' name='returneesaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-        row = row + "</td>";
-        row = row + "<td>";
-        row = row + "<input type='radio' name='statelessaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
-        row = row + "<input type='radio' name='statelessaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
-        row = row + "<input type='radio' name='statelessaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-        row = row + "</td>";
-        row = row + "<td>";
-        row = row + "<input type='radio' name='asylumaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
-        row = row + "<input type='radio' name='asylumaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
-        row = row + "<input type='radio' name='asylumaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-        row = row + "</td>";
+
+        if (POCs.includes('Asylum Seekers') || (POCs.length === 0)) {
+            row = row + "<td>";
+            row = row + "<input type='radio' name='asylumaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
+            row = row + "<input type='radio' name='asylumaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
+            row = row + "<input type='radio' name='asylumaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+            row = row + "</td>";
+        }
+
+        if (POCs.includes('Internally Displaced Persons') || (POCs.length === 0)) {
+            row = row + "<td>";
+            row = row + "<input type='radio' name='IDPsaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
+            row = row + "<input type='radio' name='IDPsaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
+            row = row + "<input type='radio' name='IDPsaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+            row = row + "</td>";
+        }
+        if (POCs.includes('Refugees') || (POCs.length === 0)) {
+            row = row + "<td>";
+            row = row + "<input type='radio' name='refugeesaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
+            row = row + "<input type='radio' name='refugeesaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
+            row = row + "<input type='radio' name='refugeesaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+            row = row + "</td>";
+        }
+
+        if (POCs.includes('Returnees') || (POCs.length === 0)) {
+            row = row + "<td>";
+            row = row + "<input type='radio' name='returneesaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
+            row = row + "<input type='radio' name='returneesaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
+            row = row + "<input type='radio' name='returneesaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+            row = row + "</td>";
+        }
+
+        if (POCs.includes('Stateless Persons') || (POCs.length === 0)) {
+            row = row + "<td>";
+            row = row + "<input type='radio' name='statelessaccessadmin[" + arrayIndex + "]' value='yes'>Yes <br>";
+            row = row + "<input type='radio' name='statelessaccessadmin[" + arrayIndex + "]' value='no'>No <br>";
+            row = row + "<input type='radio' name='statelessaccessadmin[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+            row = row + "</td>";
+        }
         row = row + "</tr>";
 
         jQuery('#administrativeTableAddRow').append(row);
@@ -173,38 +222,53 @@ function tradAddRow() {
     var noRows = table.rows.length;
     var arrayIndex = noRows - 1;
     var row;
+    var POCs = $("input[name='countrypocs']").val();
 
     if (($("input[type=hidden][name=authEditView]").val() === "true")) {
 
         row = "<tr>";
         row = row + "<td>";
-        row = row + "<input type='text'  maxlength='50' name='tradmechname[" + arrayIndex + "]' value=''>";
+        row = row + "<input type='text' maxlength='50' name='tradmechname[" + arrayIndex + "]' value=''>";
         row = row + "</td>";
-        row = row + "<td>";
-        row = row + "<input type='radio' name='refugeesaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
-        row = row + "<input type='radio' name='refugeesaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
-        row = row + "<input type='radio' name='refugeesaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-        row = row + "</td>";
-        row = row + "<td>";
-        row = row + "<input type='radio' name='IDPsaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
-        row = row + "<input type='radio' name='IDPsaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
-        row = row + "<input type='radio' name='IDPsaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-        row = row + "</td>";
-        row = row + "<td>";
-        row = row + "<input type='radio' name='returneesaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
-        row = row + "<input type='radio' name='returneesaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
-        row = row + "<input type='radio' name='returneesaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-        row = row + "</td>";
-        row = row + "<td>";
-        row = row + "<input type='radio' name='statelessaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
-        row = row + "<input type='radio' name='statelessaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
-        row = row + "<input type='radio' name='statelessaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-        row = row + "</td>";
-        row = row + "<td>";
-        row = row + "<input type='radio' name='asylumaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
-        row = row + "<input type='radio' name='asylumaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
-        row = row + "<input type='radio' name='asylumaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
-        row = row + "</td>";
+
+        if (POCs.includes('Asylum Seekers') || (POCs.length === 0)) {
+            row = row + "<td>";
+            row = row + "<input type='radio' name='asylumaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
+            row = row + "<input type='radio' name='asylumaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
+            row = row + "<input type='radio' name='asylumaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+            row = row + "</td>";
+        }
+
+        if (POCs.includes('Internally Displaced Persons') || (POCs.length === 0)) {
+            row = row + "<td>";
+            row = row + "<input type='radio' name='IDPsaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
+            row = row + "<input type='radio' name='IDPsaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
+            row = row + "<input type='radio' name='IDPsaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+            row = row + "</td>";
+        }
+        if (POCs.includes('Refugees') || (POCs.length === 0)) {
+            row = row + "<td>";
+            row = row + "<input type='radio' name='refugeesaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
+            row = row + "<input type='radio' name='refugeesaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
+            row = row + "<input type='radio' name='refugeesaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+            row = row + "</td>";
+        }
+
+        if (POCs.includes('Returnees') || (POCs.length === 0)) {
+            row = row + "<td>";
+            row = row + "<input type='radio' name='returneesaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
+            row = row + "<input type='radio' name='returneesaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
+            row = row + "<input type='radio' name='returneesaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+            row = row + "</td>";
+        }
+
+        if (POCs.includes('Stateless Persons') || (POCs.length === 0)) {
+            row = row + "<td>";
+            row = row + "<input type='radio' name='statelessaccesstrad[" + arrayIndex + "]' value='yes'>Yes <br>";
+            row = row + "<input type='radio' name='statelessaccesstrad[" + arrayIndex + "]' value='no'>No <br>";
+            row = row + "<input type='radio' name='statelessaccesstrad[" + arrayIndex + "]' value='unclear'>Unclear <br>";
+            row = row + "</td>";
+        }
         row = row + "</tr>";
 
         jQuery('#traditionalTableAddRow').append(row);

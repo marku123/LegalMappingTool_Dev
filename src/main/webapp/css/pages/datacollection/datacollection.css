@@ -1,4 +1,23 @@
+.populationgroups {
+	margin: 15px 0px 30px 40px;
+	border: black;
+	
+}
 
+
+/* Populations in the country comment box.*/
+#pocincountrycomments {
+	margin-left: 40px;	
+	margin-bottom: 40px;
+	
+}
+
+textarea.pocincountrycomments{
+	width: 700px;
+	height: 100px;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
 
 /* Styling for links to the constitution.*/
 a.refworldlink:link {
@@ -184,6 +203,7 @@ table.A2Tables input[type=text] {
 	font-family: Calibri, Arial, Helvetica, sans-serif;
 	font-size: 14px;
 }
+
 
 /* Traditional mechanisms comment box.*/
 #tradmechcomments {

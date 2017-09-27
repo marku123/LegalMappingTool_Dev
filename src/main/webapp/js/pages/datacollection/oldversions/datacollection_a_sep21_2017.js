@@ -1,28 +1,12 @@
-//If a rights group has not been selected by the user, ensure the rest of the page is empty.         
 $(document).ready(function() {
 
-    // If we are dealing with pre entered international instruments then do not
-    // show the refworld link, the upload files link and the articles as
-    // editable.
-    $("input[name^='intlinstrureflink']").each(function() {
-
-        var element_id = $("input[name^='intlinstrureflink']").index(this);
-
-        if ($(this).val() == "preentered") {
-            $('.trhideclass' + element_id).hide();
-            $('#tdhide1class' + element_id).hide();
-            $('#tdhide1classtype' + element_id).hide();
-
-        } else {
-            $('#tdhide2class' + element_id).hide();
-            $('#tdhide2classtype' + element_id).hide();
-        }
-    });
-
-    var index = document.getElementById("personofconcernselect").selectedIndex;
-    if (index == 0) {
-        $("#allquestions").hide();
-    }
+    // If a rights group has not been selected by the user, ensure the rest of
+    // the page is empty.
+    /*
+     * var index =
+     * document.getElementById("personofconcernselect").selectedIndex; if (index ==
+     * 0) { $("#allquestions").hide(); }
+     */
 
     // If a PDF version of a national instrument has been uploaded to the
     // server, show the link to it. If it hasn't been uploaded, show the "browse

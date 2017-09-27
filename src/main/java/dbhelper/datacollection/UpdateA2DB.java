@@ -2,9 +2,11 @@ package dbhelper.datacollection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import dbhelper.dbutilities.CountRows;
@@ -19,6 +21,10 @@ public class UpdateA2DB {
 		Connection c = MySql.connect();
 		String sql = null;
 		String country = request.getParameter("country");
+		
+		String populationgroupschecked = Arrays.toString(ArrayUtils.nullToEmpty(request.getParameterValues("populationgroupschecked[]"))).replaceAll("(^\\[|\\]$)", "").replaceAll(", ", ",");
+		String populationgroupscomments = StringUtils.defaultString(request.getParameter("populationgroupscomments").replace("'", "\\'"), "");
+
 		String commoncivilplural = StringUtils.defaultString(request.getParameter("commoncivilplural"), "");
 		String commoncivilpluraltext = StringUtils.defaultString(request.getParameter("commoncivilpluraltext").replace("'", "\\'"), "");	
 		String federalstate = StringUtils.defaultString(request.getParameter("federalstate"), "");
@@ -30,7 +36,10 @@ public class UpdateA2DB {
 			if (CountryExists.countryExists(country,"legalframework_a2_legalsystem_intro")) {
 
 				sql = "UPDATE legalframework_a2_legalsystem_intro "
-					+ "SET CommonCivilPlural = '" + commoncivilplural + "', "
+					+ "SET "
+						+ "POC = '" + populationgroupschecked + "', "
+						+ "POCComments = '" + populationgroupscomments + "', "
+						+ "CommonCivilPlural = '" + commoncivilplural + "', "
 						+ "PluralText = '" + commoncivilpluraltext + "', "
 						+ "FederalState = '" + federalstate + "', "
 						+ "TradMechComments = '" + tradmechcomments + "', "
@@ -41,9 +50,9 @@ public class UpdateA2DB {
 				
 				
 				sql = "INSERT INTO legalframework_a2_legalsystem_intro "
-						+ "(CountryName,CommonCivilPlural,PluralText,FederalState,TradMechComments,"
+						+ "(CountryName,POC,POCComments, CommonCivilPlural,PluralText,FederalState,TradMechComments,"
 						+ "Comments) VALUES "
-						+ "(?,'" + commoncivilplural + "','" + commoncivilpluraltext + "',"
+						+ "(?,'" + populationgroupschecked + "','" + populationgroupscomments + "','" + commoncivilplural + "','" + commoncivilpluraltext + "',"
 						+ "'" + federalstate + "','" + tradmechcomments + "','" + legalsystemcomments + "')"; 	
 
 			}

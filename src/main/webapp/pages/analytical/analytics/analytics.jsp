@@ -21,6 +21,8 @@
      
       String nameOfCurrentFile = this.getClass().getSimpleName();
 
+      String POCs = countryObj.getPOCCountry();
+
       //Finding table.  
       String obstaclesFindingsTable = FormatAnalytics.formatFindingsTable(countryObj);
 
@@ -115,6 +117,7 @@
             <%=POCRightsGroupsObstaclesTable%>
          </div>
          </div>
+         <input type='hidden' name='countrypocs' value='<%=POCs%>'>           
          
          <br><br><br><br>
       </div>

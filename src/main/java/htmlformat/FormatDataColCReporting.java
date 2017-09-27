@@ -11,25 +11,29 @@ public class FormatDataColCReporting {
 	public static String formatObstacleTablesDocs(Country countryObj) {
 		String htmlTable = new String(""); 
 		PersonsOfConcern[] PersonsOfConcern = countryObj.getPersonsOfConcern();
-		
+		String POCsInCountry = countryObj.getPOCCountry();
+        int headingIndex = 1;
         int j = 0;
 
         while (j < PersonsOfConcern.length){
 
-            int headingIndex = j+1;
-            
-            htmlTable = htmlTable + "<h3 id='B"+headingIndex+"'>B."+headingIndex+" Obstacles Impacting <span class='bluetext'>"+PersonsOfConcern[j].getPersonOfConcernName()+"</span></h3><br>\n";   
 
-            htmlTable = htmlTable + ""
-                        + "<h4> B."+headingIndex+".1 Obstacles Preventing <span class='bluetext'>"+ PersonsOfConcern[j].getPersonOfConcernName() + "</span> from Enjoying Their Rights</h4><br>\n";
-           
-            htmlTable = htmlTable + formatIntlObstacleTables(PersonsOfConcern[j]);
-        	
-            htmlTable = htmlTable + ""
-            		+ "<h4> B."+headingIndex+".2 Links to Supporting Documentation</h4><br>\n";
-           
-            htmlTable = htmlTable + formatObstacleDocs(PersonsOfConcern[j]);
-
+    		if(POCsInCountry.contains(PersonsOfConcern[j].getPersonOfConcernName()) || POCsInCountry.equals("") ){
+	            
+	            htmlTable = htmlTable + "<h3 id='B"+headingIndex+"'>B."+headingIndex+" Obstacles Impacting <span class='bluetext'>"+PersonsOfConcern[j].getPersonOfConcernName()+"</span></h3><br>\n";   
+	
+	            htmlTable = htmlTable + ""
+	                        + "<h4> B."+headingIndex+".1 Obstacles Preventing <span class='bluetext'>"+ PersonsOfConcern[j].getPersonOfConcernName() + "</span> from Enjoying Their Rights</h4><br>\n";
+	           
+	            htmlTable = htmlTable + formatIntlObstacleTables(PersonsOfConcern[j]);
+	        	
+	            htmlTable = htmlTable + ""
+	            		+ "<h4> B."+headingIndex+".2 Links to Supporting Documentation</h4><br>\n";
+	           
+	            htmlTable = htmlTable + formatObstacleDocs(PersonsOfConcern[j]);
+	            
+	            headingIndex++;
+    		}
             j++;
         
         }
@@ -106,6 +110,10 @@ public class FormatDataColCReporting {
     		//Formatting for Other.
     		String otherseverity = formatObstacleSeverity(AllRightsGrpObs[i][23]); 
     		String otherGroupsAffected = formatGroupsAffected(AllRightsGrpObs[i][25]);
+    		
+    		//Formatting for Other2.
+    		String other2severity = formatObstacleSeverity(AllRightsGrpObs[i][27]); 
+    		String other2GroupsAffected = formatGroupsAffected(AllRightsGrpObs[i][29]);
     		
 			//Create the HTML table.
 			htmlTable = htmlTable + ""
@@ -220,7 +228,7 @@ public class FormatDataColCReporting {
 					+ "</tr> \n "	
 						
 					+ "<tr> \n "
-						+ "<td>Other: "+AllRightsGrpObs[i][22]+"</td> \n "
+						+ "<td>Other Obstacle 1: "+AllRightsGrpObs[i][22]+"</td> \n "
 						+ "<td> \n"
 							+ otherseverity +""
 						+ "</td> \n "
@@ -232,6 +240,18 @@ public class FormatDataColCReporting {
 						+ "</td> \n " 
 					+ "</tr> \n "
 				
+					+ "<tr> \n "
+						+ "<td>Other Obstacle 2: "+AllRightsGrpObs[i][26]+"</td> \n "
+						+ "<td> \n"
+							+ other2severity +""
+						+ "</td> \n "
+						+ "<td> \n"
+							+ AllRightsGrpObs[i][28] + "\n "
+						+ "</td> \n "
+						+ "<td class='col4'> \n"
+							+ other2GroupsAffected + "\n "
+						+ "</td> \n " 
+					+ "</tr> \n "
 				
 				+ "</tbody> \n "
 			+ "</table><br> <br> \n ";
@@ -329,19 +349,23 @@ public class FormatDataColCReporting {
 		
 		String htmlString = "";
 		PersonsOfConcern[] PersonsOfConcern = countryObj.getPersonsOfConcern();
-
+		String POCsInCountry = countryObj.getPOCCountry();
+        int headingIndex = 1;
+        
 		htmlString = htmlString +"<a class=\"tableofcontentshead\" href=\"#SectionB\">B. Obstacles to Enjoying Rights</a>\n"; 
 		
         int j = 0;
 
         while (j < PersonsOfConcern.length){
 			
-        	int headingIndex = j+1;
+
+    		if(POCsInCountry.contains(PersonsOfConcern[j].getPersonOfConcernName()) || POCsInCountry.equals("") ){
         	
-            htmlString = htmlString + ""
-            + "<a class=\"tableofcontentssub1\" href=\"#B"+headingIndex+"\"><span class=\"tableofcontentssubNum\">B."+headingIndex+"</span><span class=\"tableofcontentssubText\"> Obstacles Impacting "+PersonsOfConcern[j].getPersonOfConcernName()+"</span></a>\n";
+    			htmlString = htmlString + ""
+    					+ "<a class=\"tableofcontentssub1\" href=\"#B"+headingIndex+"\"><span class=\"tableofcontentssubNum\">B."+headingIndex+"</span><span class=\"tableofcontentssubText\"> Obstacles Impacting "+PersonsOfConcern[j].getPersonOfConcernName()+"</span></a>\n";
             
-            
+    			headingIndex++;
+    		}
             j++;
         } 	
 		return htmlString;

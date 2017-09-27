@@ -61,6 +61,10 @@ public class UpdateCDB {
 		String otherobscomments[] = new String[numberOfRightsGroups];
 		String otherobsgrps[] = new String[numberOfRightsGroups];
 	
+		String other2obsdrop[] = new String[numberOfRightsGroups];
+		String other2obsname[] = new String[numberOfRightsGroups];
+		String other2obscomments[] = new String[numberOfRightsGroups];
+		String other2obsgrps[] = new String[numberOfRightsGroups];
 		
 		//Get all of the data from the request.
 		for (int i=0;i< numberOfRightsGroups;i++){
@@ -100,6 +104,11 @@ public class UpdateCDB {
 			otherobscomments[i] = StringUtils.defaultString(request.getParameter("otherobscomments["+i+"]").replace("'", "\\'"),"");
 			otherobsgrps[i] = Arrays.toString(ArrayUtils.nullToEmpty(request.getParameterValues("otherobsgrps["+i+"]"))).replaceAll("(^\\[|\\]$)", "").replaceAll(",\\s",",");
 
+			other2obsname[i] = StringUtils.defaultString(request.getParameter("other2obsname["+i+"]").replace("'", "\\'"),"");
+			other2obsdrop[i] = StringUtils.defaultString(request.getParameter("other2obsdrop["+i+"]"),"");
+			other2obscomments[i] = StringUtils.defaultString(request.getParameter("other2obscomments["+i+"]").replace("'", "\\'"),"");
+			other2obsgrps[i] = Arrays.toString(ArrayUtils.nullToEmpty(request.getParameterValues("other2obsgrps["+i+"]"))).replaceAll("(^\\[|\\]$)", "").replaceAll(",\\s",",");
+
 		}
 
 		try {
@@ -115,7 +124,8 @@ public class UpdateCDB {
 							+ "AdminObs,AdminObsComment,AdminObsGrps,"
 							+ "SecObs,SecObsComment,SecObsGrps,"
 							+ "DiscrimObs,DiscrimObsComment,DiscrimObsGrps,"
-							+ "OtherNameObs,OtherObs,OtherObsComment,OtherObsGrps) VALUES"
+							+ "OtherNameObs,OtherObs,OtherObsComment,OtherObsGrps,"
+							+ "Other2NameObs,Other2Obs,Other2ObsComment,Other2ObsGrps) VALUES"
 							+ "(?,'"+ personofconcern +"','"+rightsgroup[i]+"','"+legalobsdrop[i]+"','"+legalobscomments[i]+"',?,"
 									+ "'"+financeobsdrop[i]+"','"+financeobscomments[i]+"',?,"
 									+ "'"+docobsdrop[i]+"','"+docobscomments[i]+"',?,"
@@ -123,7 +133,8 @@ public class UpdateCDB {
 									+ "'"+adminobsdrop[i]+"','"+adminobscomments[i]+"',?,"
 									+ "'"+secobsdrop[i]+"','" + secobscomments[i] + "',?,"
 									+ "'"+discrimobsdrop[i]+"','"+discrimobscomments[i]+"',?,"
-									+ "'"+otherobsname[i]+"','"+otherobsdrop[i]+"','"+otherobscomments[i]+"',?"
+									+ "'"+otherobsname[i]+"','"+otherobsdrop[i]+"','"+otherobscomments[i]+"',?,"
+									+ "'"+other2obsname[i]+"','"+other2obsdrop[i]+"','"+other2obscomments[i]+"',?"
 								+ ")";	
 						
 				pst[i] = c.prepareStatement(sql[i]);
@@ -136,6 +147,7 @@ public class UpdateCDB {
 				pst[i].setString(7, secobsgrps[i]);
 				pst[i].setString(8, discrimobsgrps[i]);
 				pst[i].setString(9, otherobsgrps[i]);
+				pst[i].setString(10, other2obsgrps[i]);
 
 				pst[i].executeUpdate();
 				pst[i].close();

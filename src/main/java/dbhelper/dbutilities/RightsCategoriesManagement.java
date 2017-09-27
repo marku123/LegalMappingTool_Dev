@@ -126,5 +126,73 @@ public class RightsCategoriesManagement {
 		return rightsCategoryGroupName;
 	}
 	
+	public static String getRightCategoryAbbreviation(String rightsCategories) {
+		Connection c = MySql.connect();
+		String rightsCategoryAbbreviations = "";
+		String sql;
+		PreparedStatement pst;
+		ResultSet rs;
+
+
+		try {
+			sql = "SELECT NameOfRightsCategory,RightsCategoryAbbreviation FROM rightscategory ORDER BY NameOfRightsCategory";
+			pst = c.prepareStatement(sql);
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+								
+				String nameOfRightsCategoryFromDB = rs.getString("NameOfRightsCategory");
+				
+				if (rightsCategories.contains(nameOfRightsCategoryFromDB) || rightsCategories.equals("All")){
+					rightsCategoryAbbreviations = rightsCategoryAbbreviations + rs.getString("RightsCategoryAbbreviation") + ",";
+
+				} 
+			}
+			rs.close();
+			pst.close();
+
+			MySql.close(c);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (rightsCategoryAbbreviations.length() > 0) {
+			rightsCategoryAbbreviations = rightsCategoryAbbreviations.substring(0, rightsCategoryAbbreviations.length() - 1);
+		} 
+		
+		return rightsCategoryAbbreviations;
+	}
+	
+	
+	public static String getRightCategoryUsingAbbreviation(String rightsCategoryAbbreviation) {
+		Connection c = MySql.connect();
+		String rightsCategory = "";
+		String sql;
+		PreparedStatement pst;
+		ResultSet rs;
+
+		
+		try {
+			sql = "SELECT NameOfRightsCategory FROM rightscategory WHERE RightsCategoryAbbreviation = ?";
+			pst = c.prepareStatement(sql);
+			pst.setString(1, rightsCategoryAbbreviation);
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				rightsCategory = rs.getString("RightsCategoryAbbreviation");
+			}
+			rs.close();
+			pst.close();
+
+			MySql.close(c);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return rightsCategory;
+	}
+	
 
 }

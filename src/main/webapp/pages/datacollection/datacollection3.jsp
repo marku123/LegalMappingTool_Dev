@@ -73,6 +73,9 @@
                                 
          <h3>B.2 Documentation</h3>
          
+         <p>[Upload reports from consultations conducted with populations of concern as well as second hand data (e.g. reports from partners, human
+         rights NGOs, etc).]</p><br>
+         
                <div id='obstacleDocumentationSection'>
                   <%=obstacleDocumentation%> 
                   <input type="button" value="Add File(s)" id="showHideUpload" /><br><br>

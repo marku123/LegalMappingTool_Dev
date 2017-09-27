@@ -76,7 +76,7 @@ public class ReportingController extends HttpServlet {
 			request.setAttribute("countryObj", countryObj);
 			page = "/pages/reporting/reporting.jsp";
 
-		} 		if (action.equals("reporting_html")) {
+		} if (action.equals("reporting_html")) {
 
 			//Section A.1
 			countryObj = QueryA1DB.getLegalFrameworkConstIntro(countryObj);

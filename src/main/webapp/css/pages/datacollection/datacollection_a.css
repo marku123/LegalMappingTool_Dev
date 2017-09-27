@@ -129,7 +129,7 @@ table.interinstruments tbody {
 	display: none;
 }
 
-
+}
 table.interinstruments td.col1 {
 	width: 20%;
 }
@@ -174,14 +174,6 @@ table.interinstruments tr:nth-child(6) {
 	text-align: left;
 }
 
-table.interinstruments tr:nth-child(7) {
-	text-align: left;
-}
-
-table.interinstruments tr:nth-child(8) {
-	text-align: left;
-}
-
 table.interinstruments select {
 	font-size: 14px;
 	margin: 10px 0px 10px 5px;
@@ -190,7 +182,7 @@ table.interinstruments select {
 }
 
 table.interinstruments textarea {
-	width: 99%;
+	width: 90%;
 	height: 150px;
 	resize: vertical;
 	font-size: 14px;
@@ -198,10 +190,24 @@ table.interinstruments textarea {
 }
 
 
-/* Make sure the articles column textarea is centered. */
-.articlescolumn {
-	text-align: center !important;
+#upLoadFileButtonIntl {
+	font-size: 12px !important;
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+	background-color: #005689;
+	border: none;
+	color: white;
+	padding: 3px 10px;
+	cursor: pointer;
+	text-decoration: none;
 }
+
+.inputfilenameIntl {
+	display: inline-block;
+	width: 30%;
+	margin-left: 5px;
+	border: none;
+}
+
 
 /* Styling for national instrument tables. */
 table.natinstruments {
@@ -228,7 +234,7 @@ table.natinstruments tbody {
 	display: none;
 }
 
-
+}
 table.natinstruments td.col1 {
 	width: 20%;
 }
@@ -251,7 +257,7 @@ table.natinstruments tr {
 
 table.natinstruments tr:nth-child(even) {
 	background-color: #efefef;
-} 
+}
 
 table.natinstruments td:nth-child(1) {
 	text-align: left;
@@ -270,7 +276,7 @@ table.natinstruments tr:nth-child(5) {
 }
 
 table.natinstruments tr:nth-child(6) {
-	text-align: left;
+	text-align: center;
 }
 
 table.natinstruments input[type=file] {
@@ -278,9 +284,6 @@ table.natinstruments input[type=file] {
 	font-family: Calibri, Arial, Helvetica, sans-serif;
 }
 
-#supportrestrictdiv {
-	float: left;
-}
 
 #instruconsistentcommdiv {
 	float: left;
@@ -341,15 +344,6 @@ table.natinstruments select.supportrestrict {
 	display: block;
 }
 
-table.natinstruments textarea.supportrestrict {
-	width: 80%;
-	height: 85px;
-	resize: vertical;
-	font-size: 14px;
-	margin-top: 5px;
-	margin-left: 10px;
-	font-family: Calibri, Arial, Helvetica, sans-serif;
-}
 
 table.natinstruments textarea.otherlegistextarea {
 	width: 80%;
@@ -378,7 +372,7 @@ table.natinstruments textarea.natcomments {
 }
 
 #othercommentsrows td {
-	text-align: left;
+	text-align: center;
 }
 
 /* Styling for links to national instruments in Refworld.*/
@@ -418,6 +412,10 @@ input[type="file"]#uploadbutton {
 	display: none;
 }
 
+input[type="file"]#uploadbuttonintl{
+	display: none;
+}
+
 .browsefile {
 	font-size: 12px !important;
 	font-family: Calibri, Arial, Helvetica, sans-serif;
@@ -449,20 +447,6 @@ p.uploadfilesuccess {
 	margin-bottom: 8px;
 }
 
-/* Styling for the discrimination checkboxes. */
-.discriminationcheckboxes {
-	float: left;
-	margin-right: 5%;
-	display: inline;
-}
-
-.discriminationcheckboxes input {
-	border-top-style: none;
-	border-right-style: none;
-	border-bottom-style: solid;
-	border-width: 2px;
-	border-left-style: none;
-}
 
 /* Styling for the other legislation checkboxes. */
 .otherlegisradio {

@@ -12,6 +12,7 @@ public class FormatDataColC {
 		
 		String htmlDropDown = new String(""); 
 		String personsofconcern = countryObj.getPOC();
+		String POCs = countryObj.getPOCCountry();
 		String selectedOptionsDefault;
 		String selectedOptions[];
 		String dropDownOptions = ""
@@ -32,14 +33,33 @@ public class FormatDataColC {
 		}
 		
         //Create the HTML options.
-        htmlDropDown = htmlDropDown + ""
-				+ "<option "+selectedOptionsDefault +" disabled></option> \n"
-				+ "<option " +selectedOptions[0]+ ">Asylum Seekers</option> \n"
-				+ "<option " +selectedOptions[1]+ ">Internally Displaced Persons</option> \n"
-				+ "<option " +selectedOptions[2]+ ">Refugees</option> \n"
-				+ "<option " +selectedOptions[3]+ ">Returnees</option> \n"
-				+ "<option " +selectedOptions[4]+ ">Stateless Persons</option> \n";
+        htmlDropDown = htmlDropDown + "<option "+selectedOptionsDefault +" disabled></option> \n";
 		
+        if (POCs.contains("Asylum Seekers")){
+            htmlDropDown = htmlDropDown + "<option " +selectedOptions[0]+ ">Asylum Seekers</option> \n";
+        }
+        if (POCs.contains("Internally Displaced Persons")){
+            htmlDropDown = htmlDropDown + "<option " +selectedOptions[1]+ ">Internally Displaced Persons</option> \n";
+        }
+        if (POCs.contains("Refugees")){
+            htmlDropDown = htmlDropDown + "<option " +selectedOptions[2]+ ">Refugees</option> \n";
+        }
+        if (POCs.contains("Returnees")){
+            htmlDropDown = htmlDropDown + "<option " +selectedOptions[3]+ ">Returnees</option> \n";
+        }
+        if (POCs.contains("Stateless Persons")){
+            htmlDropDown = htmlDropDown + "<option " +selectedOptions[4]+ ">Stateless Persons</option> \n";
+        }
+        if (POCs.equals("")){
+            htmlDropDown = htmlDropDown + "<option " +selectedOptions[0]+ ">Asylum Seekers</option> \n";
+            htmlDropDown = htmlDropDown + "<option " +selectedOptions[1]+ ">Internally Displaced Persons</option> \n";
+            htmlDropDown = htmlDropDown + "<option " +selectedOptions[2]+ ">Refugees</option> \n";
+            htmlDropDown = htmlDropDown + "<option " +selectedOptions[3]+ ">Returnees</option> \n";
+            htmlDropDown = htmlDropDown + "<option " +selectedOptions[4]+ ">Stateless Persons</option> \n";
+        }
+
+        
+        
 		return htmlDropDown; 
 	}
 	
@@ -94,6 +114,11 @@ public class FormatDataColC {
     		String[] otherobsselected = FormatingUtilities.setSelectedDropDownOptions(AllRightsGrpObs[i][23], "significant,moderate,none,unknown");
     		String[] otherobsgrpselected = FormatingUtilities.setCheckedBoxes(otheroldgroups[0], "men,boys,oldermen,malesdisabilities,lgbtipersons,women,girls,olderwomen,femalesdisabilities");
 			String otherobsgrpsother = FormatingUtilities.formatObstacleGroups(i,otheroldgroups[1],"other","men,boys,oldermen,malesdisabilities,lgbtipersons,women,girls,olderwomen,femalesdisabilities");
+
+    		String[] other2oldgroups = FormatingUtilities.getNewOldGroups(AllRightsGrpObs[i][29]);
+    		String[] other2obsselected = FormatingUtilities.setSelectedDropDownOptions(AllRightsGrpObs[i][27], "significant,moderate,none,unknown");
+    		String[] other2obsgrpselected = FormatingUtilities.setCheckedBoxes(other2oldgroups[0], "men,boys,oldermen,malesdisabilities,lgbtipersons,women,girls,olderwomen,femalesdisabilities");
+			String other2obsgrpsother = FormatingUtilities.formatObstacleGroups(i,other2oldgroups[1],"other","men,boys,oldermen,malesdisabilities,lgbtipersons,women,girls,olderwomen,femalesdisabilities");
 
 			String rightsCategoryGroupName = RightsCategoriesManagement.getRightGroupName(AllRightsGrpObs[i][0]);
 
@@ -380,7 +405,7 @@ public class FormatDataColC {
 						+ "</tr> \n "	
 							
 						+ "<tr> \n "
-							+ "<td class='col1' >Other: "
+							+ "<td class='col1' >Other Obstacle 1 (Optional): "
 								+ "<input type='text' name='otherobsname["+ i +"]' value='"+ AllRightsGrpObs[i][22].replaceAll("'", "&#39;").replaceAll("\"", "&#34;")  +"' placeholder='Name of Obstacle'>\n"  
 							+ "</td> \n "
 							+ "<td class='col2'> \n"
@@ -416,7 +441,48 @@ public class FormatDataColC {
 									+ "<input class='addgroupbutton' type='button' name='addgroup' value='Add Group' arrayIndex='"+i+"' divname='otherobsdiv"+ i +"' inputCheckBoxName='otherobsgrps'><br> \n"
 								+ "</div> \n"
 							+ "</td> \n " 
+						+ "</tr> \n "	
+							
+						+ "<tr> \n "
+							+ "<td class='col1' >Other Obstacle 2 (Optional): "
+								+ "<input id='other2name' type='text' name='other2obsname["+ i +"]' value='"+ AllRightsGrpObs[i][26].replaceAll("'", "&#39;").replaceAll("\"", "&#34;")  +"' placeholder='Name of Obstacle'>\n"  
+							+ "</td> \n "
+							+ "<td class='col2'> \n"
+								+ "<select id='obstacleoptions' name='other2obsdrop["+ i +"]'> \n "
+									+ "<option value=''></option> \n "
+									+ "<option value='significant' "+ other2obsselected[0] +">Determinative obstacles, "
+										+ "effectively preventing access to the right.</option> \n "
+									+ "<option value='moderate' "+ other2obsselected[1] +">Some obstacles, "
+										+ "making access to the right a challenge.</option> \n "
+									+ "<option value='none' "+ other2obsselected[2] +">No or minor obstacles.</option> \n "
+									+ "<option value='unknown' "+ other2obsselected[3] +">Unknown</option> \n "
+								+ "</select> \n "
+							+ "</td> \n "
+							+ "<td class='col3'> \n"
+								+ "<textarea name='other2obscomments["+ i +"]'>" + AllRightsGrpObs[i][28] + "</textarea> \n "
+							+ "</td> \n " 	
+							+ "<td class='col4'> \n"
+							+ "<div id='groupaffected'> \n"
+								+ "<div id='other2obsdiv"+ i +"'> \n"
+									+ "<input type='checkbox' name='other2obsgrps["+ i +"]' value='women'  "+ other2obsgrpselected[5] +"><label>Women</label> <br> \n"
+									+ "<input type='checkbox' name='other2obsgrps["+ i +"]' value='men' "+ other2obsgrpselected[0] +"><label>Men</label>  <br> \n"
+									+ "<input type='checkbox' name='other2obsgrps["+ i +"]' value='girls'  "+ other2obsgrpselected[6] +"><label>Girls</label>  <br> \n"
+									+ "<input type='checkbox' name='other2obsgrps["+ i +"]' value='boys' "+ other2obsgrpselected[1] +" ><label>Boys</label>  <br> \n"	
+									+ "<input type='checkbox' name='other2obsgrps["+ i +"]' value='olderwomen'  "+ other2obsgrpselected[7] +"><label>Older Women</label>  <br> \n"
+									+ "<input type='checkbox' name='other2obsgrps["+ i +"]' value='oldermen'  "+ other2obsgrpselected[2] +"><label>Older Men</label>  <br> \n"
+									+ "<input type='checkbox' name='other2obsgrps["+ i +"]' value='femalesdisabilities'  "+ other2obsgrpselected[8] +"><label>Females With Disabilities</label> <br> \n"
+									+ "<input type='checkbox' name='other2obsgrps["+ i +"]' value='malesdisabilities'  "+ other2obsgrpselected[3] +"><label>Males With Disabilities</label> <br> \n"
+									+ "<input type='checkbox' name='other2obsgrps["+ i +"]' value='lgbtipersons'  "+ other2obsgrpselected[4] +"><label>LGBTI Persons</label> <br> \n "
+									+ ""+ other2obsgrpsother +""									
+								+ "</div> \n"
+								+ "</div> \n"
+								+ "<div id='addgroupaffectedbutton'> \n" 
+									+ "<input class='addgroupbutton' type='button' name='addgroup' value='Add Group' arrayIndex='"+i+"' divname='other2obsdiv"+ i +"' inputCheckBoxName='other2obsgrps'><br> \n"
+								+ "</div> \n"
+							+ "</td> \n " 
 						+ "</tr> \n "		
+					
+					
 					
 					+ "</tbody> \n "
 				+ "</table> \n "

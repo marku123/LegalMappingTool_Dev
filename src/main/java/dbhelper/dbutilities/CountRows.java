@@ -34,6 +34,35 @@ public class CountRows {
 		return rowCount;
 
 	}
+	
+	
+	//Count the number of unique instruments associated with a country. 
+	static public int countInstrumentsCountry(String database, String country) {
+		Connection c = MySql.connect();
+		int rowCount = 0;
+		
+		try {
+
+			String sql = "SELECT Count(DISTINCT InstrumentName) AS Count FROM "+database+" WHERE CountryName = ? ";
+			PreparedStatement pst = c.prepareStatement(sql);
+			pst.setString(1, country);
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				rowCount = rs.getInt("Count");
+			}
+			rs.close();
+			pst.close();
+
+			MySql.close(c);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return rowCount;
+
+	}
+	
 
 	static public int countRowsRightsGroups(String database, String rightsgroups, String country) {
 		Connection c = MySql.connect();

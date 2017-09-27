@@ -23,7 +23,8 @@
 
       String rightsGroupDropDownOptions = FormatDataColB.formatRightsGroupsDropDown(countryObj); 
       String rightgroup = countryObj.getRightsGroup();
-      
+      String POCs = countryObj.getPOCCountry();
+
       String intlInstrumentsTables = FormatDataColB.formatIntlInstrumentTables(countryObj);
       String natlInstrumentsTables = FormatDataColB.formatNationalInstrumentTables(countryObj);
 
@@ -67,9 +68,9 @@
                
                    <%=intlInstrumentsTables%>       
                <br>
-               <div id="" class="addinstrument">
+               <!-- <div id="" class="addinstrument">
                   <input onclick="intlInstruAddRow();" type="button" value="Add An Instrument" />  
-               </div>
+               </div> -->
                                 
                <br><br>
              
@@ -86,10 +87,6 @@
                </p>
                    <%=natlInstrumentsTables%> 
                <br>
-               <div class="addinstrument">
-                  <input type="button" value="Add An Instrument" onclick="natlInstruAddRow('<%=rightgroup%>');" />  
-               </div>
-                                
                <br><br>
              
                <div class="savebuttonandtooltip">
@@ -97,6 +94,8 @@
                   <span class="tooltiptext">All changes on page will be saved.</span>
                </div> 
                <input name="countryNameForFileUpload" type="hidden" value="<%=countryName%>">
+               <input type='hidden' name='countrypocs' value='<%=POCs%>'>           
+               
             </div>
 
 

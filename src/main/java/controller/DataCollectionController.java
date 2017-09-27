@@ -53,21 +53,6 @@ public class DataCollectionController extends HttpServlet {
 		if (action.equals("datacollection")) {
 	
 			if (savedata != null) {
-				UpdateA1DB.updateCountryLegalFrameworkConstIntro(request);
-				UpdateA1DB.updateLegalFrameworkConstAppPOC(request);
-
-
-			} 
-			countryObj = QueryA1DB.getLegalFrameworkConstIntro(countryObj);
-			countryObj = QueryA1DB.getLegalFrameworkConstAppPOC(countryObj);
-
-			
-			request.setAttribute("countryObj", countryObj);
-			page = "/pages/datacollection/datacollection.jsp";
-		
-		} else if (action.equals("datacollection_a")) {
-	
-			if (savedata != null) {
 
 				UpdateA2DB.updateCountryA2Intro(request);
 				UpdateA2DB.updateA2JudicialEntities(request);
@@ -82,6 +67,23 @@ public class DataCollectionController extends HttpServlet {
 			countryObj = QueryA2DB.getLegalFrameworkTradMechanisms(countryObj);
 			
 			request.setAttribute("countryObj", countryObj);
+			page = "/pages/datacollection/datacollection.jsp";
+		
+		} else if (action.equals("datacollection_a")) {
+	
+			String rightsgroup = StringUtils.defaultString(request.getParameter("rightsgroup"),"");
+			countryObj.setRightsGroup(rightsgroup);                        
+			
+			if (savedata != null) {
+			
+				UpdateBDB.updateB1InternationalIntruRepository(request);				
+				UpdateBDB.updateB2NationalIntruRepository(request);
+			} 
+
+			countryObj = QueryBDB.getRightsGroupsIntlIntrumentsRepository(countryObj);
+			countryObj = QueryBDB.getRightsGroupsNatlIntrumentsRepository(countryObj);
+
+			request.setAttribute("countryObj", countryObj);
 			page = "/pages/datacollection/datacollection_a.jsp";
 			
 		} else if (action.equals("datacollection2")) {
@@ -89,14 +91,15 @@ public class DataCollectionController extends HttpServlet {
 			countryObj.setRightsGroup(rightsgroup);                        
 			
 			if (savedata != null) {
-			
 				UpdateBDB.updateB1InternationalIntru(request);				
 				UpdateBDB.updateB2NationalIntru(request);
-				
 			} 
 
 			countryObj = QueryBDB.getRightsGroupsIntlIntruments(countryObj);
 			countryObj = QueryBDB.getRightsGroupsNatlIntruments(countryObj);
+			//countryObj = QueryA2DB.getCountryPOCs(countryObj);
+			countryObj = QueryA2DB.getLegalFrameworkSystemIntro(countryObj);
+
 
 			request.setAttribute("countryObj", countryObj);
 			page = "/pages/datacollection/datacollection2.jsp";
@@ -112,7 +115,10 @@ public class DataCollectionController extends HttpServlet {
 			
 			countryObj = QueryCDB.getPOCObstacles(countryObj);
 			countryObj = QueryCDB.getPOCObstacleDocumentation(countryObj);
-			
+			//countryObj = QueryA2DB.getCountryPOCs(countryObj);
+			countryObj = QueryA2DB.getLegalFrameworkSystemIntro(countryObj);
+
+
 			request.setAttribute("countryObj", countryObj);
 			page = "/pages/datacollection/datacollection3.jsp";
 		

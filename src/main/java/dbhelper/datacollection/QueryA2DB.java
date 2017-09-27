@@ -19,7 +19,7 @@ public class QueryA2DB {
 		
 		try {
 
-			String sql = "SELECT CommonCivilPlural, PluralText, FederalState, TradMechComments, Comments "
+			String sql = "SELECT POC, POCComments, CommonCivilPlural, PluralText, FederalState, TradMechComments, Comments "
 					+ "FROM legalframework_a2_legalsystem_intro WHERE CountryName = ? ";
 
 			PreparedStatement pst = c.prepareStatement(sql);
@@ -29,6 +29,8 @@ public class QueryA2DB {
 			//Test to see if the country exists. If  the country doesn't exist then set everything to an empty string. 
 			if (rs.isBeforeFirst()) {
 				while (rs.next()) {
+					countryObj.setPOCCountry(StringUtils.defaultString(rs.getString("POC"), ""));
+					countryObj.setPOCCommentsCountry(StringUtils.defaultString(rs.getString("POCComments"), ""));
 					countryObj.setCommonCivilPlural(StringUtils.defaultString(rs.getString("CommonCivilPlural"), ""));
 					countryObj.setPluralText(StringUtils.defaultString(rs.getString("PluralText"), ""));
 					countryObj.setFederalState(StringUtils.defaultString(rs.getString("FederalState"), ""));
@@ -37,6 +39,8 @@ public class QueryA2DB {
 
 				}
 			} else {
+					countryObj.setPOCCountry("");
+					countryObj.setPOCCommentsCountry(StringUtils.defaultString(rs.getString(""), ""));
 					countryObj.setCommonCivilPlural("");
 					countryObj.setPluralText("");
 					countryObj.setFederalState("");
@@ -52,11 +56,69 @@ public class QueryA2DB {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return countryObj;
-
 	}
 	
+	/*public static Country getCountryPOCs(Country countryObj) {
+		Connection c = MySql.connect();
+		String countryName = countryObj.getCountryName();
+		String sql = "";
+		PreparedStatement pst;
+		ResultSet rs;
+		String sql2 = ""; 
+		PreparedStatement pst2;
+		ResultSet rs2;
+		
+		try {
+
+			//Get the persons of concern.
+			sql = "SELECT POC "
+					+ "FROM legalframework_a2_legalsystem_intro WHERE CountryName = ? ";
+
+			pst = c.prepareStatement(sql);
+			pst.setString(1, countryName);
+			rs = pst.executeQuery();
+			
+			//Test to see if the country exists. If  the country doesn't exist then set everything to an empty string. 
+			if (rs.isBeforeFirst()) {
+				while (rs.next()) {
+					countryObj.setPOCCountry(StringUtils.defaultString(rs.getString("POC"), ""));
+				}
+			} else {
+					countryObj.setPOCCountry("");
+			}
+			rs.close();
+			pst.close();
+
+			
+			//Get the comments on the persons of concern.
+			sql2 = "SELECT POCComments "
+					+ "FROM legalframework_a2_legalsystem_intro WHERE CountryName = ? ";
+
+			pst2 = c.prepareStatement(sql2);
+			pst2.setString(1, countryName);
+			rs2 = pst2.executeQuery();
+			
+			//Test to see if the country exists. If  the country doesn't exist then set everything to an empty string. 
+			if (rs2.isBeforeFirst()) {
+				while (rs2.next()) {
+					countryObj.setPOCCommentsCountry(StringUtils.defaultString(rs2.getString("POCComments"), ""));
+				}
+			} else {
+					countryObj.setPOCCommentsCountry("");
+			}
+			
+			System.out.println("here are the comments: " + countryObj.getPOCCommentsCountry());
+			rs2.close();
+			pst2.close();
+			
+			MySql.close(c);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return countryObj;
+	}*/
 	
 	public static Country getLegalFrameworkJudicialEntities(Country countryObj) {
 		Connection c = MySql.connect();
@@ -81,11 +143,11 @@ public class QueryA2DB {
 				while (rs.next()) {
 					
 					AllEntitiesCourts[i][0] = StringUtils.defaultString(rs.getString("JudicialEntityCourt"), "");
-					AllEntitiesCourts[i][1] = StringUtils.defaultString(rs.getString("RefugessCanAccess"), "");
+					AllEntitiesCourts[i][1] = StringUtils.defaultString(rs.getString("AsylumCanAccess"), "");
 					AllEntitiesCourts[i][2] = StringUtils.defaultString(rs.getString("IDPCanAccess"), "");
-					AllEntitiesCourts[i][3] = StringUtils.defaultString(rs.getString("ReturneesCanAccess"), "");
-					AllEntitiesCourts[i][4] = StringUtils.defaultString(rs.getString("StatelessCanAccess"), "");
-					AllEntitiesCourts[i][5] = StringUtils.defaultString(rs.getString("AsylumCanAccess"), "");
+					AllEntitiesCourts[i][3] = StringUtils.defaultString(rs.getString("RefugessCanAccess"), "");
+					AllEntitiesCourts[i][4] = StringUtils.defaultString(rs.getString("ReturneesCanAccess"), "");
+					AllEntitiesCourts[i][5] = StringUtils.defaultString(rs.getString("StatelessCanAccess"), "");
 					
 					i++;
 				}		
@@ -137,13 +199,13 @@ public class QueryA2DB {
 			//Test to see if the country exists. If  the country doesn't exist then set everything to an empty string. 
 			if (rs.isBeforeFirst()) {
 				while (rs.next()) {
-					
+
 					AllAdminEntities[i][0] = StringUtils.defaultString(rs.getString("AdminEntityName"), "");
-					AllAdminEntities[i][1] = StringUtils.defaultString(rs.getString("RefugessCanAccess"), "");
+					AllAdminEntities[i][1] = StringUtils.defaultString(rs.getString("AsylumCanAccess"), "");
 					AllAdminEntities[i][2] = StringUtils.defaultString(rs.getString("IDPCanAccess"), "");
-					AllAdminEntities[i][3] = StringUtils.defaultString(rs.getString("ReturneesCanAccess"), "");
-					AllAdminEntities[i][4] = StringUtils.defaultString(rs.getString("StatelessCanAccess"), "");
-					AllAdminEntities[i][5] = StringUtils.defaultString(rs.getString("AsylumCanAccess"), "");
+					AllAdminEntities[i][3] = StringUtils.defaultString(rs.getString("RefugessCanAccess"), "");
+					AllAdminEntities[i][4] = StringUtils.defaultString(rs.getString("ReturneesCanAccess"), "");
+					AllAdminEntities[i][5] = StringUtils.defaultString(rs.getString("StatelessCanAccess"), "");
 					
 					i++;
 				}		
@@ -197,11 +259,11 @@ public class QueryA2DB {
 				while (rs.next()) {
 					
 					AllTradMech[i][0] = StringUtils.defaultString(rs.getString("TradMechName"), "");
-					AllTradMech[i][1] = StringUtils.defaultString(rs.getString("RefugessCanAccess"), "");
+					AllTradMech[i][1] = StringUtils.defaultString(rs.getString("AsylumCanAccess"), "");
 					AllTradMech[i][2] = StringUtils.defaultString(rs.getString("IDPCanAccess"), "");
-					AllTradMech[i][3] = StringUtils.defaultString(rs.getString("ReturneesCanAccess"), "");
-					AllTradMech[i][4] = StringUtils.defaultString(rs.getString("StatelessCanAccess"), "");
-					AllTradMech[i][5] = StringUtils.defaultString(rs.getString("AsylumCanAccess"), "");
+					AllTradMech[i][3] = StringUtils.defaultString(rs.getString("RefugessCanAccess"), "");
+					AllTradMech[i][4] = StringUtils.defaultString(rs.getString("ReturneesCanAccess"), "");
+					AllTradMech[i][5] = StringUtils.defaultString(rs.getString("StatelessCanAccess"), "");
 					
 					i++;
 				}		

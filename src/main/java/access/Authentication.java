@@ -19,7 +19,7 @@ public class Authentication {
 		if (authenticated == null || !authenticated) {
 			response.sendRedirect("Login");
 		}
-		System.out.println("Authenticated:" + authenticated + "\n\n");
+		//System.out.println("Authenticated:" + authenticated + "\n\n");
 
 		return authenticated;
 
@@ -42,10 +42,10 @@ public class Authentication {
 			finalEditPermission = true;
 		}
 
-		System.out.println("Authenticated:" + authenticated);
+		/*System.out.println("Authenticated:" + authenticated);
 		System.out.println("Edit Persmission:" + editPermission);
 		System.out.println("Country that can be edited: " + countryToEdit);
-		System.out.println("finalEditPermission: " + finalEditPermission + "\n\n");
+		System.out.println("finalEditPermission: " + finalEditPermission + "\n\n");*/
 
 
 		return finalEditPermission;

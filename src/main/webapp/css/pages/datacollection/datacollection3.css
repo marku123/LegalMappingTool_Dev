@@ -110,7 +110,7 @@ table.rightsgrpobs tbody {
 	display: none;
 }
 
-}
+
 table.rightsgrpobs td.col1 {
 	width: 20%;
 }
@@ -251,7 +251,7 @@ textarea.narrativeanswers {
 	margin-left: 20px;
 }
 
-/*Styling for "other" input field.*/
+/*Styling for "other" input fields.*/
 table.rightsgrpobs input[type=text] {
 	border-top-style: none;
 	border-right-style: none;
@@ -260,6 +260,16 @@ table.rightsgrpobs input[type=text] {
 	border-color: #dddddd;
 	width: 100%;
 	background-color: #efefef;
+}
+
+#other2name {
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: solid;
+	border-left-style: none;
+	border-color: #dddddd;
+	width: 100%;
+	background-color: #ffffff;
 }
 
 /*Styling for Rights Category Subcategories.*/

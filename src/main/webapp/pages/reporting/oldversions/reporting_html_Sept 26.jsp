@@ -21,13 +21,12 @@
       Country countryObj = (Country) request.getAttribute("countryObj");
       String countryName = countryObj.getCountryName();
       String countryNameForMenu = countryName.replaceAll("'", "%27").replaceAll("\"", "%22").replaceAll("&", "%26"); 
-    
-      String POCs = countryObj.getPOCCountry();
 
+   
       String nameOfCurrentFile = this.getClass().getSimpleName();
 
       //A.1 The country's constitution
-      /* String constYesNo = FormatingUtilities.capitalizeString(countryObj.getConstitutionYesNo());
+      String constYesNo = FormatingUtilities.capitalizeString(countryObj.getConstitutionYesNo());
       String constEffectDate = countryObj.getConstitutionDate();
       String constAmendYesNo = FormatingUtilities.capitalizeString(countryObj.getConstitutionAmendYesNo());
       String constAmendDate = countryObj.getConstitutionAmendDate();
@@ -35,8 +34,7 @@
       String constLinkOrig = countryObj.getConstLinkOrig();
       String billLinkFrenEng = countryObj.getBillLinkFrenEng();
       String billLinkOrig = countryObj.getBillLinkOrig();
-      
-      
+
       //Applicability of Constitution to POCs Table
       String constAppToPoC[][] = countryObj.getConstAppToPoC();
       String POC1Checked = FormatingUtilities.capitalizeString(constAppToPoC[0][0].replace("null", ""));
@@ -49,12 +47,9 @@
       String POC2Comment = constAppToPoC[1][1].replace("null", "");
       String POC3Comment = constAppToPoC[2][1].replace("null", "");
       String POC4Comment = constAppToPoC[3][1].replace("null", "");
-      String POC5Comment = constAppToPoC[4][1].replace("null", "");*/
+      String POC5Comment = constAppToPoC[4][1].replace("null", "");
 
       //A2 Intro
-      String POCsCountry = countryObj.getPOCCountry().replaceAll(",", ", ");
-      String POCsCommentsCountry = FormatingUtilities.formatAddBreakIfNotEmpty(countryObj.getPOCCommentsCountry());
-
       String commonCivilPlural = FormatingUtilities.capitalizeString(countryObj.getCommonCivilPlural());
       String pluralText = countryObj.getPluralText();
       String federalState = FormatingUtilities.capitalizeString(countryObj.getFederalState());
@@ -168,7 +163,7 @@
          <h2 id="SectionA">A. THE LEGAL PROTECTION FRAMEWORK</h2>
 <!--***************A2 The Country's Legal System**************-->
 
-         <%-- <h3  id="A1">A.1 The Country's Constitution</h3>
+         <h3  id="A1">A.1 The Country's Constitution</h3>
 
          <p>
             1. The country has a constitution:
@@ -246,22 +241,14 @@
                </tr>
             </tbody>
          </table>
-         <br> <br> --%>
+         <br> <br>
 
 <!--***************A2 The Country's Legal System**************-->
 
-         <h3 id="A2">A.1 The Country's Legal System and Population Groups</h3>
-
-
-         <p>
-            1. Population groups that are in the country: <%=POCsCountry%>
-         </p><br>
-         <p class="legalsystemindent">
-                              <%=POCsCommentsCountry%>
-         </p>
+         <h3 id="A2">A.2 The Country's Legal System</h3>
 
          <p>
-            2. Type of legal system:
+            1. Type of legal system:
             <%=commonCivilPlural%>
          </p>
          <p class="legalsystemindent">
@@ -269,29 +256,72 @@
          </p>
          <br>
          <p>
-            3. Political and Administrative Structure:
+            2. Political and Administrative Structure:
             <%=federalState%>
          </p>
          <br>
 
-         <p>4. Judicial entities/courts:</p>
-         <br>
-               <%=judicialEntitiesTable%>
-         <br>
-         <p>5. Administrative entities:</p>
-         <br>
-               <%=adminEntitiesTable%>
+         <p>3. Judicial entities/courts:</p>
          <br>
 
-         <p>6. Traditional mechanisms:</p>
+         <table class="a2Tables">
+            <thead>
+               <tr>
+                  <th>Judicial Entity/Court</th>
+                  <th>Refugees Can Formally Access the Entity/Court</th>
+                  <th>IDPs Can Formally Access the Entity/Court</th>
+                  <th>Returnees Can Formally Access the Entity/Court</th>
+                  <th>Stateless Persons Can Formally Access the Entity/Court</th>
+                  <th>Asylum Seekers Can Formally Access the Entity/Court</th>
+               </tr>
+            </thead>
+            <tbody>
+               <%=judicialEntitiesTable%>
+            </tbody>
+         </table>
          <br>
+         <p>4. Administrative entities:</p>
+         <br>
+         <table class="a2Tables">
+            <thead>
+               <tr>
+                  <th>Administrative Entities</th>
+                  <th>Refugees Can Formally Access the Entity</th>
+                  <th>IDPs Can Formally Access the Entity</th>
+                  <th>Returnees Can Formally Access the Entity</th>
+                  <th>Stateless Persons Can Formally Access the Entity</th>
+                  <th>Asylum Seekers Can Formally Access the Entity</th>
+               </tr>
+            </thead>
+            <tbody>
+               <%=adminEntitiesTable%>
+            </tbody>
+         </table>
+         <br>
+
+         <p>5. Traditional mechanisms:</p>
+         <br>
+         <table class="a2Tables">
+            <thead>
+               <tr>
+                  <th>Traditional Mechanisms</th>
+                  <th>Refugees Can Formally Access the Entity</th>
+                  <th>IDPs Can Formally Access the Entity</th>
+                  <th>Returnees Can Formally Access the Entity</th>
+                  <th>Stateless Persons Can Formally Access the Entity</th>
+                  <th>Asylum Seekers Can Formally Access the Entity</th>
+               </tr>
+            </thead>
+            <tbody>
                <%=tradMechTable%>
+            </tbody>
+         </table>
          <br>
          <p class="legalsystemindent">
             <%=tradmechcomments%>
          </p>
          <br>
-         <p>7. Additional comments on the formal legal system:</p>
+         <p>6. Additional comments on the formal legal system:</p>
          <br>
          <p class="legalsystemindent">
             <%=comments%>
@@ -301,7 +331,7 @@
 
 <!--***************A3 Rights Protection**************-->
 
-         <h3  id="A3">A.2 Rights Protection</h3>
+         <h3  id="A3">A.3 Rights Protection</h3>
 
          <%=intlInstrumentsTables%>
          <br>
@@ -366,7 +396,6 @@
          <br><br>
          
 <!--***************End Analytics**************-->
-<input type='hidden' name='countrypocs' value='<%=POCs%>'>           
          
 
       </div>

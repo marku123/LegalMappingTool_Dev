@@ -32,7 +32,7 @@ public class QueryAnalyticsCObstacles {
 		
 		//Determine if there is any data missing in the obstacles table that the Analytics need.
 		countryObj = getPOCObstaclesMissingData(countryObj);
-
+		
 		return countryObj;
 
 	}
@@ -75,18 +75,23 @@ public class QueryAnalyticsCObstacles {
 					"\n" + 
 					"ROUND((SUM(CASE DiscrimObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end))/\n" + 
 					"(COUNT(CASE DiscrimObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1  end)),2) AS DISCRIMAVG,\n" + 
-					"\n" +  					
-					"ROUND((SUM(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end))/\n" + 
-					"(COUNT(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1  end)),2) AS OTHERAVG,\n" + 
-					"\n" +  
+					"\n" +
+					"ROUND(((SUM(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)) +\n" + 
+					"(SUM(CASE Other2Obs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)))\n" + 
+					"/\n" +  
+					"((COUNT(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1  end)) +\n" + 
+					"(COUNT(CASE Other2Obs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1  end)))\n" + 
+					",2) AS OTHERAVG,\n" +
+					"\n" +
 					"ROUND(((SUM(CASE LegalStatusObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1 ELSE 0 end)+ \n" + 
 					"SUM(CASE FinancialObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"SUM(CASE GeoObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"SUM(CASE DocObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"SUM(CASE AdminObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"SUM(CASE SecObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
-					"SUM(CASE DiscrimObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 					
-					"SUM(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end))/\n" + 
+					"SUM(CASE DiscrimObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" +
+					"SUM(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 					
+					"SUM(CASE Other2Obs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end))/\n" + 
 					"(COUNT(CASE LegalStatusObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 end)+\n" + 
 					"COUNT(CASE FinancialObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 end)+\n" + 
 					"COUNT(CASE GeoObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1  end)+\n" + 
@@ -94,7 +99,8 @@ public class QueryAnalyticsCObstacles {
 					"COUNT(CASE AdminObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1  end)+\n" + 
 					"COUNT(CASE SecObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 end)+\n" + 
 					"COUNT(CASE DiscrimObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 end)+\n" + 
-					"COUNT(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 end)\n" + 
+					"COUNT(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 end)+\n" + 
+					"COUNT(CASE Other2Obs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 end)\n" + 
 					")),2) AS ALLOBSTACLES\n" + 
 					"\n" + 
 					"\n" + 
@@ -103,7 +109,7 @@ public class QueryAnalyticsCObstacles {
 					"GROUP BY POC \n" + 
 					"ORDER BY POC ";
 			
-		
+
 			//Select statement for all persons of concern. 
 
 			String sql2 = "SELECT  \n" + 
@@ -127,18 +133,23 @@ public class QueryAnalyticsCObstacles {
 					"\n" + 
 					"ROUND((SUM(CASE DiscrimObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end))/\n" + 
 					"(COUNT(CASE DiscrimObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1  end)),2) AS DISCRIMAVG,\n" + 
-					"\n" + 					
-					"ROUND((SUM(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end))/\n" + 
-					"(COUNT(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1  end)),2) AS OTHERAVG,\n" + 
-					"\n" + 					
+					"\n" +
+					"ROUND(((SUM(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)) +\n" + 
+					"(SUM(CASE Other2Obs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)))\n" + 
+					"/\n" +  
+					"((COUNT(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1  end)) +\n" + 
+					"(COUNT(CASE Other2Obs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1  end)))\n" + 
+					",2) AS OTHERAVG,\n" +
+					"\n" +				
 					"ROUND(((SUM(CASE LegalStatusObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+ \n" + 
 					"SUM(CASE FinancialObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"SUM(CASE GeoObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"SUM(CASE DocObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"SUM(CASE AdminObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"SUM(CASE SecObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
-					"SUM(CASE DiscrimObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
-					"SUM(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end))/\n" + 
+					"SUM(CASE DiscrimObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" +
+					"SUM(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
+					"SUM(CASE Other2Obs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end))/\n" + 
 					"(COUNT(CASE LegalStatusObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 end)+\n" + 
 					"COUNT(CASE FinancialObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 end)+\n" + 
 					"COUNT(CASE GeoObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1  end)+\n" + 
@@ -146,13 +157,14 @@ public class QueryAnalyticsCObstacles {
 					"COUNT(CASE AdminObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1  end)+\n" + 
 					"COUNT(CASE SecObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 end)+\n" + 
 					"COUNT(CASE DiscrimObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 end)+\n" + 
-					"COUNT(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 end)\n" + 
+					"COUNT(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 end)+\n" + 
+					"COUNT(CASE Other2Obs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 end)\n" + 
 					")),2) AS ALLOBSTACLES\n" + 
 					"\n" + 
 					"\n" + 
 					"FROM obstacles_c1 \n" + 
 					"WHERE CountryName = ? \n"; 
-		
+			
 			PreparedStatement pst = c.prepareStatement(sql);
 			PreparedStatement pst2 = c.prepareStatement(sql2);
 			pst.setString(1, countryName);
@@ -241,8 +253,7 @@ public class QueryAnalyticsCObstacles {
 								+ "GeoObs = '' OR "
 								+ "AdminObs = '' OR "
 								+ "SecObs = '' OR "
-								+ "DiscrimObs = '' OR "
-								+ "OtherNameObs = '')) AS MissingData"; 
+								+ "DiscrimObs = '')) AS MissingData"; 
 
 			PreparedStatement pst = c.prepareStatement(sql);
 			pst.setString(1, countryName);
@@ -309,7 +320,8 @@ public class QueryAnalyticsCObstacles {
 					"(CASE AdminObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"(CASE SecObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"(CASE DiscrimObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
-					"(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end))\n" + 
+					"(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
+					"(CASE Other2Obs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end))\n" + 
 					"/\n" + 
 					"\n" + 
 					"((CASE LegalStatusObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
@@ -319,7 +331,8 @@ public class QueryAnalyticsCObstacles {
 					"(CASE AdminObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
 					"(CASE SecObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
 					"(CASE DiscrimObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
-					"(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)\n" + 
+					"(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
+					"(CASE Other2Obs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)\n" + 
 					"),2) AS AVERAGEALLOBSTACLES\n" + 
 					"\n" + 
 					"FROM obstacles_c1 WHERE CountryName = ? ORDER BY POC,RightsGroup; ";
@@ -395,7 +408,8 @@ public class QueryAnalyticsCObstacles {
 					"(CASE AdminObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"(CASE SecObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"(CASE DiscrimObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
-					"(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)) AS SUMOFRESPONSES\n" + 
+					"(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
+					"(CASE Other2Obs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)) AS SUMOFRESPONSES\n" + 
 					",\n" + 
 					"\n" + 
 					"((CASE LegalStatusObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
@@ -405,7 +419,8 @@ public class QueryAnalyticsCObstacles {
 					"(CASE AdminObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
 					"(CASE SecObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
 					"(CASE DiscrimObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
-					"(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)\n" + 
+					"(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
+					"(CASE Other2Obs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)\n" + 
 					")AS COUNTOFRESPONSES\n" + 
 					"\n" + 
 					"FROM obstacles_c1 WHERE CountryName = ? ORDER BY POC,RightsGroup) AS ALLRIGHTSGROUPDATANOAVERAGE\n" + 
@@ -481,7 +496,8 @@ public class QueryAnalyticsCObstacles {
 					"(CASE AdminObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"(CASE SecObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"(CASE DiscrimObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
-					"(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)\n" + 
+					"(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
+					"(CASE Other2Obs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)\n" + 
 					" ) AS SUMOFRESPONSES\n" + 
 					",\n" + 
 					"\n" + 
@@ -491,8 +507,9 @@ public class QueryAnalyticsCObstacles {
 					"(CASE GeoObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
 					"(CASE AdminObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
 					"(CASE SecObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
-					"(CASE DiscrimObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
-					"(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)\n" + 
+					"(CASE DiscrimObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" +
+					"(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
+					"(CASE Other2Obs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)\n" + 
 					")AS COUNTOFRESPONSES\n" + 
 					"\n" + 
 					"FROM obstacles_c1 WHERE CountryName = ? ORDER BY POC,RightsGroup) AS ALLRIGHTSGROUPDATANOAVERAGE\n" + 
@@ -572,7 +589,8 @@ public class QueryAnalyticsCObstacles {
 					"(CASE AdminObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"(CASE SecObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
 					"(CASE DiscrimObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
-					"(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)\n" + 
+					"(CASE OtherObs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)+\n" + 
+					"(CASE Other2Obs WHEN 'significant' THEN 3 WHEN 'moderate' THEN 2 WHEN 'none' THEN 1  ELSE 0 end)\n" + 
 					") AS SUMOFRESPONSES\n" + 
 					",\n" + 
 					"\n" + 
@@ -583,7 +601,8 @@ public class QueryAnalyticsCObstacles {
 					"(CASE AdminObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
 					"(CASE SecObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
 					"(CASE DiscrimObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
-					"(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)\n" + 
+					"(CASE OtherObs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)+\n" + 
+					"(CASE Other2Obs WHEN 'significant' THEN 1 WHEN 'moderate' THEN 1 WHEN 'none' THEN 1 ELSE 0 end)\n" + 
 					")AS COUNTOFRESPONSES\n" + 
 					"\n" + 
 					"FROM obstacles_c1 WHERE CountryName = ? ORDER BY POC,RightsGroup) AS ALLRIGHTSGROUPDATANOAVERAGE\n" + 
@@ -620,4 +639,8 @@ public class QueryAnalyticsCObstacles {
 		return countryObj;
 	}
 	
+	
+	
+
+
 }

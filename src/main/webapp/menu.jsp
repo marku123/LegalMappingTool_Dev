@@ -21,10 +21,10 @@
          <!--Section A: The Legal Protection Framework. -->
  
          <li id='menu-country-datacollection-2'><a href='/LegalMappingTool_Dev/DataCollectionController?action=datacollection&country=<%=countryNameForMenu%>'> A. The Legal Protection Framework</a></li>
-         <li class="submenu" id='menu-country-datacollection-2_1'><a href="#A1">A.1 The Country's Constitution</a></li>
-         <li class="submenu" id='menu-country-datacollection-2_1_a'><a href='/LegalMappingTool_Dev/DataCollectionController?action=datacollection&country=<%=countryNameForMenu%>&anchor=%23A1'>A.1 The Country's Constitution</a></li>
-         <li class="submenu" id='menu-country-datacollection-2_2'><a href="#A2">A.2 The Country's Legal System</a></li>
-         <li class="submenu" id='menu-country-datacollection-2_2_a'><a href='/LegalMappingTool_Dev/DataCollectionController?action=datacollection_a&country=<%=countryNameForMenu%>&anchor=%23A2'>A.2 The Country's Legal System</a></li>
+         <li class="submenu" id='menu-country-datacollection-2_1'><a href="#A1">A.1 Legal System and Population Groups</a></li>
+         <li class="submenu" id='menu-country-datacollection-2_1_a'><a href='/LegalMappingTool_Dev/DataCollectionController?action=datacollection&country=<%=countryNameForMenu%>&anchor=%23A1'>A.1 Legal System and Population Groups</a></li>
+         <li class="submenu" id='menu-country-datacollection-2_2'><a href="#A2">A.2 Legal Instrument Repository </a></li>
+         <li class="submenu" id='menu-country-datacollection-2_2_a'><a href='/LegalMappingTool_Dev/DataCollectionController?action=datacollection_a&country=<%=countryNameForMenu%>&anchor=%23A2'>A.2 Legal Instrument Repository</a></li>
          <li class="submenu" id='menu-country-datacollection-3'><a href='/LegalMappingTool_Dev/DataCollectionController?action=datacollection2&country=<%=countryNameForMenu%>'>A.3 Rights Protection</a></li>
          
          <!--Section B: Obstacles to Enjoying Rights -->

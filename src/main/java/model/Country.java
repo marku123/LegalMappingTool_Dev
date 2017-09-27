@@ -17,6 +17,8 @@ public class Country {
 	private String ConstAppToPoC[][] = new String[5][2];
 	
 	//A2 variables.
+	private String POCCountry;
+	private String POCCommentsCountry;
 	private String CommonCivilPlural;
 	private String PluralText;
 	private String FederalState;
@@ -67,9 +69,18 @@ public class Country {
 
 
 
-
-	
-	
+	public String getPOCCommentsCountry() {
+		return POCCommentsCountry;
+	}
+	public void setPOCCommentsCountry(String pOCCommentsCountry) {
+		POCCommentsCountry = pOCCommentsCountry;
+	}
+	public String getPOCCountry() {
+		return POCCountry;
+	}
+	public void setPOCCountry(String pOCs) {
+		POCCountry = pOCs;
+	}
 	public PersonsOfConcern[] getPersonsOfConcern() {
 		return PersonsOfConcern;
 	}

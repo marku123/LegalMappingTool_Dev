@@ -272,19 +272,7 @@ public class FormatingUtilities {
 
 	}
 
-	public static String capitalizeString(String upcapString) {
 
-		String capString = "";
-		
-		
-	    if (!(upcapString == null || upcapString.length() == 0)) {
-	    
-	    	capString = upcapString.substring(0, 1).toUpperCase() + upcapString.substring(1);
-	    }
-	    
-		return capString;
-
-	}
 	
 	
 	//Format the grounds on which an instrument discriminates for the National Instruments section of the reports. 
@@ -364,12 +352,52 @@ public class FormatingUtilities {
 	//This function is called by FormatDataColBReporting.java 
 	public static String formatReportCommentNatInstru(String Title, String Text) {
 		String finalString = "";
-		
 	   if(!(Text.equals(""))){
 		   finalString = "<br><br>" + Title + " " + Text;
 	   } 
-		   
 		return finalString;
+	}
+	
+	
+	//Format the comments boxes in the National Instruments section of the reports. 
+	//This function is called by FormatDataColBReporting.java 
+	public static String formatInstrumentData(String Text) {
+		String finalString = "";
+	   if((Text.equals("notaparty"))){
+		   finalString = "Not a Party";
+	   } else if((Text.equals("part"))){
+		   finalString = "Part(s)<br><br>";
+	   } else if((Text.equals("all"))){
+		   finalString = "All<br><br>";
+	   } else {
+		   finalString = capitalizeString(Text);
+	   }
+	   
+		return finalString;
+	}
+	
+	public static String capitalizeString(String upcapString) {
+
+		String capString = "";
+		
+		
+	    if (!(upcapString == null || upcapString.length() == 0)) {
+	    
+	    	capString = upcapString.substring(0, 1).toUpperCase() + upcapString.substring(1);
+	    }
+	    
+		return capString;
 
 	}
+	
+	//Format the comments boxes in the National Instruments section of the reports. 
+	//This function is called by FormatDataColBReporting.java 
+	public static String formatAddBreakIfNotEmpty(String Text) {
+		String finalString = "";
+	   if(!(Text.equals(""))){
+		   finalString = Text + "<br><br>";
+	   } 
+		return finalString;
+	}
+	
 }

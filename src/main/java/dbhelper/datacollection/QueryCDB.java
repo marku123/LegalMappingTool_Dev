@@ -19,7 +19,7 @@ public class QueryCDB {
 		String countryName = countryObj.getCountryName();
 		String personsofconcern = countryObj.getPOC();
 		int numOfRightsCategories = CountRows.countRows("rightscategory");
-		String AllRightsGrpObs[][] = new String[numOfRightsCategories][26]; 
+		String AllRightsGrpObs[][] = new String[numOfRightsCategories][30]; 
 		int i = 0;
 	
 		String[] RightsGroupsNames = new String[numOfRightsCategories];
@@ -73,6 +73,11 @@ public class QueryCDB {
 					AllRightsGrpObs[i][24] = StringUtils.defaultString(rs.getString("OtherObsComment"), "");
 					AllRightsGrpObs[i][25] = StringUtils.defaultString(rs.getString("OtherObsGrps"), "");
 					
+					AllRightsGrpObs[i][26] = StringUtils.defaultString(rs.getString("Other2NameObs"), "");
+					AllRightsGrpObs[i][27] = StringUtils.defaultString(rs.getString("Other2Obs"), "");
+					AllRightsGrpObs[i][28] = StringUtils.defaultString(rs.getString("Other2ObsComment"), "");
+					AllRightsGrpObs[i][29] = StringUtils.defaultString(rs.getString("Other2ObsGrps"), "");
+					
 				
 					i++;
 				}		
@@ -84,11 +89,10 @@ public class QueryCDB {
 				//If there is no information in the database for the country, set everything to an empty string.
 	            for (int j = 0; j < numOfRightsCategories; j++) {
 					AllRightsGrpObs[j][0] = RightsGroupsNames[j];
-	            	for (int x = 1; x <26; x++) {
+	            	for (int x = 1; x <30; x++) {
 	            		AllRightsGrpObs[j][x] = "";
 	            	}
 	            }
-				
 				countryObj.setObstacles(AllRightsGrpObs);
 			}
 			rs.close();

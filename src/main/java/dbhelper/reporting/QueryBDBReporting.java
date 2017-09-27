@@ -66,7 +66,7 @@ public class QueryBDBReporting {
 			rs.beforeFirst();
 
 			// Get all of the instruments from the result set.
-			String IntlInstru[][] = new String[noOfInstruments][7];
+			String IntlInstru[][] = new String[noOfInstruments][11];
 
 			int i = 0;
 
@@ -74,11 +74,18 @@ public class QueryBDBReporting {
 
 				IntlInstru[i][0] = StringUtils.defaultString(rs.getString("InstrumentName"), "");
 				IntlInstru[i][1] = StringUtils.defaultString(rs.getString("InstrumentType"), "");
-				IntlInstru[i][2] = StringUtils.defaultString(rs.getString("Ratified"), "");
-				IntlInstru[i][3] = StringUtils.defaultString(rs.getString("Articles"), "");
-				IntlInstru[i][4] = StringUtils.defaultString(rs.getString("Reservations"), "");
-				IntlInstru[i][5] = StringUtils.defaultString(rs.getString("ReservationsNature"), "");
-				IntlInstru[i][6] = StringUtils.defaultString(rs.getString("InstrumentID"), "");
+				
+				IntlInstru[i][2] = StringUtils.defaultString(rs.getString("RefWorldLink"), "");
+				IntlInstru[i][3] = StringUtils.defaultString(rs.getString("FileStorageName"), "");
+				IntlInstru[i][4] = StringUtils.defaultString(rs.getString("FileDisplayName"), "");
+				IntlInstru[i][5] = StringUtils.defaultString(rs.getString("FileURL"), "");
+				
+				IntlInstru[i][6] = StringUtils.defaultString(rs.getString("Ratified"), "");
+				
+				IntlInstru[i][7] = StringUtils.defaultString(rs.getString("Articles"), "");
+				IntlInstru[i][8] = StringUtils.defaultString(rs.getString("Reservations"), "");
+				IntlInstru[i][9] = StringUtils.defaultString(rs.getString("ReservationsNature"), "");
+				IntlInstru[i][10] = StringUtils.defaultString(rs.getString("InstrumentID"), "");
 
 				i++;
 			}
@@ -120,7 +127,7 @@ public class QueryBDBReporting {
 			rs.beforeFirst();
 
 			// Get all of the instruments from the result set.
-			String NatlInstru[][] = new String[noOfInstruments][36];
+			String NatlInstru[][] = new String[noOfInstruments][38];
 
 			int i = 0;
 
@@ -174,7 +181,9 @@ public class QueryBDBReporting {
 				NatlInstru[i][34] = StringUtils.defaultString(rs.getString("ArticleComments"), "");
 
 				NatlInstru[i][35] = StringUtils.defaultString(rs.getString("Comments"), "");
-
+				
+				NatlInstru[i][36] = StringUtils.defaultString(rs.getString("AllParts"), "");
+				NatlInstru[i][37] = StringUtils.defaultString(rs.getString("AllPartsComm"), "");
 				i++;
 			}
 

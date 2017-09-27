@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import dbhelper.analytical.QueryAnalyticsCLegalFramework;
 import dbhelper.analytical.QueryAnalyticsCNatInstruments;
 import dbhelper.analytical.QueryAnalyticsCObstacles;
+import dbhelper.datacollection.QueryA2DB;
 import model.Country;
 
 
@@ -54,6 +55,8 @@ public class AnalyticalToolController extends HttpServlet {
 			countryObj = QueryAnalyticsCNatInstruments.getNatInstruData(countryObj);
 			countryObj = QueryAnalyticsCObstacles.getObstaclesData(countryObj);
 			countryObj = QueryAnalyticsCLegalFramework.getLegalFrameworkData(countryObj);
+			//countryObj = QueryA2DB.getCountryPOCs(countryObj);
+			countryObj = QueryA2DB.getLegalFrameworkSystemIntro(countryObj);
 
 
 			request.setAttribute("countryObj", countryObj);

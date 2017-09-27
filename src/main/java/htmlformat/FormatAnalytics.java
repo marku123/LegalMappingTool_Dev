@@ -32,7 +32,7 @@ public class FormatAnalytics {
 		String[] POCNames = new String[5];
 		String[] POCNamesNationals = new String[6];
 
-		String[] ObstacleNames = new String[9];
+		String[] ObstacleNames = new String[8];
 
 		POCNames[0] = "Asylum Seekers";
 		POCNames[1] = "Internally Displaced Persons";
@@ -222,8 +222,9 @@ public class FormatAnalytics {
 
 	public static String formatPOCNatInstrumentsChartSummary(Country countryObj) {
 
-		String chartData;
+		String chartData = "";
 		String POCNatInstrumentsSummary[] = countryObj.getNatInstruPOCSummary();
+		String POCs = countryObj.getPOCCountry();
 		String[] POCNames = new String[6];
 
 		POCNames[0] = "Asylum Seekers";
@@ -233,11 +234,38 @@ public class FormatAnalytics {
 		POCNames[4] = "Returnees";
 		POCNames[5] = "Stateless Persons";
 
-		chartData = "" + "{ color : '#EFD468', name: '" + POCNames[0] + "', y : " + POCNatInstrumentsSummary[0].replace("-", "null") + "}," + "{ color : '#EFD468', name: '" + POCNames[1] + "', y : "
-				+ POCNatInstrumentsSummary[1].replace("-", "null") + "}," + "{ color : '#EFD468', name: '" + POCNames[2] + "', y : " + POCNatInstrumentsSummary[2].replace("-", "null") + "},"
-				+ "{ color : '#EFD468', name: '" + POCNames[3] + "', y : " + POCNatInstrumentsSummary[3].replace("-", "null") + "}," + "{ color : '#EFD468', name: '" + POCNames[4] + "', y : "
-				+ POCNatInstrumentsSummary[4].replace("-", "null") + "}," + "{ color : '#EFD468', name: '" + POCNames[5] + "', y : " + POCNatInstrumentsSummary[5].replace("-", "null") + "}";
 
+        if (POCs.equals("")){
+    		chartData = "{ color : '#EFD468', name: '" + POCNames[0] + "', y : " + POCNatInstrumentsSummary[0].replace("-", "null") + "},"
+    				+ "{ color : '#EFD468', name: '" + POCNames[1] + "', y : "+ POCNatInstrumentsSummary[1].replace("-", "null") + "},"
+    				+ "{ color : '#EFD468', name: '" + POCNames[2] + "', y : " + POCNatInstrumentsSummary[2].replace("-", "null") + "},"
+    				+ "{ color : '#EFD468', name: '" + POCNames[3] + "', y : " + POCNatInstrumentsSummary[3].replace("-", "null") + "},"
+    				+ "{ color : '#EFD468', name: '" + POCNames[4] + "', y : " + POCNatInstrumentsSummary[4].replace("-", "null") + "},"
+    				+ "{ color : '#EFD468', name: '" + POCNames[5] + "', y : " + POCNatInstrumentsSummary[5].replace("-", "null") + "},";
+        } else {
+        	
+            if (POCs.contains("Asylum Seekers")){
+            	chartData = chartData + "{ color : '#EFD468', name: '" + POCNames[0] + "', y : " + POCNatInstrumentsSummary[0].replace("-", "null") + "},";
+            }
+            if (POCs.contains("Internally Displaced Persons")){
+            	chartData = chartData + "{ color : '#EFD468', name: '" + POCNames[1] + "', y : " + POCNatInstrumentsSummary[1].replace("-", "null") + "},";
+            }
+            
+            chartData = chartData + "{ color : '#EFD468', name: '" + POCNames[2] + "', y : " + POCNatInstrumentsSummary[2].replace("-", "null") + "},";
+
+            if (POCs.contains("Refugees")){
+            	chartData = chartData + "{ color : '#EFD468', name: '" + POCNames[3] + "', y : " + POCNatInstrumentsSummary[3].replace("-", "null") + "},";
+            }
+            if (POCs.contains("Returnees")){
+            	chartData = chartData + "{ color : '#EFD468', name: '" + POCNames[4] + "', y : " + POCNatInstrumentsSummary[4].replace("-", "null") + "},";
+            }
+            if (POCs.contains("Stateless Persons")){
+            	chartData = chartData + "{ color : '#EFD468', name: '" + POCNames[5] + "', y : " + POCNatInstrumentsSummary[5].replace("-", "null") + "},";
+            }
+        }
+		
+		// Remove the last comma from the output data.
+		chartData = chartData.substring(0, chartData.length() - 1);
 		return chartData;
 	}
 
@@ -264,25 +292,43 @@ public class FormatAnalytics {
 
 		RightsGroupsNames = RightsCategoriesManagement.getRightsCategories();
 
-		htmlTable = "" + "<table id='tabletitle' >" + "<thead> \n" + "<tr > \n" + "<th colspan='5'>"
+		htmlTable = "<table id='tabletitle' >" + "<thead> \n" + "<tr > \n" + "<th colspan='5'>"
 				+ "Rating National Legal Instrument Support for the Rights of Nationals and Populations of Concern\n" + "<br>(1=\"National Instruments Do Not Support the Rights Category\", "
-				+ "3=\"National Instruments Support the Rights Category\") \n" + "</th>" + "</tr> \n" + "</thead> \n" + "</table>" + "<table id='obstaclesdetail' class='sortable'> \n" + "<thead> \n"
+				+ "3=\"National Instruments Support the Rights Category\") \n" + "</th>" + "</tr> \n" + "</thead> \n" + "</table>" + "<table id='obstaclesdetail' class='sortable'> \n" + "<thead> \n";
 
-				+ "<tr> \n" + "<th> Rights Category </th> \n" + "<th> Asylum Seekers</th> \n" + "<th> Internally Displaced Persons </th> \n" + "<th> Nationals</th> \n" + "<th> Refugees</th> \n"
-				+ "<th> Returnees </th> \n" + "<th> Stateless Persons</th> \n" + "</tr> \n" + "</thead> \n" + "<tbody> \n";
+		htmlTable = htmlTable   + "<tr> \n" + "<th> Rights Category </th> \n"
+						+ "<th class='trhideclassAsy'> Asylum Seekers</th> \n"
+						+ "<th class='trhideclassIDP'> Internally Displaced Persons </th> \n"
+						+ "<th> Nationals</th> \n"
+						+ "<th class='trhideclassRef'> Refugees</th> \n"
+						+ "<th class='trhideclassRet'> Returnees </th> \n"
+						+ "<th class='trhideclassState'> Stateless Persons</th> \n"
+						+ "</tr> \n" + "</thead> \n" + "<tbody> \n";
 
 		for (int i = 0; i < numOfRightsCategories; i++) {
-			htmlTable = htmlTable + "" + "<tr>	\n" + "<td> " + RightsGroupsNames[i] + " </td> \n" + "<td> " + NatInstruPOCDetail[i][0] + " </td> \n" + "<td> " + NatInstruPOCDetail[i][1] + "</td> \n"
-					+ "<td> " + NatInstruPOCDetail[i][2] + " </td> \n" + "<td> " + NatInstruPOCDetail[i][3] + " </td> \n" + "<td> " + NatInstruPOCDetail[i][4] + " </td> \n" + "<td> "
-					+ NatInstruPOCDetail[i][5] + " </td> \n" + "</tr> \n";
-
+			htmlTable = htmlTable + ""
+					+ "<tr>	\n"
+					+ "<td> " + RightsGroupsNames[i] + " </td> \n"
+					+ "<td class='trhideclassAsy'> " + NatInstruPOCDetail[i][0] + " </td> \n"
+					+ "<td class='trhideclassIDP'> " + NatInstruPOCDetail[i][1] + "</td> \n"
+					+ "<td > " + NatInstruPOCDetail[i][2] + " </td> \n"
+					+ "<td class='trhideclassRef'> " + NatInstruPOCDetail[i][3] + " </td> \n"
+					+ "<td class='trhideclassRet'> " + NatInstruPOCDetail[i][4] + " </td> \n"
+					+ "<td class='trhideclassState'> " + NatInstruPOCDetail[i][5] + " </td> \n" + "</tr> \n";
 		}
+		
 		htmlTable = htmlTable + "</tbody> \n";
 
 		htmlTable = htmlTable + "" + "<tfoot> \n" + "<tr>	\n"
 
-		+ "<td> All Rights: </td> \n" + "<td> " + NatInstruPOCSummary[0] + " </td> \n" + "<td> " + NatInstruPOCSummary[1] + "</td> \n" + "<td> " + NatInstruPOCSummary[2] + " </td> \n" + "<td> "
-				+ NatInstruPOCSummary[3] + " </td> \n" + "<td> " + NatInstruPOCSummary[4] + " </td> \n" + "<td> " + NatInstruPOCSummary[5] + " </td> \n" + "</tr> \n" + "</tfoot> \n";
+		+ "<td> All Rights: </td> \n"
+		+ "<td class='trhideclassAsy'> " + NatInstruPOCSummary[0] + " </td> \n"
+		+ "<td class='trhideclassIDP'> " + NatInstruPOCSummary[1] + "</td> \n"
+		+ "<td > " + NatInstruPOCSummary[2] + " </td> \n"
+		+ "<td class='trhideclassRef'> " + NatInstruPOCSummary[3] + " </td> \n"
+		+ "<td class='trhideclassRet'> " + NatInstruPOCSummary[4] + " </td> \n"
+		+ "<td class='trhideclassState'> " + NatInstruPOCSummary[5] + " </td> \n"
+		+ "</tr> \n" + "</tfoot> \n";
 
 		htmlTable = htmlTable + "" + "</table> \n";
 
@@ -291,9 +337,10 @@ public class FormatAnalytics {
 
 	public static String formatPOCObstaclesChartSummary(Country countryObj) {
 
-		String chartData;
+		String chartData = "";
 		String POCObstaclesDetail[][] = countryObj.getPOCObstaclesDetail();
 		String[] POCNames = new String[6];
+		String POCs = countryObj.getPOCCountry();
 
 		POCNames[0] = "Asylum Seekers";
 		POCNames[1] = "Internally Displaced Persons";
@@ -302,11 +349,41 @@ public class FormatAnalytics {
 		POCNames[4] = "Stateless Persons";
 		POCNames[5] = "All Populations of Concern";
 
-		chartData = "" + "{ color : '#EFD468', name: '" + POCNames[0] + "', y : " + POCObstaclesDetail[0][8].replace("-", "null") + "}," + "{ color : '#EFD468', name: '" + POCNames[1] + "', y : "
-				+ POCObstaclesDetail[1][8].replace("-", "null") + "}," + "{ color : '#EFD468', name: '" + POCNames[2] + "', y : " + POCObstaclesDetail[2][8].replace("-", "null") + "},"
-				+ "{ color : '#EFD468', name: '" + POCNames[3] + "', y : " + POCObstaclesDetail[3][8].replace("-", "null") + "}," + "{ color : '#EFD468', name: '" + POCNames[4] + "', y : "
-				+ POCObstaclesDetail[4][8].replace("-", "null") + "}," + "{ color : '#EFD468', name: '" + POCNames[5] + "', y : " + POCObstaclesDetail[5][8].replace("-", "null") + "}";
+        if (POCs.equals("")){
+    		chartData = "{ color : '#EFD468', name: '" + POCNames[0] + "', y : " + POCObstaclesDetail[0][8].replace("-", "null") + "},"
+    				+ "{ color : '#EFD468', name: '" + POCNames[1] + "', y : "+ POCObstaclesDetail[1][8].replace("-", "null") + "},"
+    				+ "{ color : '#EFD468', name: '" + POCNames[2] + "', y : " + POCObstaclesDetail[2][8].replace("-", "null") + "},"
+    				+ "{ color : '#EFD468', name: '" + POCNames[3] + "', y : " + POCObstaclesDetail[3][8].replace("-", "null") + "},"
+    				+ "{ color : '#EFD468', name: '" + POCNames[4] + "', y : " + POCObstaclesDetail[4][8].replace("-", "null") + "},"
+    				+ "{ color : '#EFD468', name: '" + POCNames[5] + "', y : " + POCObstaclesDetail[5][8].replace("-", "null") + "},";
+        } else {
+        	
+            if (POCs.contains("Asylum Seekers")){
+            	chartData = chartData + "{ color : '#EFD468', name: '" + POCNames[0] + "', y : " + POCObstaclesDetail[0][8].replace("-", "null") + "},";
+            }
+            if (POCs.contains("Internally Displaced Persons")){
+            	chartData = chartData + "{ color : '#EFD468', name: '" + POCNames[1] + "', y : " + POCObstaclesDetail[1][8].replace("-", "null") + "},";
+            }
+            
+            if (POCs.contains("Refugees")){
 
+            	chartData = chartData + "{ color : '#EFD468', name: '" + POCNames[2] + "', y : " + POCObstaclesDetail[2][8].replace("-", "null") + "},";
+            }
+            if (POCs.contains("Refugees")){
+            	chartData = chartData + "{ color : '#EFD468', name: '" + POCNames[3] + "', y : " + POCObstaclesDetail[3][8].replace("-", "null") + "},";
+            }
+            if (POCs.contains("Stateless Persons")){
+            	chartData = chartData + "{ color : '#EFD468', name: '" + POCNames[4] + "', y : " + POCObstaclesDetail[4][8].replace("-", "null") + "},";
+            }
+
+            	chartData = chartData + "{ color : '#EFD468', name: '" + POCNames[5] + "', y : " + POCObstaclesDetail[5][8].replace("-", "null") + "},";
+
+        }
+		
+		// Remove the last comma from the output data.
+		chartData = chartData.substring(0, chartData.length() - 1);
+		
+		
 		return chartData;
 	}
 
@@ -337,6 +414,7 @@ public class FormatAnalytics {
 		ObstacleNames[5] = "Discrimination";
 		ObstacleNames[6] = "Lack of Information";
 		ObstacleNames[7] = "Other";
+
 
 		for (int i = 0; i < ObstacleNames.length; i++) {
 			chartData = chartData + "" + "{ color : '#EFD468', name: '" + ObstacleNames[i] + "', y : " + POCObstaclesDetail[5][i].replace("-", "null") + "},";
@@ -370,26 +448,47 @@ public class FormatAnalytics {
 		ObstacleNames[6] = "Lack of Information";
 		ObstacleNames[7] = "Other";
 
-		htmlTable = "" + "<table id='tabletitle' >" + "<thead> \n" + "<tr > \n" + "<th colspan='5'>" + "Rating the Obstacles Preventing Populations of Concern From Enjoying Their Rights"
+		htmlTable = "<table id='tabletitle' >" + "<thead> \n" + "<tr > \n" + "<th colspan='5'>" + "Rating the Obstacles Preventing Populations of Concern From Enjoying Their Rights"
 				+ "<br>(1=\"The Obstacles Do Not, or Minimally, Prevent Populations of Concern From Enjoying Their Rights\",<br> "
 				+ "3=\"The Obstacles Determinatively Prevent Populations of Concern From Enjoying Their Rights\") \n" + "</th>" + "</tr> \n" + "</thead> \n" + "</table>"
-				+ "<table id='obstaclesdetail' class='sortable'> \n" + "<thead> \n"
+				+ "<table id='obstaclesdetail' class='sortable'> \n" + "<thead> \n";
 
-				+ "<tr> \n" + "<th> Obstacles </th> \n" + "<th> " + POCNames[0] + " </th> \n" + "<th> " + POCNames[1] + "</th> \n" + "<th> " + POCNames[2] + "</th> \n" + "<th> " + POCNames[3]
-				+ "</th> \n" + "<th> " + POCNames[4] + "</th> \n" + "<th> " + POCNames[5] + "</th> \n" + "</tr> \n" + "</thead> \n" + "<tbody> \n";
+				
+		htmlTable = htmlTable + 		
+				"<tr> \n"
+				+ "<th> Obstacles </th> \n"
+				+ "<th class='trhideclassAsy'> " + POCNames[0] + " </th> \n"
+				+ "<th class='trhideclassIDP'> " + POCNames[1] + "</th> \n"
+				+ "<th class='trhideclassRef'> " + POCNames[2] + "</th> \n"
+				+ "<th class='trhideclassRet'> " + POCNames[3] + "</th> \n"
+				+ "<th class='trhideclassState'> " + POCNames[4] + "</th> \n"
+				+ "<th> " + POCNames[5] + "</th> \n"
+				+ "</tr> \n" + "</thead> \n" + "<tbody> \n";
 
 		for (int i = 0; i < ObstacleNames.length; i++) {
-			htmlTable = htmlTable + "" + "<tr>	\n" + "<td> " + ObstacleNames[i] + " </td> \n" + "<td> " + POCObstaclesDetail[0][i] + " </td> \n" + "<td> " + POCObstaclesDetail[1][i] + "</td> \n"
-					+ "<td> " + POCObstaclesDetail[2][i] + " </td> \n" + "<td> " + POCObstaclesDetail[3][i] + " </td> \n" + "<td> " + POCObstaclesDetail[4][i] + " </td> \n" + "<td> "
-					+ POCObstaclesDetail[5][i] + " </td> \n" + "</tr> \n";
+			htmlTable = htmlTable + 
+					"<tr>	\n"
+					+ "<td> " + ObstacleNames[i] + " </td> \n"
+					+ "<td class='trhideclassAsy'> " + POCObstaclesDetail[0][i] + " </td> \n"
+					+ "<td  class='trhideclassIDP'> " + POCObstaclesDetail[1][i] + "</td> \n"
+					+ "<td  class='trhideclassRef'> " + POCObstaclesDetail[2][i] + " </td> \n"
+					+ "<td class='trhideclassRet'> " + POCObstaclesDetail[3][i] + " </td> \n"
+					+ "<td class='trhideclassState'> " + POCObstaclesDetail[4][i] + " </td> \n"
+					+ "<td> " + POCObstaclesDetail[5][i] + " </td> \n" + "</tr> \n";
 
 		}
 		htmlTable = htmlTable + "</tbody> \n";
 
-		htmlTable = htmlTable + "" + "<tfoot> \n" + "<tr>	\n"
+		htmlTable = htmlTable + "<tfoot> \n" + "<tr>	\n"
 
-		+ "<td> All Obstacles: </td> \n" + "<td> " + POCObstaclesDetail[0][8] + " </td> \n" + "<td> " + POCObstaclesDetail[1][8] + "</td> \n" + "<td> " + POCObstaclesDetail[2][8] + " </td> \n"
-				+ "<td> " + POCObstaclesDetail[3][8] + " </td> \n" + "<td> " + POCObstaclesDetail[4][8] + " </td> \n" + "<td> " + POCObstaclesDetail[5][8] + " </td> \n" + "</tr> \n" + "</tfoot> \n";
+		+ "<td> All Obstacles: </td> \n"
+		+ "<td class='trhideclassAsy'> " + POCObstaclesDetail[0][8] + " </td> \n"
+		+ "<td  class='trhideclassIDP'> " + POCObstaclesDetail[1][8] + "</td> \n"
+		+ "<td   class='trhideclassRef'> " + POCObstaclesDetail[2][8] + " </td> \n"
+		+ "<td class='trhideclassRet'> " + POCObstaclesDetail[3][8] + " </td> \n"
+		+ "<td class='trhideclassState'> " + POCObstaclesDetail[4][8] + " </td> \n"
+		+ "<td> " + POCObstaclesDetail[5][8] + " </td> \n"
+		+ "</tr> \n" + "</tfoot> \n";
 
 		htmlTable = htmlTable + "" + "</table> \n";
 
@@ -426,26 +525,43 @@ public class FormatAnalytics {
 
 		RightsGroupsNames = RightsCategoriesManagement.getRightsCategories();
 
-		htmlTable = "" + "<table id='tabletitle' >" + "<thead> \n" + "<tr > \n" + "<th colspan='5'>" + "Rating the Accessibility of Rights to Populations of Concern\n"
+		htmlTable = "<table id='tabletitle' >" + "<thead> \n" + "<tr > \n" + "<th colspan='5'>" + "Rating the Accessibility of Rights to Populations of Concern\n"
 				+ "<br>(1=\"There Are No, or Minimal, Obstacles to Enjoying the Rights in the Rights Category\", "
 				+ "3=\"There Are Determinative Obstacles to Enjoying the Rights in the Rights Category\") \n" + "</th>" + "</tr> \n" + "</thead> \n" + "</table>"
-				+ "<table id='obstaclesdetail' class='sortable'> \n" + "<thead> \n"
+				+ "<table id='obstaclesdetail' class='sortable'> \n" + "<thead> \n";
 
-				+ "<tr> \n" + "<th> Rights Category </th> \n" + "<th> Asylum Seekers</th> \n" + "<th> Internally Displaced Persons </th> \n" + "<th> Refugees</th> \n" + "<th> Returnees </th> \n"
-				+ "<th> Stateless Persons</th> \n" + "<th> All Populations of Concern</th> \n" + "</tr> \n" + "</thead> \n" + "<tbody> \n";
+		htmlTable = htmlTable + "<tr> \n"
+				+ "<th> Rights Category </th> \n"
+				+ "<th class='trhideclassAsy'> Asylum Seekers</th> \n"
+				+ "<th class='trhideclassIDP'> Internally Displaced Persons </th> \n"
+				+ "<th class='trhideclassRef'> Refugees</th> \n"
+				+ "<th class='trhideclassRet'> Returnees </th> \n"
+				+ "<th class='trhideclassState'> Stateless Persons</th> \n"
+				+ "<th> All Populations of Concern</th> \n"
+				+ "</tr> \n" + "</thead> \n" + "<tbody> \n";
 
 		for (int i = 0; i < RightsGroupsNames.length; i++) {
-			htmlTable = htmlTable + "" + "<tr>	\n" + "<td> " + RightsGroupsNames[i] + " </td> \n" + "<td> " + POCRightsGrouopsObstacles[0][i] + " </td> \n" + "<td> " + POCRightsGrouopsObstacles[1][i]
-					+ "</td> \n" + "<td> " + POCRightsGrouopsObstacles[2][i] + " </td> \n" + "<td> " + POCRightsGrouopsObstacles[3][i] + " </td> \n" + "<td> " + POCRightsGrouopsObstacles[4][i]
-					+ " </td> \n" + "<td> " + AllPOCRightsGrouopsObstacles[i] + " </td> \n" + "</tr> \n";
+			htmlTable = htmlTable + "" + "<tr>	\n"
+					+ "<td> " + RightsGroupsNames[i] + " </td> \n"
+					+ "<td class='trhideclassAsy'> " + POCRightsGrouopsObstacles[0][i] + " </td> \n"
+					+ "<td class='trhideclassIDP'> " + POCRightsGrouopsObstacles[1][i]	+ "</td> \n"
+					+ "<td class='trhideclassRef'> " + POCRightsGrouopsObstacles[2][i] + " </td> \n"
+					+ "<td class='trhideclassRet'> " + POCRightsGrouopsObstacles[3][i] + " </td> \n"
+					+ "<td class='trhideclassState'> " + POCRightsGrouopsObstacles[4][i] + " </td> \n"
+					+ "<td> " + AllPOCRightsGrouopsObstacles[i] + " </td> \n" + "</tr> \n";
 
 		}
 		htmlTable = htmlTable + "</tbody> \n";
 
 		htmlTable = htmlTable + "" + "<tfoot> \n" + "<tr>	\n"
 
-		+ "<td> All Rights: </td> \n" + "<td> " + POCALLRightsGroupsObtacles[0] + " </td> \n" + "<td> " + POCALLRightsGroupsObtacles[1] + "</td> \n" + "<td> " + POCALLRightsGroupsObtacles[2]
-				+ " </td> \n" + "<td> " + POCALLRightsGroupsObtacles[3] + " </td> \n" + "<td> " + POCALLRightsGroupsObtacles[4] + " </td> \n" + "<td> " + AllPOCALLRightsGroupsObtacles + " </td> \n"
+		+ "<td> All Rights: </td> \n"
+		+ "<td class='trhideclassAsy'> " + POCALLRightsGroupsObtacles[0] + " </td> \n"
+		+ "<td  class='trhideclassIDP'> " + POCALLRightsGroupsObtacles[1] + "</td> \n"
+		+ "<td  class='trhideclassRef'> " + POCALLRightsGroupsObtacles[2] + " </td> \n"
+		+ "<td class='trhideclassRet'> " + POCALLRightsGroupsObtacles[3] + " </td> \n"
+		+ "<td  class='trhideclassState'> " + POCALLRightsGroupsObtacles[4] + " </td> \n"
+		+ "<td> " + AllPOCALLRightsGroupsObtacles + " </td> \n"
 				+ "</tr> \n" + "</tfoot> \n";
 
 		htmlTable = htmlTable + "" + "</table> \n";
