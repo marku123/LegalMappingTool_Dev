@@ -27,6 +27,8 @@
 
       String intlInstrumentsTables = FormatDataColB.formatIntlInstrumentTables(countryObj);
       String natlInstrumentsTables = FormatDataColB.formatNationalInstrumentTables(countryObj);
+      String constitutionTables = FormatDataColB.formatConstitutionTable(countryObj);
+
 
    %>
 
@@ -80,10 +82,31 @@
                </div> 
             </div>
             
+            <!-- International Instruments -->
+            <div id="question1">
+               <p id="question1para">
+                  2. The country's constitution and <strong><%=rightgroup%></strong> rights:<br><br>
+               </p>
+               
+                   <%=constitutionTables%>       
+               <br>
+               <!-- <div id="" class="addinstrument">
+                  <input onclick="intlInstruAddRow();" type="button" value="Add An Instrument" />  
+               </div> -->
+                                
+               <br><br>
+             
+               <div class="savebuttonandtooltip">
+                  <input class="savebutton" type="submit" name="savedata" value="Save Changes" />
+                  <span class="tooltiptext">All changes on page will be saved.</span>
+               </div> 
+            </div>
+            
+            
             <!-- National Instruments -->
             <div id="question2">
                <p  id="question2para">
-                  2. National instruments that are relevant to <strong><%=rightgroup%></strong> rights:<br><br>
+                  3. Other national instruments that are relevant to <strong><%=rightgroup%></strong> rights:<br><br>
                </p>
                    <%=natlInstrumentsTables%> 
                <br>

@@ -242,8 +242,8 @@ public class QueryBDB {
 		String countryName = countryObj.getCountryName();
 		String rightsGroup = countryObj.getRightsGroup();
 		int numberOfNatlInstru = CountRows.countRowsRightsGroups("rightsgroup_b2_national", rightsGroup, countryName);
-		String AllNatllInstru[][] = new String[numberOfNatlInstru][38];
-		String NoNatlInstru[][] = new String[1][38];
+		String AllNatllInstru[][] = new String[numberOfNatlInstru][37];
+		String NoNatlInstru[][] = new String[1][37];
 		int i = 0;
 
 		try {
@@ -254,6 +254,8 @@ public class QueryBDB {
 			pst.setString(1, countryName);
 			pst.setString(2, rightsGroup);
 			ResultSet rs = pst.executeQuery();
+			
+			
 
 			// Test to see if the country exists. If the country doesn't exist
 			// then set everything to an empty string.
@@ -309,8 +311,7 @@ public class QueryBDB {
 
 					AllNatllInstru[i][35] = StringUtils.defaultString(rs.getString("Comments"), "");
 					
-					AllNatllInstru[i][36] = StringUtils.defaultString(rs.getString("AllParts"), "");
-					AllNatllInstru[i][37] = StringUtils.defaultString(rs.getString("AllPartsComm"), "");
+					AllNatllInstru[i][36] = StringUtils.defaultString(rs.getString("AllPartsComm"), "");
 
 
 					i++;
@@ -322,7 +323,7 @@ public class QueryBDB {
 				// If there is no information in the database for the country,
 				// set everything to an empty string.
 
-				for (int j = 0; j < 38; j++) {
+				for (int j = 0; j < 37; j++) {
 					NoNatlInstru[0][j] = "No Data in DB";
 				}
 				countryObj.setNatlInstruments(NoNatlInstru);
@@ -341,18 +342,22 @@ public class QueryBDB {
 	public static Country getRightsGroupsNatlIntrumentsRepository(Country countryObj) {
 		Connection c = MySql.connect();
 		String countryName = countryObj.getCountryName();
-		int numberOfNatlInstru = CountRows.countInstrumentsCountry("rightsgroup_b2_national", countryName);
-		String AllNatllInstru[][] = new String[numberOfNatlInstru][9];
 		String NoNatlInstru[][] = new String[1][9];
 		int i = 0;
 
 		try {
 
-			String sql = "SELECT DISTINCT InstrumentName,RefWorldLink,FileStorageName,FileDisplayName,FileURL,AllParts,AllPartsComm,Comments  FROM rightsgroup_b2_national WHERE CountryName = ? ORDER BY InstrumentName";
+			String sql = "SELECT DISTINCT InstrumentName,RefWorldLink,FileStorageName,FileDisplayName,FileURL,FederalStateLocal,AllPartsComm,Comments  FROM rightsgroup_b2_national WHERE CountryName = ? ORDER BY InstrumentName";
 
 			PreparedStatement pst = c.prepareStatement(sql);
 			pst.setString(1, countryName);
 			ResultSet rs = pst.executeQuery();
+
+			// Get the number of records.
+			rs.last();
+			int numberOfNatlInstru = rs.getRow();
+			rs.beforeFirst();
+			String AllNatllInstru[][] = new String[numberOfNatlInstru][9];
 
 			// Test to see if the country exists. If the country doesn't exist
 			// then set everything to an empty string.
@@ -363,7 +368,7 @@ public class QueryBDB {
 					AllNatllInstru[i][2] = StringUtils.defaultString(rs.getString("FileStorageName"), "");
 					AllNatllInstru[i][3] = StringUtils.defaultString(rs.getString("FileDisplayName"), "");
 					AllNatllInstru[i][4] = StringUtils.defaultString(rs.getString("FileURL"), "");
-					AllNatllInstru[i][5] = StringUtils.defaultString(rs.getString("AllParts"), "");
+					AllNatllInstru[i][5] = StringUtils.defaultString(rs.getString("FederalStateLocal"), "");
 					AllNatllInstru[i][6] = StringUtils.defaultString(rs.getString("AllPartsComm"), "");
 					AllNatllInstru[i][7] = StringUtils.defaultString(rs.getString("Comments"), "");
 					AllNatllInstru[i][8] = getAssociatedRightsGroupsNational(rs.getString("InstrumentName"), countryName);

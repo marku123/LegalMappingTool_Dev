@@ -365,8 +365,7 @@ public class UpdateBDB {
 								+ "(CountryName,RightsGroup,"
 									+ "InstrumentName,RefWorldLink,"
 									+ "FileStorageName,FileDisplayName,FileURL,"
-									+ "FederalStateLocal,"
-									+ "AllParts,AllPartsComm,"
+									+ "FederalStateLocal,AllPartsComm,"
 									+ "ConsistentStandards,ConsistentStandardsComm,Consistent1951,Consistent1951Comm,"
 									+ "SupportNat,RestrictNat,SupportRestrictNatComm,"
 									+ "SupportIDP,RestrictIDP,SupportRestrictIDPComm,"
@@ -381,7 +380,6 @@ public class UpdateBDB {
 									+ "(?,?,?,"
 									+ "'"+natlinstrureflink[i]+"',"
 									+ "'"+natFileStorageName[i]+"','"+natFileDisplayName[i]+"','"+natFileURL[i]+"',"
-									+ "'',"
 									+ "'"+natlinstruapplicable[i]+"','"+natlinstruapplicablecomm[i]+"',"
 									+ "'','','','',"				
 									+ "'','','',"
@@ -400,12 +398,11 @@ public class UpdateBDB {
 									+ "FileStorageName = '"+natFileStorageName[i]+"', "
 									+ "FileDisplayName = '"+natFileDisplayName[i]+"', "
 									+ "FileURL = '"+natFileURL[i]+"', "
-									+ "AllParts = '"+natlinstruapplicable[i]+"', "
+									+ "FederalStateLocal = '"+natlinstruapplicable[i]+"', "
 									+ "AllPartsComm = '"+natlinstruapplicablecomm[i]+"', "
 									+ "Comments = '"+natlinstrucomments[i]+"'"
 									+ "";	
 						
-
 						pst = c.prepareStatement(sql);
 						pst.setString(1, country);
 						pst.setString(2, rightsCategory);

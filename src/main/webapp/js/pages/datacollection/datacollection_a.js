@@ -479,7 +479,7 @@ function newNationalTable(arrayIndex) {
     + "<tr>" + "<td>Uploaded PDF version of the instrument (if not in Refworld):</td> " + "<td> <a class='linkToUploadedFile' name='natFileURLLink[" + arrayIndex + "]' href='' target='_blank'></a>" + "<br><br><label class='browsefile' id='browseFileLabel[" + arrayIndex + "]'> " + "<input id='uploadbutton' name='browseButtonNat[" + arrayIndex + "]' type='file' /> " + "Click to Browse for File " + "</label>" + "<input class='inputfilename' type='text' name='natlinstrurefupload[" + arrayIndex + "]' />" + "<button id='upLoadFileButton' name='uploadButtonNat[" + arrayIndex + "]' type='button' value='" + arrayIndex + "'>Upload File</button>" + "<p class='uploadfilesuccess' id='uploadsuccess[" + arrayIndex + "]' ></p>" + "<input type='hidden' name='natFileStorageName[" + arrayIndex + "]' value='' />" + "<input type='hidden' name='natFileDisplayName[" + arrayIndex + "]' value='' />" + "<input type='hidden' name='natFileURL[" + arrayIndex + "]' value='' />" + "</td> " + "</tr>"
 
     // Applicable in all or parts of the country.
-    + "<tr>  " + "<td>The instrument is applicable in all or parts of the country:</td>" + "<td>" + "<div id='instruconsistentcommdiv'> " + "<select class='consistentintlstandards' name='natlinstruapplicable[" + arrayIndex + "]'>  " + "<option value=''></option>  " + "<option value='all' >All</option>  " + "<option value='part'>Part(s)</option>" + "</select>" + "</div> " + "<label id='instruconsistentlabel' class='instruconsistentlabel'>Explanation as to where it is applicable (if 'Part(s)' is selected): </label> " + "<textarea class='instruconsistentcomm' name='natlinstruapplicablecomm[" + arrayIndex + "]'></textarea> " + "</td> " + "</tr> "
+    + "<tr>  " + "<td>The instrument is applicable in all or parts of the country:</td>" + "<td>" + "<div id='instruconsistentcommdiv'> " + "<select class='consistentintlstandards' name='natlinstruapplicable[" + arrayIndex + "]'>  " + "<option value=''></option>  " + "<option value='federal' >All</option>  " + "<option value='state'>Part(s)</option>" + "</select>" + "</div> " + "<label id='instruconsistentlabel' class='instruconsistentlabel'>Explanation as to where it is applicable (if 'Part(s)' is selected): </label> " + "<textarea class='instruconsistentcomm' name='natlinstruapplicablecomm[" + arrayIndex + "]'></textarea> " + "</td> " + "</tr> "
 
     // Rights categories.
 
@@ -494,3 +494,63 @@ function newNationalTable(arrayIndex) {
 
     return row;
 }
+
+/*
+ * **************String for Constitution Table**************
+ * 
+ */
+$(function() {
+    // Select all for the populations of concern.
+    $("input[name='populationgroupscheckedselectall']").change(function() {
+        if ($(this).is(':checked')) {
+            $("input[name^='populationgroupschecked[]']").prop('checked', true);
+        } else {
+            $("input[name^='populationgroupschecked[]']").prop('checked', false);
+        }
+    });
+
+    // Datepicker.
+    $("#constdateeffect").datepicker({
+    changeMonth : true,
+    changeYear : true,
+    dateFormat : "dd/mm/yy",
+    yearRange : "-300:+0"
+    });
+
+    $("#constdateeffectamend").datepicker({
+    changeMonth : true,
+    changeYear : true,
+    dateFormat : "dd/mm/yy",
+    yearRange : "-300:+0"
+    });
+
+    // When a radio button is clicked, show/hide additional questions if there
+    // is/is not a constitution.
+    $('input:radio[name="constitutionyesno"]').change(function() {
+        if ($(this).val() == 'yes') {
+            $("#constyes").show(500);
+        } else {
+            $("#constyes").hide(500);
+        }
+    });
+
+    $('input:radio[name="constamendyesno"]').change(function() {
+
+        if ($(this).val() == 'yes') {
+            $("#constamenddate").show(500);
+        } else {
+            $("#constamenddate").hide(500);
+        }
+    });
+
+    // When a radio button is clicked, show/hide the description of the plural
+    // legal system.
+    $('input:radio[name="commoncivilplural"]').change(function() {
+        if ($(this).val() == 'plural') {
+            $("#commoncivilpluraltext").show(500);
+        } else {
+            $("#commoncivilpluraltext").hide(500);
+        }
+    });
+
+});

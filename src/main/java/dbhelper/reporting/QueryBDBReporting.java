@@ -127,7 +127,7 @@ public class QueryBDBReporting {
 			rs.beforeFirst();
 
 			// Get all of the instruments from the result set.
-			String NatlInstru[][] = new String[noOfInstruments][38];
+			String NatlInstru[][] = new String[noOfInstruments][37];
 
 			int i = 0;
 
@@ -182,8 +182,7 @@ public class QueryBDBReporting {
 
 				NatlInstru[i][35] = StringUtils.defaultString(rs.getString("Comments"), "");
 				
-				NatlInstru[i][36] = StringUtils.defaultString(rs.getString("AllParts"), "");
-				NatlInstru[i][37] = StringUtils.defaultString(rs.getString("AllPartsComm"), "");
+				NatlInstru[i][36] = StringUtils.defaultString(rs.getString("AllPartsComm"), "");
 				i++;
 			}
 

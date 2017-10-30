@@ -365,9 +365,9 @@ public class FormatingUtilities {
 		String finalString = "";
 	   if((Text.equals("notaparty"))){
 		   finalString = "Not a Party";
-	   } else if((Text.equals("part"))){
+	   } else if((Text.equals("state"))){
 		   finalString = "Part(s)<br><br>";
-	   } else if((Text.equals("all"))){
+	   } else if((Text.equals("federal"))){
 		   finalString = "All<br><br>";
 	   } else {
 		   finalString = capitalizeString(Text);

@@ -40,7 +40,7 @@ public class QueryA2DB {
 				}
 			} else {
 					countryObj.setPOCCountry("");
-					countryObj.setPOCCommentsCountry(StringUtils.defaultString(rs.getString(""), ""));
+					countryObj.setPOCCommentsCountry("");
 					countryObj.setCommonCivilPlural("");
 					countryObj.setPluralText("");
 					countryObj.setFederalState("");

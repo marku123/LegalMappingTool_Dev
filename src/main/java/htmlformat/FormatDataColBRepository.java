@@ -150,6 +150,135 @@ public class FormatDataColBRepository {
 		return htmlTable; 
 	}
 	
+	public static String formatConstitutionTables(Country countryObj) {
+		
+		String htmlTable = new String(""); 
+		String NatlInstruments[][] = countryObj.getNatlInstruments();
+		String countryName = countryObj.getCountryName();
+		String rightCategoryAbbreviations = RightsCategoriesManagement.getRightCategoryAbbreviation("All");
+		
+        int i = 0;     
+
+        if (NatlInstruments[0][0] != "No Data in DB") {
+    		
+        	
+        	
+        	//while(i<NatlInstruments.length) {
+       		
+        		//Format the drop down boxes.
+				String[] allPart = FormatingUtilities.setSelectedDropDownOptions(NatlInstruments[i][5], "federal,state");
+				
+				String[] rightsCategoriesCheck =  FormatingUtilities.setCheckedBoxes(RightsCategoriesManagement.getRightCategoryAbbreviation(NatlInstruments[i][8]),rightCategoryAbbreviations);			
+			
+				//Create the HTML table.
+				htmlTable = htmlTable + ""
+					+ "<table id='natltable"+ i +"' class='constitutiontable'> \n"
+						+ "<thead  onclick=\"natltoggletablebody('natltable"+ i +"','natlinputtable"+ i +"')\"> \n "
+							+ "<tr> \n "
+								+ "<th class='tablehead' colspan='2'> \n "
+								+ "<input class='inputinstrumenthead' id='natlinputtable"+ i +"' type='text' value='Constitution of "+countryName+"' size='65' onfocus='this.blur()' readonly> \n "
+								+ "<span class='tooltiptext'>Click to Expand/Collapse</span> \n "
+								+ "</th> \n "
+							+ "</tr> \n"
+						+ "</thead> \n "
+
+						+ "<tbody> \n "		
+
+						    //Name of the instrument.
+							+ "<tr> \n "
+								+ "<td class='col1' >Official name of the constitution:</td> \n "
+								+ "<td class='col2'> \n"
+									+ "<input id='natlinputtable"+ i +"a' name='natlinstruname["+ i +"]' type='text' value='Constitution of "+countryName+"' size='65'> \n "
+								+ "</td> \n "
+							+ "</tr> \n "
+							
+							
+							//Date the constitution came into effect.
+							+ "<tr> \n "
+								+ "<td>The date the constitution came into effect:</td> \n "
+								+ "<td> \n"
+									+ "<input type='text' id='constdateeffect' name='constdateeffect' size='9' value='' readonly> \n "
+									+ "</td> \n "
+							+ "</tr> \n "
+							
+							//Date the constitution was last amended.
+							+ "<tr> \n "
+								+ "<td>The date the constitution was last amended (if applicable):</td> \n "
+								+ "<td> \n"
+									+ "<input type='text' id='constdateeffectamend' name='constdateeffectamend' size='9' value='' readonly> \n "
+									+ "</td> \n "
+							+ "</tr> \n "
+							
+							//Link to constitution Refworld.
+							+ "<tr> \n "
+								+ "<td>Link to the constitution in Refworld:</td> \n "
+								+ "<td> \n"
+									+ "French or English Version of the Constitution: <br><br><input name='natlinstrureflink["+ i +"]' type='text' value='"+ NatlInstruments[i][1].replaceAll("'", "&#39;")  +"' size='65'>  \n"
+									+ "<a class='refworldlink' href='"+ NatlInstruments[i][1] +"' target='_blank'>Visit Link</a><br><br><br> \n "
+									+ "Original Language of the Constitution (If Other Than French or English): <br><br><input name='natlinstrureflink["+ i +"]' type='text' value='"+ NatlInstruments[i][1].replaceAll("'", "&#39;")  +"' size='65'>  \n"
+									+ "<a class='refworldlink' href='"+ NatlInstruments[i][1] +"' target='_blank'>Visit Link</a> \n "
+								+ "</td> \n "
+							+ "</tr> \n "
+							
+							//Link to the Bill of Rights in Refworld.
+							+ "<tr> \n "
+								+ "<td>Link to the Bill of Rights in Refworld:</td> \n "
+								+ "<td> \n"
+									+ "French or English Version of the Bill of Rights: <br><br><input name='natlinstrureflink["+ i +"]' type='text' value='"+ NatlInstruments[i][1].replaceAll("'", "&#39;")  +"' size='65'>  \n"
+									+ "<a class='refworldlink' href='"+ NatlInstruments[i][1] +"' target='_blank'>Visit Link</a><br><br><br> \n "
+									+ "Original Language of the Bill of Rights (If Other Than French or English): <br><br><input name='natlinstrureflink["+ i +"]' type='text' value='"+ NatlInstruments[i][1].replaceAll("'", "&#39;")  +"' size='65'>  \n"
+									+ "<a class='refworldlink' href='"+ NatlInstruments[i][1] +"' target='_blank'>Visit Link</a> \n "
+								+ "</td> \n "
+							+ "</tr> \n "
+								
+						    // Rights categories.
+
+							+ "<tr> \n "
+								+ "<td>The constitution regulates or affects the following rights categories:</td> \n "
+									+ "<td> \n "
+										+ "<div class='otherlegischeckboxes1'> \n"
+											+ "<p class='otherlegisheadertop'>Civil/Political Rights Categories</p>"
+												+ "<input type='checkbox' name='natinstrrightscategories["+ i +"]' value='fair' "+ rightsCategoriesCheck[0] +">Access to Justice <br>\n"
+												+ "<input type='checkbox' name='natinstrrightscategories["+ i +"]' value='docu'  "+ rightsCategoriesCheck[1] +">Documentation<br>  \n"
+												+ "<input type='checkbox' name='natinstrrightscategories["+ i +"]' value='free' "+ rightsCategoriesCheck[4] +">Freedom of Movement <br>\n"
+												+ "<input type='checkbox' name='natinstrrightscategories["+ i +"]' value='lib'  "+ rightsCategoriesCheck[7] +">Liberty and Security of Person<br> \n"
+												+ "<input type='checkbox' name='natinstrrightscategories["+ i +"]' value='nondis'  "+ rightsCategoriesCheck[8] +">Non-Discrimination<br> \n"
+												+ "<input type='checkbox' name='natinstrrightscategories["+ i +"]' value='poli'  "+ rightsCategoriesCheck[9] +">Political Participation <br> \n"										
+											+ "<p class='otherlegisheaders'>Economic Rights Categories</p>"
+												+ "<input type='checkbox' name='natinstrrightscategories["+ i +"]' value='housing'  "+ rightsCategoriesCheck[6] +">Housing, Land and Property Rights<br>  \n"
+										+ "</div> \n"
+										+ "<div class='otherlegischeckboxes2'> \n"
+												+ "<input type='checkbox' name='natinstrrightscategories["+ i +"]' value='work'  "+ rightsCategoriesCheck[10] +">Right to Work and Rights at Work<br> \n "
+												+ "<input type='checkbox' name='natinstrrightscategories["+ i +"]' value='soc'  "+ rightsCategoriesCheck[11] +">Social Security<br>\n "
+											+ "<p class='otherlegisheaders'>Socio-cultural Rights Categories</p>"
+												+ "<input type='checkbox' name='natinstrrightscategories["+ i +"]' value='edu'  "+ rightsCategoriesCheck[2] +">Education<br>  \n"
+												+ "<input type='checkbox' name='natinstrrightscategories["+ i +"]' value='fam' "+ rightsCategoriesCheck[3] +">Family Unity <br>\n"
+												+ "<input type='checkbox' name='natinstrrightscategories["+ i +"]' value='heal' "+ rightsCategoriesCheck[5] +">Health <br>\n"
+	
+										+ "</div> \n"
+									+ "</td> \n "
+								+ "</tr> \n "
+							
+						
+							//Comments on the instrument.
+							+ "<tr> \n "
+								+ "<td>Comments on the constitution:</td> \n "
+								+ "<td> \n "
+									+ "<textarea class='natcomments' name='natlinstrucomments["+ i +"]'>" + NatlInstruments[i][7] + "</textarea> \n "
+								+ "</td> \n "
+							+ "</tr> \n "
+
+						+ "</tbody> \n "		
+	
+					+ "</table> \n "
+					+ "<input type='hidden' name='natinstrnameOrig["+ i +"]' value='"+ NatlInstruments[i][0].replaceAll("'", "&#39;")  +"'> \n "
+					+ "<br><br><br> \n ";		
+				i++;
+			//}
+        }
+
+		return htmlTable; 
+	}
 	
 	public static String formatNationalInstrumentTables(Country countryObj) {
 		
@@ -171,7 +300,7 @@ public class FormatDataColBRepository {
         	while(i<NatlInstruments.length) {
        		
         		//Format the drop down boxes.
-				String[] allPart = FormatingUtilities.setSelectedDropDownOptions(NatlInstruments[i][5], "all,part");
+				String[] allPart = FormatingUtilities.setSelectedDropDownOptions(NatlInstruments[i][5], "federal,state");
 				
 				String[] rightsCategoriesCheck =  FormatingUtilities.setCheckedBoxes(RightsCategoriesManagement.getRightCategoryAbbreviation(NatlInstruments[i][8]),rightCategoryAbbreviations);			
 			
@@ -231,8 +360,8 @@ public class FormatDataColBRepository {
 									+ "<div id='instruconsistentcommdiv'> \n"									
 									+ "<select class='consistentintlstandards' name='natlinstruapplicable["+ i +"]'> \n "
 										+ "<option value=''></option> \n "
-										+ "<option value='all' "+ allPart[0]+">All</option> \n "
-										+ "<option value='part' "+ allPart[1]+">Part(s)</option> \n "
+										+ "<option value='federal' "+ allPart[0]+">All</option> \n "
+										+ "<option value='state' "+ allPart[1]+">Part(s)</option> \n "
 									+ "</select> \n "
 									+ "</div> \n"
 									+ "<label id='instruconsistentlabel' class='instruconsistentlabel'>Explanation as to where it is applicable if 'Part(s)' is selected: </label>  \n"									

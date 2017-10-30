@@ -215,8 +215,8 @@ public class FormatDataColBReporting {
 						+ "<tr> \n "
 							+ "<td>The instrument is applicable in all or part(s) of the country:</td> \n "
 							+ "<td> \n "
-								+ "" + FormatingUtilities.formatInstrumentData(NatlInstruments[i][36]) + "\n"									
-								+ "" + NatlInstruments[i][37] + " \n "
+								+ "" + FormatingUtilities.formatInstrumentData(NatlInstruments[i][5]) + "\n"									
+								+ "" + NatlInstruments[i][36] + " \n "
 							+ "</td> \n "
 						+ "</tr> \n"
 

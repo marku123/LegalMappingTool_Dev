@@ -4,8 +4,12 @@
 <%@page import="uploader.*"%>
 <%@page import="access.*"%>
 <%@include file="/header.jsp"%>
-<link href="./css/pages/datacollection/datacollection_a.css" rel="stylesheet" type="text/css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/dot-luv/jquery-ui.css">
+<link href="./css/pages/datacollection/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" type="text/css">
 <script type="text/javascript"   src="./js/pages/datacollection/datacollection_a.js"></script>
+<link href="./css/pages/datacollection/datacollection_a.css" rel="stylesheet" type="text/css">
 
 <div id="content-menu-container">
 
@@ -25,6 +29,7 @@
       //String rightgroup = countryObj.getRightsGroup();
       
       String intlInstrumentsTables = FormatDataColBRepository.formatIntlInstrumentTables(countryObj);
+      String constitutionTables = FormatDataColBRepository.formatConstitutionTables(countryObj);
       String natlInstrumentsTables = FormatDataColBRepository.formatNationalInstrumentTables(countryObj);
 
    %>
@@ -78,11 +83,28 @@
                   <span class="tooltiptext">All changes on page will be saved.</span>
                </div> 
             </div>
+         
+            <!-- Constitution -->
+            <div id="question3">
+               <p  id="question3para">
+                  2. The country's constitution:<br><br>
+               </p>
+                   <%=constitutionTables%> 
+               <br>
+                                
+               <br><br>
+             
+               <div class="savebuttonandtooltip">
+                  <input class="savebutton" type="submit" name="savedata" value="Save Changes" />
+                  <span class="tooltiptext">All changes on page will be saved.</span>
+               </div> 
+               <input name="countryNameForFileUpload" type="hidden" value="<%=countryName%>"> 
+            </div>
             
             <!-- National Instruments -->
             <div id="question2">
                <p  id="question2para">
-                  2. National instruments:<br><br>
+                  3. Other national instruments:<br><br>
                </p>
                    <%=natlInstrumentsTables%> 
                <br>
